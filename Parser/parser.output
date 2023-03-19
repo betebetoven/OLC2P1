@@ -32,15 +32,15 @@ Terminals unused in grammar
 
 Rules useless in grammar
 
-   63 lista_Expr: lista_Expr ',' x
-   64           | x
+   67 lista_Expr: lista_Expr ',' x
+   68           | x
 
 
-State 42 conflicts: 2 shift/reduce
-State 54 conflicts: 1 shift/reduce
-State 67 conflicts: 2 shift/reduce
-State 71 conflicts: 1 shift/reduce
-State 101 conflicts: 1 shift/reduce
+State 46 conflicts: 2 shift/reduce
+State 58 conflicts: 1 shift/reduce
+State 71 conflicts: 2 shift/reduce
+State 75 conflicts: 1 shift/reduce
+State 105 conflicts: 1 shift/reduce
 
 
 Grammar
@@ -61,124 +61,129 @@ Grammar
    10          | ciclo_for
    11          | ciclo_while
    12          | ins_if
+   13          | escapa
 
-   13 ciclo_for: FOR '(' declaracion_var z x z aumento ')' '{' lSentencia '}'
+   14 ciclo_for: FOR '(' declaracion_var z x z aumento ')' '{' lSentencia '}'
 
-   14 ciclo_while: WHILE '(' x ')' '{' lSentencia '}'
+   15 ciclo_while: WHILE '(' x ')' '{' lSentencia '}'
 
-   15 ins_if: IF '(' x ')' '{' lSentencia '}'
-   16       | IF '(' x ')' '{' lSentencia '}' ELSE '{' lSentencia '}'
-   17       | IF '(' x ')' '{' lSentencia '}' ELSE ins_if
+   16 ins_if: IF '(' x ')' '{' lSentencia '}'
+   17       | IF '(' x ')' '{' lSentencia '}' ELSE '{' lSentencia '}'
+   18       | IF '(' x ')' '{' lSentencia '}' ELSE ins_if
 
-   18 aumento: INCREMENT ID
-   19        | ID INCREMENT
+   19 escapa: BREAK
+   20       | CONTINUE
+   21       | RETORNO
 
-   20 decremento: DECREMENT ID
-   21           | ID DECREMENT
+   22 aumento: INCREMENT ID
+   23        | ID INCREMENT
 
-   22 imprimir: IMPR '(' x ')'
+   24 decremento: DECREMENT ID
+   25           | ID DECREMENT
 
-   23 bloque: '{' lSentencia '}'
+   26 imprimir: IMPR '(' x ')'
 
-   24 z: ';'
-   25  | %empty
+   27 bloque: '{' lSentencia '}'
 
-   26 declaracion_var: ID AS tipo
-   27                | ID AS tipo '=' x
+   28 z: ';'
+   29  | %empty
 
-   28 asignacion_var: ID '=' x
+   30 declaracion_var: ID AS tipo
+   31                | ID AS tipo '=' x
 
-   29 x: cond
+   32 asignacion_var: ID '=' x
 
-   30 cond: cond OR cond
-   31     | cond AND cond
-   32     | NOT cond
-   33     | '(' cond ')'
-   34     | expr oprel expr
-   35     | expr
+   33 x: cond
 
-   36 oprel: MAYOR
-   37      | MENOR
-   38      | IGUAL_IGUAL
-   39      | MENOR_IGUAL
-   40      | MAYOR_IGUAL
-   41      | DIFERENTE
+   34 cond: cond OR cond
+   35     | cond AND cond
+   36     | NOT cond
+   37     | '(' cond ')'
+   38     | expr oprel expr
+   39     | expr
 
-   42 expr: expr SUMA expr
-   43     | expr MENOS expr
-   44     | expr MULTIPLICACION expr
-   45     | expr DIVISION expr
-   46     | expr EXPONENCIAL expr
-   47     | '(' expr ')'
-   48     | INCREMENT ID
-   49     | ID INCREMENT
-   50     | DECREMENT ID
-   51     | ID DECREMENT
-   52     | MENOS expr
-   53     | NUMERO
-   54     | ID
-   55     | STRING
-   56     | FLOAT
-   57     | TRUE
-   58     | FALSE
+   40 oprel: MAYOR
+   41      | MENOR
+   42      | IGUAL_IGUAL
+   43      | MENOR_IGUAL
+   44      | MAYOR_IGUAL
+   45      | DIFERENTE
 
-   59 tipo: INT
-   60     | STR
-   61     | FLO
-   62     | BOOL
+   46 expr: expr SUMA expr
+   47     | expr MENOS expr
+   48     | expr MULTIPLICACION expr
+   49     | expr DIVISION expr
+   50     | expr EXPONENCIAL expr
+   51     | '(' expr ')'
+   52     | INCREMENT ID
+   53     | ID INCREMENT
+   54     | DECREMENT ID
+   55     | ID DECREMENT
+   56     | MENOS expr
+   57     | NUMERO
+   58     | ID
+   59     | STRING
+   60     | FLOAT
+   61     | TRUE
+   62     | FALSE
+
+   63 tipo: INT
+   64     | STR
+   65     | FLO
+   66     | BOOL
 
 
 Terminals, with rules where they appear
 
     END (0) 0
-    '(' (40) 13 14 15 16 17 22 33 47
-    ')' (41) 13 14 15 16 17 22 33 47
+    '(' (40) 14 15 16 17 18 26 37 51
+    ')' (41) 14 15 16 17 18 26 37 51
     ',' (44)
     '.' (46)
-    ';' (59) 24
-    '=' (61) 27 28
+    ';' (59) 28
+    '=' (61) 31 32
     '[' (91)
     ']' (93)
-    '{' (123) 13 14 15 16 17 23
-    '}' (125) 13 14 15 16 17 23
+    '{' (123) 14 15 16 17 18 27
+    '}' (125) 14 15 16 17 18 27
     error (256)
-    NUMERO <std::string> (258) 53
-    ID <std::string> (259) 18 19 20 21 26 27 28 48 49 50 51 54
-    STRING <std::string> (260) 55
-    INT <std::string> (261) 59
-    STR <std::string> (262) 60
-    FLOAT <std::string> (263) 56
-    FLO <std::string> (264) 61
-    BOOL <std::string> (265) 62
-    SUMA (266) 42
-    MENOS (267) 43 52
+    NUMERO <std::string> (258) 57
+    ID <std::string> (259) 22 23 24 25 30 31 32 52 53 54 55 58
+    STRING <std::string> (260) 59
+    INT <std::string> (261) 63
+    STR <std::string> (262) 64
+    FLOAT <std::string> (263) 60
+    FLO <std::string> (264) 65
+    BOOL <std::string> (265) 66
+    SUMA (266) 46
+    MENOS (267) 47 56
     DIM (268)
-    AS (269) 26 27
-    IMPR (270) 22
-    TRUE (271) 57
-    FALSE (272) 58
-    AND (273) 31
-    NOT (274) 32
-    IF (275) 15 16 17
+    AS (269) 30 31
+    IMPR (270) 26
+    TRUE (271) 61
+    FALSE (272) 62
+    AND (273) 35
+    NOT (274) 36
+    IF (275) 16 17 18
     THEN (276)
-    ELSE (277) 16 17
-    WHILE (278) 14
+    ELSE (277) 17 18
+    WHILE (278) 15
     PRINT (279)
     PRINTF (280)
-    FOR (281) 13
-    MULTIPLICACION (282) 44
-    DIVISION (283) 45
-    EXPONENCIAL (284) 46
-    MENOR_IGUAL (285) 39
-    MAYOR_IGUAL (286) 40
-    IGUAL_IGUAL (287) 38
-    DIFERENTE (288) 41
-    MENOR (289) 37
-    MAYOR (290) 36
-    OR (291) 30
+    FOR (281) 14
+    MULTIPLICACION (282) 48
+    DIVISION (283) 49
+    EXPONENCIAL (284) 50
+    MENOR_IGUAL (285) 43
+    MAYOR_IGUAL (286) 44
+    IGUAL_IGUAL (287) 42
+    DIFERENTE (288) 45
+    MENOR (289) 41
+    MAYOR (290) 40
+    OR (291) 34
     INTERROGACION (292)
-    INCREMENT (293) 18 19 48 49
-    DECREMENT (294) 20 21 50 51
+    INCREMENT (293) 22 23 52 53
+    DECREMENT (294) 24 25 54 55
     DOT (295)
     LEFT_BRACKET (296)
     RIGHT_BRACKET (297)
@@ -193,67 +198,73 @@ Terminals, with rules where they appear
     SIZE (306)
     ATOI (307)
     GET (308)
-    NEG (309)
+    RETORNO (309) 21
+    BREAK (310) 19
+    CONTINUE (311) 20
+    NEG (312)
 
 
 Nonterminals, with rules where they appear
 
-    $accept (65)
+    $accept (68)
         on left: 0
-    s <QVector<AbstractExpr*>*> (66)
+    s <QVector<AbstractExpr*>*> (69)
         on left: 1
         on right: 0
-    lSentencia <QVector<AbstractExpr*>*> (67)
+    lSentencia <QVector<AbstractExpr*>*> (70)
         on left: 2 3
-        on right: 1 2 13 14 15 16 17 23
-    sentencia <AbstractExpr*> (68)
-        on left: 4 5 6 7 8 9 10 11 12
+        on right: 1 2 14 15 16 17 18 27
+    sentencia <AbstractExpr*> (71)
+        on left: 4 5 6 7 8 9 10 11 12 13
         on right: 2 3
-    ciclo_for <AbstractExpr*> (69)
-        on left: 13
-        on right: 10
-    ciclo_while <AbstractExpr*> (70)
+    ciclo_for <AbstractExpr*> (72)
         on left: 14
+        on right: 10
+    ciclo_while <AbstractExpr*> (73)
+        on left: 15
         on right: 11
-    ins_if <AbstractExpr*> (71)
-        on left: 15 16 17
-        on right: 12 17
-    aumento <AbstractExpr*> (72)
-        on left: 18 19
-        on right: 8 13
-    decremento <AbstractExpr*> (73)
-        on left: 20 21
-        on right: 9
-    imprimir <NT_Imprimir*> (74)
-        on left: 22
-        on right: 6
-    bloque <AbstractExpr*> (75)
-        on left: 23
-        on right: 7
-    z (76)
+    ins_if <AbstractExpr*> (74)
+        on left: 16 17 18
+        on right: 12 18
+    escapa <AbstractExpr*> (75)
+        on left: 19 20 21
+        on right: 13
+    aumento <AbstractExpr*> (76)
+        on left: 22 23
+        on right: 8 14
+    decremento <AbstractExpr*> (77)
         on left: 24 25
-        on right: 2 3 13
-    declaracion_var <AbstractExpr*> (77)
-        on left: 26 27
-        on right: 4 13
-    asignacion_var <AbstractExpr*> (78)
-        on left: 28
+        on right: 9
+    imprimir <NT_Imprimir*> (78)
+        on left: 26
+        on right: 6
+    bloque <AbstractExpr*> (79)
+        on left: 27
+        on right: 7
+    z (80)
+        on left: 28 29
+        on right: 2 3 14
+    declaracion_var <AbstractExpr*> (81)
+        on left: 30 31
+        on right: 4 14
+    asignacion_var <AbstractExpr*> (82)
+        on left: 32
         on right: 5
-    x <AbstractExpr*> (79)
-        on left: 29
-        on right: 13 14 15 16 17 22 27 28
-    cond <AbstractExpr*> (80)
-        on left: 30 31 32 33 34 35
-        on right: 29 30 31 32 33
-    oprel <std::string> (81)
-        on left: 36 37 38 39 40 41
-        on right: 34
-    expr <AbstractExpr*> (82)
-        on left: 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58
-        on right: 34 35 42 43 44 45 46 47 52
-    tipo <AbstractExpr*> (83)
-        on left: 59 60 61 62
-        on right: 26 27
+    x <AbstractExpr*> (83)
+        on left: 33
+        on right: 14 15 16 17 18 26 31 32
+    cond <AbstractExpr*> (84)
+        on left: 34 35 36 37 38 39
+        on right: 33 34 35 36 37
+    oprel <std::string> (85)
+        on left: 40 41 42 43 44 45
+        on right: 38
+    expr <AbstractExpr*> (86)
+        on left: 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62
+        on right: 38 39 46 47 48 49 50 51 56
+    tipo <AbstractExpr*> (87)
+        on left: 63 64 65 66
+        on right: 30 31
 
 
 State 0
@@ -267,83 +278,108 @@ State 0
     FOR        shift, and go to state 5
     INCREMENT  shift, and go to state 6
     DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
 
-    s                go to state 9
-    lSentencia       go to state 10
-    sentencia        go to state 11
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
+    s                go to state 12
+    lSentencia       go to state 13
+    sentencia        go to state 14
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
 
 
 State 1
 
-   19 aumento: ID . INCREMENT
-   21 decremento: ID . DECREMENT
-   26 declaracion_var: ID . AS tipo
-   27                | ID . AS tipo '=' x
-   28 asignacion_var: ID . '=' x
+   23 aumento: ID . INCREMENT
+   25 decremento: ID . DECREMENT
+   30 declaracion_var: ID . AS tipo
+   31                | ID . AS tipo '=' x
+   32 asignacion_var: ID . '=' x
 
-    AS         shift, and go to state 21
-    INCREMENT  shift, and go to state 22
-    DECREMENT  shift, and go to state 23
-    '='        shift, and go to state 24
+    AS         shift, and go to state 25
+    INCREMENT  shift, and go to state 26
+    DECREMENT  shift, and go to state 27
+    '='        shift, and go to state 28
 
 
 State 2
 
-   22 imprimir: IMPR . '(' x ')'
+   26 imprimir: IMPR . '(' x ')'
 
-    '('  shift, and go to state 25
+    '('  shift, and go to state 29
 
 
 State 3
 
-   15 ins_if: IF . '(' x ')' '{' lSentencia '}'
-   16       | IF . '(' x ')' '{' lSentencia '}' ELSE '{' lSentencia '}'
-   17       | IF . '(' x ')' '{' lSentencia '}' ELSE ins_if
+   16 ins_if: IF . '(' x ')' '{' lSentencia '}'
+   17       | IF . '(' x ')' '{' lSentencia '}' ELSE '{' lSentencia '}'
+   18       | IF . '(' x ')' '{' lSentencia '}' ELSE ins_if
 
-    '('  shift, and go to state 26
+    '('  shift, and go to state 30
 
 
 State 4
 
-   14 ciclo_while: WHILE . '(' x ')' '{' lSentencia '}'
+   15 ciclo_while: WHILE . '(' x ')' '{' lSentencia '}'
 
-    '('  shift, and go to state 27
+    '('  shift, and go to state 31
 
 
 State 5
 
-   13 ciclo_for: FOR . '(' declaracion_var z x z aumento ')' '{' lSentencia '}'
+   14 ciclo_for: FOR . '(' declaracion_var z x z aumento ')' '{' lSentencia '}'
 
-    '('  shift, and go to state 28
+    '('  shift, and go to state 32
 
 
 State 6
 
-   18 aumento: INCREMENT . ID
+   22 aumento: INCREMENT . ID
 
-    ID  shift, and go to state 29
+    ID  shift, and go to state 33
 
 
 State 7
 
-   20 decremento: DECREMENT . ID
+   24 decremento: DECREMENT . ID
 
-    ID  shift, and go to state 30
+    ID  shift, and go to state 34
 
 
 State 8
 
-   23 bloque: '{' . lSentencia '}'
+   21 escapa: RETORNO .
+
+    $default  reduce using rule 21 (escapa)
+
+
+State 9
+
+   19 escapa: BREAK .
+
+    $default  reduce using rule 19 (escapa)
+
+
+State 10
+
+   20 escapa: CONTINUE .
+
+    $default  reduce using rule 20 (escapa)
+
+
+State 11
+
+   27 bloque: '{' . lSentencia '}'
 
     ID         shift, and go to state 1
     IMPR       shift, and go to state 2
@@ -352,29 +388,33 @@ State 8
     FOR        shift, and go to state 5
     INCREMENT  shift, and go to state 6
     DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
 
-    lSentencia       go to state 31
-    sentencia        go to state 11
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
+    lSentencia       go to state 35
+    sentencia        go to state 14
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
 
 
-State 9
+State 12
 
     0 $accept: s . END
 
-    END  shift, and go to state 32
+    END  shift, and go to state 36
 
 
-State 10
+State 13
 
     1 s: lSentencia .
     2 lSentencia: lSentencia . sentencia z
@@ -386,236 +426,247 @@ State 10
     FOR        shift, and go to state 5
     INCREMENT  shift, and go to state 6
     DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
 
     $default  reduce using rule 1 (s)
 
-    sentencia        go to state 33
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
+    sentencia        go to state 37
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
 
 
-State 11
+State 14
 
     3 lSentencia: sentencia . z
 
-    ';'  shift, and go to state 34
+    ';'  shift, and go to state 38
 
-    $default  reduce using rule 25 (z)
+    $default  reduce using rule 29 (z)
 
-    z  go to state 35
+    z  go to state 39
 
 
-State 12
+State 15
 
    10 sentencia: ciclo_for .
 
     $default  reduce using rule 10 (sentencia)
 
 
-State 13
+State 16
 
    11 sentencia: ciclo_while .
 
     $default  reduce using rule 11 (sentencia)
 
 
-State 14
+State 17
 
    12 sentencia: ins_if .
 
     $default  reduce using rule 12 (sentencia)
 
 
-State 15
+State 18
+
+   13 sentencia: escapa .
+
+    $default  reduce using rule 13 (sentencia)
+
+
+State 19
 
     8 sentencia: aumento .
 
     $default  reduce using rule 8 (sentencia)
 
 
-State 16
+State 20
 
     9 sentencia: decremento .
 
     $default  reduce using rule 9 (sentencia)
 
 
-State 17
+State 21
 
     6 sentencia: imprimir .
 
     $default  reduce using rule 6 (sentencia)
 
 
-State 18
+State 22
 
     7 sentencia: bloque .
 
     $default  reduce using rule 7 (sentencia)
 
 
-State 19
+State 23
 
     4 sentencia: declaracion_var .
 
     $default  reduce using rule 4 (sentencia)
 
 
-State 20
+State 24
 
     5 sentencia: asignacion_var .
 
     $default  reduce using rule 5 (sentencia)
 
 
-State 21
-
-   26 declaracion_var: ID AS . tipo
-   27                | ID AS . tipo '=' x
-
-    INT   shift, and go to state 36
-    STR   shift, and go to state 37
-    FLO   shift, and go to state 38
-    BOOL  shift, and go to state 39
-
-    tipo  go to state 40
-
-
-State 22
-
-   19 aumento: ID INCREMENT .
-
-    $default  reduce using rule 19 (aumento)
-
-
-State 23
-
-   21 decremento: ID DECREMENT .
-
-    $default  reduce using rule 21 (decremento)
-
-
-State 24
-
-   28 asignacion_var: ID '=' . x
-
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    NOT        shift, and go to state 48
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 51
-
-    x     go to state 52
-    cond  go to state 53
-    expr  go to state 54
-
-
 State 25
 
-   22 imprimir: IMPR '(' . x ')'
+   30 declaracion_var: ID AS . tipo
+   31                | ID AS . tipo '=' x
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    NOT        shift, and go to state 48
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 51
+    INT   shift, and go to state 40
+    STR   shift, and go to state 41
+    FLO   shift, and go to state 42
+    BOOL  shift, and go to state 43
 
-    x     go to state 55
-    cond  go to state 53
-    expr  go to state 54
+    tipo  go to state 44
 
 
 State 26
 
-   15 ins_if: IF '(' . x ')' '{' lSentencia '}'
-   16       | IF '(' . x ')' '{' lSentencia '}' ELSE '{' lSentencia '}'
-   17       | IF '(' . x ')' '{' lSentencia '}' ELSE ins_if
+   23 aumento: ID INCREMENT .
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    NOT        shift, and go to state 48
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 51
-
-    x     go to state 56
-    cond  go to state 53
-    expr  go to state 54
+    $default  reduce using rule 23 (aumento)
 
 
 State 27
 
-   14 ciclo_while: WHILE '(' . x ')' '{' lSentencia '}'
+   25 decremento: ID DECREMENT .
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    NOT        shift, and go to state 48
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 51
-
-    x     go to state 57
-    cond  go to state 53
-    expr  go to state 54
+    $default  reduce using rule 25 (decremento)
 
 
 State 28
 
-   13 ciclo_for: FOR '(' . declaracion_var z x z aumento ')' '{' lSentencia '}'
+   32 asignacion_var: ID '=' . x
 
-    ID  shift, and go to state 58
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    NOT        shift, and go to state 52
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 55
 
-    declaracion_var  go to state 59
+    x     go to state 56
+    cond  go to state 57
+    expr  go to state 58
 
 
 State 29
 
-   18 aumento: INCREMENT ID .
+   26 imprimir: IMPR '(' . x ')'
 
-    $default  reduce using rule 18 (aumento)
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    NOT        shift, and go to state 52
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 55
+
+    x     go to state 59
+    cond  go to state 57
+    expr  go to state 58
 
 
 State 30
 
-   20 decremento: DECREMENT ID .
+   16 ins_if: IF '(' . x ')' '{' lSentencia '}'
+   17       | IF '(' . x ')' '{' lSentencia '}' ELSE '{' lSentencia '}'
+   18       | IF '(' . x ')' '{' lSentencia '}' ELSE ins_if
 
-    $default  reduce using rule 20 (decremento)
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    NOT        shift, and go to state 52
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 55
+
+    x     go to state 60
+    cond  go to state 57
+    expr  go to state 58
 
 
 State 31
 
+   15 ciclo_while: WHILE '(' . x ')' '{' lSentencia '}'
+
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    NOT        shift, and go to state 52
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 55
+
+    x     go to state 61
+    cond  go to state 57
+    expr  go to state 58
+
+
+State 32
+
+   14 ciclo_for: FOR '(' . declaracion_var z x z aumento ')' '{' lSentencia '}'
+
+    ID  shift, and go to state 62
+
+    declaracion_var  go to state 63
+
+
+State 33
+
+   22 aumento: INCREMENT ID .
+
+    $default  reduce using rule 22 (aumento)
+
+
+State 34
+
+   24 decremento: DECREMENT ID .
+
+    $default  reduce using rule 24 (decremento)
+
+
+State 35
+
     2 lSentencia: lSentencia . sentencia z
-   23 bloque: '{' lSentencia . '}'
+   27 bloque: '{' lSentencia . '}'
 
     ID         shift, and go to state 1
     IMPR       shift, and go to state 2
@@ -624,935 +675,846 @@ State 31
     FOR        shift, and go to state 5
     INCREMENT  shift, and go to state 6
     DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
-    '}'        shift, and go to state 60
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
+    '}'        shift, and go to state 64
 
-    sentencia        go to state 33
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
+    sentencia        go to state 37
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
 
 
-State 32
+State 36
 
     0 $accept: s END .
 
     $default  accept
 
 
-State 33
+State 37
 
     2 lSentencia: lSentencia sentencia . z
 
-    ';'  shift, and go to state 34
+    ';'  shift, and go to state 38
 
-    $default  reduce using rule 25 (z)
+    $default  reduce using rule 29 (z)
 
-    z  go to state 61
-
-
-State 34
-
-   24 z: ';' .
-
-    $default  reduce using rule 24 (z)
+    z  go to state 65
 
 
-State 35
+State 38
+
+   28 z: ';' .
+
+    $default  reduce using rule 28 (z)
+
+
+State 39
 
     3 lSentencia: sentencia z .
 
     $default  reduce using rule 3 (lSentencia)
 
 
-State 36
-
-   59 tipo: INT .
-
-    $default  reduce using rule 59 (tipo)
-
-
-State 37
-
-   60 tipo: STR .
-
-    $default  reduce using rule 60 (tipo)
-
-
-State 38
-
-   61 tipo: FLO .
-
-    $default  reduce using rule 61 (tipo)
-
-
-State 39
-
-   62 tipo: BOOL .
-
-    $default  reduce using rule 62 (tipo)
-
-
 State 40
 
-   26 declaracion_var: ID AS tipo .
-   27                | ID AS tipo . '=' x
+   63 tipo: INT .
 
-    '='  shift, and go to state 62
-
-    $default  reduce using rule 26 (declaracion_var)
+    $default  reduce using rule 63 (tipo)
 
 
 State 41
 
-   53 expr: NUMERO .
+   64 tipo: STR .
 
-    $default  reduce using rule 53 (expr)
+    $default  reduce using rule 64 (tipo)
 
 
 State 42
 
-   49 expr: ID . INCREMENT
-   51     | ID . DECREMENT
-   54     | ID .
+   65 tipo: FLO .
 
-    INCREMENT  shift, and go to state 63
-    DECREMENT  shift, and go to state 64
-
-    INCREMENT  [reduce using rule 54 (expr)]
-    DECREMENT  [reduce using rule 54 (expr)]
-    $default   reduce using rule 54 (expr)
+    $default  reduce using rule 65 (tipo)
 
 
 State 43
 
-   55 expr: STRING .
+   66 tipo: BOOL .
 
-    $default  reduce using rule 55 (expr)
+    $default  reduce using rule 66 (tipo)
 
 
 State 44
 
-   56 expr: FLOAT .
+   30 declaracion_var: ID AS tipo .
+   31                | ID AS tipo . '=' x
 
-    $default  reduce using rule 56 (expr)
+    '='  shift, and go to state 66
+
+    $default  reduce using rule 30 (declaracion_var)
 
 
 State 45
 
-   52 expr: MENOS . expr
-
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 65
-
-    expr  go to state 66
-
-
-State 46
-
-   57 expr: TRUE .
+   57 expr: NUMERO .
 
     $default  reduce using rule 57 (expr)
 
 
+State 46
+
+   53 expr: ID . INCREMENT
+   55     | ID . DECREMENT
+   58     | ID .
+
+    INCREMENT  shift, and go to state 67
+    DECREMENT  shift, and go to state 68
+
+    INCREMENT  [reduce using rule 58 (expr)]
+    DECREMENT  [reduce using rule 58 (expr)]
+    $default   reduce using rule 58 (expr)
+
+
 State 47
 
-   58 expr: FALSE .
+   59 expr: STRING .
 
-    $default  reduce using rule 58 (expr)
+    $default  reduce using rule 59 (expr)
 
 
 State 48
 
-   32 cond: NOT . cond
+   60 expr: FLOAT .
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    NOT        shift, and go to state 48
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 51
-
-    cond  go to state 67
-    expr  go to state 54
+    $default  reduce using rule 60 (expr)
 
 
 State 49
 
-   48 expr: INCREMENT . ID
+   56 expr: MENOS . expr
 
-    ID  shift, and go to state 68
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 69
+
+    expr  go to state 70
 
 
 State 50
 
-   50 expr: DECREMENT . ID
+   61 expr: TRUE .
 
-    ID  shift, and go to state 69
+    $default  reduce using rule 61 (expr)
 
 
 State 51
 
-   33 cond: '(' . cond ')'
-   47 expr: '(' . expr ')'
+   62 expr: FALSE .
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    NOT        shift, and go to state 48
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 51
-
-    cond  go to state 70
-    expr  go to state 71
+    $default  reduce using rule 62 (expr)
 
 
 State 52
 
-   28 asignacion_var: ID '=' x .
+   36 cond: NOT . cond
 
-    $default  reduce using rule 28 (asignacion_var)
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    NOT        shift, and go to state 52
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 55
+
+    cond  go to state 71
+    expr  go to state 58
 
 
 State 53
 
-   29 x: cond .
-   30 cond: cond . OR cond
-   31     | cond . AND cond
+   52 expr: INCREMENT . ID
 
-    AND  shift, and go to state 72
-    OR   shift, and go to state 73
-
-    $default  reduce using rule 29 (x)
+    ID  shift, and go to state 72
 
 
 State 54
 
-   34 cond: expr . oprel expr
-   35     | expr .
-   42 expr: expr . SUMA expr
-   43     | expr . MENOS expr
-   44     | expr . MULTIPLICACION expr
-   45     | expr . DIVISION expr
-   46     | expr . EXPONENCIAL expr
+   54 expr: DECREMENT . ID
 
-    SUMA            shift, and go to state 74
-    MENOS           shift, and go to state 75
-    MULTIPLICACION  shift, and go to state 76
-    DIVISION        shift, and go to state 77
-    EXPONENCIAL     shift, and go to state 78
-    MENOR_IGUAL     shift, and go to state 79
-    MAYOR_IGUAL     shift, and go to state 80
-    IGUAL_IGUAL     shift, and go to state 81
-    DIFERENTE       shift, and go to state 82
-    MENOR           shift, and go to state 83
-    MAYOR           shift, and go to state 84
-
-    MENOS     [reduce using rule 35 (cond)]
-    $default  reduce using rule 35 (cond)
-
-    oprel  go to state 85
+    ID  shift, and go to state 73
 
 
 State 55
 
-   22 imprimir: IMPR '(' x . ')'
+   37 cond: '(' . cond ')'
+   51 expr: '(' . expr ')'
 
-    ')'  shift, and go to state 86
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    NOT        shift, and go to state 52
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 55
+
+    cond  go to state 74
+    expr  go to state 75
 
 
 State 56
 
-   15 ins_if: IF '(' x . ')' '{' lSentencia '}'
-   16       | IF '(' x . ')' '{' lSentencia '}' ELSE '{' lSentencia '}'
-   17       | IF '(' x . ')' '{' lSentencia '}' ELSE ins_if
+   32 asignacion_var: ID '=' x .
 
-    ')'  shift, and go to state 87
+    $default  reduce using rule 32 (asignacion_var)
 
 
 State 57
 
-   14 ciclo_while: WHILE '(' x . ')' '{' lSentencia '}'
+   33 x: cond .
+   34 cond: cond . OR cond
+   35     | cond . AND cond
 
-    ')'  shift, and go to state 88
+    AND  shift, and go to state 76
+    OR   shift, and go to state 77
+
+    $default  reduce using rule 33 (x)
 
 
 State 58
 
-   26 declaracion_var: ID . AS tipo
-   27                | ID . AS tipo '=' x
+   38 cond: expr . oprel expr
+   39     | expr .
+   46 expr: expr . SUMA expr
+   47     | expr . MENOS expr
+   48     | expr . MULTIPLICACION expr
+   49     | expr . DIVISION expr
+   50     | expr . EXPONENCIAL expr
 
-    AS  shift, and go to state 21
+    SUMA            shift, and go to state 78
+    MENOS           shift, and go to state 79
+    MULTIPLICACION  shift, and go to state 80
+    DIVISION        shift, and go to state 81
+    EXPONENCIAL     shift, and go to state 82
+    MENOR_IGUAL     shift, and go to state 83
+    MAYOR_IGUAL     shift, and go to state 84
+    IGUAL_IGUAL     shift, and go to state 85
+    DIFERENTE       shift, and go to state 86
+    MENOR           shift, and go to state 87
+    MAYOR           shift, and go to state 88
+
+    MENOS     [reduce using rule 39 (cond)]
+    $default  reduce using rule 39 (cond)
+
+    oprel  go to state 89
 
 
 State 59
 
-   13 ciclo_for: FOR '(' declaracion_var . z x z aumento ')' '{' lSentencia '}'
+   26 imprimir: IMPR '(' x . ')'
 
-    ';'  shift, and go to state 34
-
-    $default  reduce using rule 25 (z)
-
-    z  go to state 89
+    ')'  shift, and go to state 90
 
 
 State 60
 
-   23 bloque: '{' lSentencia '}' .
+   16 ins_if: IF '(' x . ')' '{' lSentencia '}'
+   17       | IF '(' x . ')' '{' lSentencia '}' ELSE '{' lSentencia '}'
+   18       | IF '(' x . ')' '{' lSentencia '}' ELSE ins_if
 
-    $default  reduce using rule 23 (bloque)
+    ')'  shift, and go to state 91
 
 
 State 61
+
+   15 ciclo_while: WHILE '(' x . ')' '{' lSentencia '}'
+
+    ')'  shift, and go to state 92
+
+
+State 62
+
+   30 declaracion_var: ID . AS tipo
+   31                | ID . AS tipo '=' x
+
+    AS  shift, and go to state 25
+
+
+State 63
+
+   14 ciclo_for: FOR '(' declaracion_var . z x z aumento ')' '{' lSentencia '}'
+
+    ';'  shift, and go to state 38
+
+    $default  reduce using rule 29 (z)
+
+    z  go to state 93
+
+
+State 64
+
+   27 bloque: '{' lSentencia '}' .
+
+    $default  reduce using rule 27 (bloque)
+
+
+State 65
 
     2 lSentencia: lSentencia sentencia z .
 
     $default  reduce using rule 2 (lSentencia)
 
 
-State 62
-
-   27 declaracion_var: ID AS tipo '=' . x
-
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    NOT        shift, and go to state 48
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 51
-
-    x     go to state 90
-    cond  go to state 53
-    expr  go to state 54
-
-
-State 63
-
-   49 expr: ID INCREMENT .
-
-    $default  reduce using rule 49 (expr)
-
-
-State 64
-
-   51 expr: ID DECREMENT .
-
-    $default  reduce using rule 51 (expr)
-
-
-State 65
-
-   47 expr: '(' . expr ')'
-
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 65
-
-    expr  go to state 91
-
-
 State 66
 
-   42 expr: expr . SUMA expr
-   43     | expr . MENOS expr
-   44     | expr . MULTIPLICACION expr
-   45     | expr . DIVISION expr
-   46     | expr . EXPONENCIAL expr
-   52     | MENOS expr .
+   31 declaracion_var: ID AS tipo '=' . x
 
-    EXPONENCIAL  shift, and go to state 78
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    NOT        shift, and go to state 52
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 55
 
-    $default  reduce using rule 52 (expr)
+    x     go to state 94
+    cond  go to state 57
+    expr  go to state 58
 
 
 State 67
 
-   30 cond: cond . OR cond
-   31     | cond . AND cond
-   32     | NOT cond .
+   53 expr: ID INCREMENT .
 
-    AND  shift, and go to state 72
-    OR   shift, and go to state 73
-
-    AND       [reduce using rule 32 (cond)]
-    OR        [reduce using rule 32 (cond)]
-    $default  reduce using rule 32 (cond)
+    $default  reduce using rule 53 (expr)
 
 
 State 68
 
-   48 expr: INCREMENT ID .
+   55 expr: ID DECREMENT .
 
-    $default  reduce using rule 48 (expr)
+    $default  reduce using rule 55 (expr)
 
 
 State 69
 
-   50 expr: DECREMENT ID .
+   51 expr: '(' . expr ')'
 
-    $default  reduce using rule 50 (expr)
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 69
+
+    expr  go to state 95
 
 
 State 70
 
-   30 cond: cond . OR cond
-   31     | cond . AND cond
-   33     | '(' cond . ')'
+   46 expr: expr . SUMA expr
+   47     | expr . MENOS expr
+   48     | expr . MULTIPLICACION expr
+   49     | expr . DIVISION expr
+   50     | expr . EXPONENCIAL expr
+   56     | MENOS expr .
 
-    AND  shift, and go to state 72
-    OR   shift, and go to state 73
-    ')'  shift, and go to state 92
+    EXPONENCIAL  shift, and go to state 82
+
+    $default  reduce using rule 56 (expr)
 
 
 State 71
 
-   34 cond: expr . oprel expr
-   35     | expr .
-   42 expr: expr . SUMA expr
-   43     | expr . MENOS expr
-   44     | expr . MULTIPLICACION expr
-   45     | expr . DIVISION expr
-   46     | expr . EXPONENCIAL expr
-   47     | '(' expr . ')'
+   34 cond: cond . OR cond
+   35     | cond . AND cond
+   36     | NOT cond .
 
-    SUMA            shift, and go to state 74
-    MENOS           shift, and go to state 75
-    MULTIPLICACION  shift, and go to state 76
-    DIVISION        shift, and go to state 77
-    EXPONENCIAL     shift, and go to state 78
-    MENOR_IGUAL     shift, and go to state 79
-    MAYOR_IGUAL     shift, and go to state 80
-    IGUAL_IGUAL     shift, and go to state 81
-    DIFERENTE       shift, and go to state 82
-    MENOR           shift, and go to state 83
-    MAYOR           shift, and go to state 84
-    ')'             shift, and go to state 93
+    AND  shift, and go to state 76
+    OR   shift, and go to state 77
 
-    ')'       [reduce using rule 35 (cond)]
-    $default  reduce using rule 35 (cond)
-
-    oprel  go to state 85
+    AND       [reduce using rule 36 (cond)]
+    OR        [reduce using rule 36 (cond)]
+    $default  reduce using rule 36 (cond)
 
 
 State 72
 
-   31 cond: cond AND . cond
+   52 expr: INCREMENT ID .
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    NOT        shift, and go to state 48
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 51
-
-    cond  go to state 94
-    expr  go to state 54
+    $default  reduce using rule 52 (expr)
 
 
 State 73
 
-   30 cond: cond OR . cond
+   54 expr: DECREMENT ID .
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    NOT        shift, and go to state 48
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 51
-
-    cond  go to state 95
-    expr  go to state 54
+    $default  reduce using rule 54 (expr)
 
 
 State 74
 
-   42 expr: expr SUMA . expr
+   34 cond: cond . OR cond
+   35     | cond . AND cond
+   37     | '(' cond . ')'
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 65
-
-    expr  go to state 96
+    AND  shift, and go to state 76
+    OR   shift, and go to state 77
+    ')'  shift, and go to state 96
 
 
 State 75
 
-   43 expr: expr MENOS . expr
+   38 cond: expr . oprel expr
+   39     | expr .
+   46 expr: expr . SUMA expr
+   47     | expr . MENOS expr
+   48     | expr . MULTIPLICACION expr
+   49     | expr . DIVISION expr
+   50     | expr . EXPONENCIAL expr
+   51     | '(' expr . ')'
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 65
+    SUMA            shift, and go to state 78
+    MENOS           shift, and go to state 79
+    MULTIPLICACION  shift, and go to state 80
+    DIVISION        shift, and go to state 81
+    EXPONENCIAL     shift, and go to state 82
+    MENOR_IGUAL     shift, and go to state 83
+    MAYOR_IGUAL     shift, and go to state 84
+    IGUAL_IGUAL     shift, and go to state 85
+    DIFERENTE       shift, and go to state 86
+    MENOR           shift, and go to state 87
+    MAYOR           shift, and go to state 88
+    ')'             shift, and go to state 97
 
-    expr  go to state 97
+    ')'       [reduce using rule 39 (cond)]
+    $default  reduce using rule 39 (cond)
+
+    oprel  go to state 89
 
 
 State 76
 
-   44 expr: expr MULTIPLICACION . expr
+   35 cond: cond AND . cond
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 65
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    NOT        shift, and go to state 52
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 55
 
-    expr  go to state 98
+    cond  go to state 98
+    expr  go to state 58
 
 
 State 77
 
-   45 expr: expr DIVISION . expr
+   34 cond: cond OR . cond
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 65
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    NOT        shift, and go to state 52
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 55
 
-    expr  go to state 99
+    cond  go to state 99
+    expr  go to state 58
 
 
 State 78
 
-   46 expr: expr EXPONENCIAL . expr
+   46 expr: expr SUMA . expr
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 65
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 69
 
     expr  go to state 100
 
 
 State 79
 
-   39 oprel: MENOR_IGUAL .
+   47 expr: expr MENOS . expr
 
-    $default  reduce using rule 39 (oprel)
-
-
-State 80
-
-   40 oprel: MAYOR_IGUAL .
-
-    $default  reduce using rule 40 (oprel)
-
-
-State 81
-
-   38 oprel: IGUAL_IGUAL .
-
-    $default  reduce using rule 38 (oprel)
-
-
-State 82
-
-   41 oprel: DIFERENTE .
-
-    $default  reduce using rule 41 (oprel)
-
-
-State 83
-
-   37 oprel: MENOR .
-
-    $default  reduce using rule 37 (oprel)
-
-
-State 84
-
-   36 oprel: MAYOR .
-
-    $default  reduce using rule 36 (oprel)
-
-
-State 85
-
-   34 cond: expr oprel . expr
-
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 65
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 69
 
     expr  go to state 101
 
 
+State 80
+
+   48 expr: expr MULTIPLICACION . expr
+
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 69
+
+    expr  go to state 102
+
+
+State 81
+
+   49 expr: expr DIVISION . expr
+
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 69
+
+    expr  go to state 103
+
+
+State 82
+
+   50 expr: expr EXPONENCIAL . expr
+
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 69
+
+    expr  go to state 104
+
+
+State 83
+
+   43 oprel: MENOR_IGUAL .
+
+    $default  reduce using rule 43 (oprel)
+
+
+State 84
+
+   44 oprel: MAYOR_IGUAL .
+
+    $default  reduce using rule 44 (oprel)
+
+
+State 85
+
+   42 oprel: IGUAL_IGUAL .
+
+    $default  reduce using rule 42 (oprel)
+
+
 State 86
 
-   22 imprimir: IMPR '(' x ')' .
+   45 oprel: DIFERENTE .
 
-    $default  reduce using rule 22 (imprimir)
+    $default  reduce using rule 45 (oprel)
 
 
 State 87
 
-   15 ins_if: IF '(' x ')' . '{' lSentencia '}'
-   16       | IF '(' x ')' . '{' lSentencia '}' ELSE '{' lSentencia '}'
-   17       | IF '(' x ')' . '{' lSentencia '}' ELSE ins_if
+   41 oprel: MENOR .
 
-    '{'  shift, and go to state 102
+    $default  reduce using rule 41 (oprel)
 
 
 State 88
 
-   14 ciclo_while: WHILE '(' x ')' . '{' lSentencia '}'
+   40 oprel: MAYOR .
 
-    '{'  shift, and go to state 103
+    $default  reduce using rule 40 (oprel)
 
 
 State 89
 
-   13 ciclo_for: FOR '(' declaracion_var z . x z aumento ')' '{' lSentencia '}'
+   38 cond: expr oprel . expr
 
-    NUMERO     shift, and go to state 41
-    ID         shift, and go to state 42
-    STRING     shift, and go to state 43
-    FLOAT      shift, and go to state 44
-    MENOS      shift, and go to state 45
-    TRUE       shift, and go to state 46
-    FALSE      shift, and go to state 47
-    NOT        shift, and go to state 48
-    INCREMENT  shift, and go to state 49
-    DECREMENT  shift, and go to state 50
-    '('        shift, and go to state 51
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 69
 
-    x     go to state 104
-    cond  go to state 53
-    expr  go to state 54
+    expr  go to state 105
 
 
 State 90
 
-   27 declaracion_var: ID AS tipo '=' x .
+   26 imprimir: IMPR '(' x ')' .
 
-    $default  reduce using rule 27 (declaracion_var)
+    $default  reduce using rule 26 (imprimir)
 
 
 State 91
 
-   42 expr: expr . SUMA expr
-   43     | expr . MENOS expr
-   44     | expr . MULTIPLICACION expr
-   45     | expr . DIVISION expr
-   46     | expr . EXPONENCIAL expr
-   47     | '(' expr . ')'
+   16 ins_if: IF '(' x ')' . '{' lSentencia '}'
+   17       | IF '(' x ')' . '{' lSentencia '}' ELSE '{' lSentencia '}'
+   18       | IF '(' x ')' . '{' lSentencia '}' ELSE ins_if
 
-    SUMA            shift, and go to state 74
-    MENOS           shift, and go to state 75
-    MULTIPLICACION  shift, and go to state 76
-    DIVISION        shift, and go to state 77
-    EXPONENCIAL     shift, and go to state 78
-    ')'             shift, and go to state 93
+    '{'  shift, and go to state 106
 
 
 State 92
 
-   33 cond: '(' cond ')' .
+   15 ciclo_while: WHILE '(' x ')' . '{' lSentencia '}'
 
-    $default  reduce using rule 33 (cond)
+    '{'  shift, and go to state 107
 
 
 State 93
 
-   47 expr: '(' expr ')' .
+   14 ciclo_for: FOR '(' declaracion_var z . x z aumento ')' '{' lSentencia '}'
 
-    $default  reduce using rule 47 (expr)
+    NUMERO     shift, and go to state 45
+    ID         shift, and go to state 46
+    STRING     shift, and go to state 47
+    FLOAT      shift, and go to state 48
+    MENOS      shift, and go to state 49
+    TRUE       shift, and go to state 50
+    FALSE      shift, and go to state 51
+    NOT        shift, and go to state 52
+    INCREMENT  shift, and go to state 53
+    DECREMENT  shift, and go to state 54
+    '('        shift, and go to state 55
+
+    x     go to state 108
+    cond  go to state 57
+    expr  go to state 58
 
 
 State 94
 
-   30 cond: cond . OR cond
-   31     | cond . AND cond
-   31     | cond AND cond .
+   31 declaracion_var: ID AS tipo '=' x .
 
-    $default  reduce using rule 31 (cond)
+    $default  reduce using rule 31 (declaracion_var)
 
 
 State 95
 
-   30 cond: cond . OR cond
-   30     | cond OR cond .
-   31     | cond . AND cond
+   46 expr: expr . SUMA expr
+   47     | expr . MENOS expr
+   48     | expr . MULTIPLICACION expr
+   49     | expr . DIVISION expr
+   50     | expr . EXPONENCIAL expr
+   51     | '(' expr . ')'
 
-    AND  shift, and go to state 72
-
-    $default  reduce using rule 30 (cond)
+    SUMA            shift, and go to state 78
+    MENOS           shift, and go to state 79
+    MULTIPLICACION  shift, and go to state 80
+    DIVISION        shift, and go to state 81
+    EXPONENCIAL     shift, and go to state 82
+    ')'             shift, and go to state 97
 
 
 State 96
 
-   42 expr: expr . SUMA expr
-   42     | expr SUMA expr .
-   43     | expr . MENOS expr
-   44     | expr . MULTIPLICACION expr
-   45     | expr . DIVISION expr
-   46     | expr . EXPONENCIAL expr
+   37 cond: '(' cond ')' .
 
-    MULTIPLICACION  shift, and go to state 76
-    DIVISION        shift, and go to state 77
-    EXPONENCIAL     shift, and go to state 78
-
-    $default  reduce using rule 42 (expr)
+    $default  reduce using rule 37 (cond)
 
 
 State 97
 
-   42 expr: expr . SUMA expr
-   43     | expr . MENOS expr
-   43     | expr MENOS expr .
-   44     | expr . MULTIPLICACION expr
-   45     | expr . DIVISION expr
-   46     | expr . EXPONENCIAL expr
+   51 expr: '(' expr ')' .
 
-    MULTIPLICACION  shift, and go to state 76
-    DIVISION        shift, and go to state 77
-    EXPONENCIAL     shift, and go to state 78
-
-    $default  reduce using rule 43 (expr)
+    $default  reduce using rule 51 (expr)
 
 
 State 98
 
-   42 expr: expr . SUMA expr
-   43     | expr . MENOS expr
-   44     | expr . MULTIPLICACION expr
-   44     | expr MULTIPLICACION expr .
-   45     | expr . DIVISION expr
-   46     | expr . EXPONENCIAL expr
+   34 cond: cond . OR cond
+   35     | cond . AND cond
+   35     | cond AND cond .
 
-    EXPONENCIAL  shift, and go to state 78
-
-    $default  reduce using rule 44 (expr)
+    $default  reduce using rule 35 (cond)
 
 
 State 99
 
-   42 expr: expr . SUMA expr
-   43     | expr . MENOS expr
-   44     | expr . MULTIPLICACION expr
-   45     | expr . DIVISION expr
-   45     | expr DIVISION expr .
-   46     | expr . EXPONENCIAL expr
+   34 cond: cond . OR cond
+   34     | cond OR cond .
+   35     | cond . AND cond
 
-    EXPONENCIAL  shift, and go to state 78
+    AND  shift, and go to state 76
 
-    $default  reduce using rule 45 (expr)
+    $default  reduce using rule 34 (cond)
 
 
 State 100
 
-   42 expr: expr . SUMA expr
-   43     | expr . MENOS expr
-   44     | expr . MULTIPLICACION expr
-   45     | expr . DIVISION expr
-   46     | expr . EXPONENCIAL expr
-   46     | expr EXPONENCIAL expr .
+   46 expr: expr . SUMA expr
+   46     | expr SUMA expr .
+   47     | expr . MENOS expr
+   48     | expr . MULTIPLICACION expr
+   49     | expr . DIVISION expr
+   50     | expr . EXPONENCIAL expr
 
-    EXPONENCIAL  shift, and go to state 78
+    MULTIPLICACION  shift, and go to state 80
+    DIVISION        shift, and go to state 81
+    EXPONENCIAL     shift, and go to state 82
 
     $default  reduce using rule 46 (expr)
 
 
 State 101
 
-   34 cond: expr oprel expr .
-   42 expr: expr . SUMA expr
-   43     | expr . MENOS expr
-   44     | expr . MULTIPLICACION expr
-   45     | expr . DIVISION expr
-   46     | expr . EXPONENCIAL expr
+   46 expr: expr . SUMA expr
+   47     | expr . MENOS expr
+   47     | expr MENOS expr .
+   48     | expr . MULTIPLICACION expr
+   49     | expr . DIVISION expr
+   50     | expr . EXPONENCIAL expr
 
-    SUMA            shift, and go to state 74
-    MENOS           shift, and go to state 75
-    MULTIPLICACION  shift, and go to state 76
-    DIVISION        shift, and go to state 77
-    EXPONENCIAL     shift, and go to state 78
+    MULTIPLICACION  shift, and go to state 80
+    DIVISION        shift, and go to state 81
+    EXPONENCIAL     shift, and go to state 82
 
-    MENOS     [reduce using rule 34 (cond)]
-    $default  reduce using rule 34 (cond)
+    $default  reduce using rule 47 (expr)
 
 
 State 102
 
-   15 ins_if: IF '(' x ')' '{' . lSentencia '}'
-   16       | IF '(' x ')' '{' . lSentencia '}' ELSE '{' lSentencia '}'
-   17       | IF '(' x ')' '{' . lSentencia '}' ELSE ins_if
+   46 expr: expr . SUMA expr
+   47     | expr . MENOS expr
+   48     | expr . MULTIPLICACION expr
+   48     | expr MULTIPLICACION expr .
+   49     | expr . DIVISION expr
+   50     | expr . EXPONENCIAL expr
 
-    ID         shift, and go to state 1
-    IMPR       shift, and go to state 2
-    IF         shift, and go to state 3
-    WHILE      shift, and go to state 4
-    FOR        shift, and go to state 5
-    INCREMENT  shift, and go to state 6
-    DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
+    EXPONENCIAL  shift, and go to state 82
 
-    lSentencia       go to state 105
-    sentencia        go to state 11
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
+    $default  reduce using rule 48 (expr)
 
 
 State 103
 
-   14 ciclo_while: WHILE '(' x ')' '{' . lSentencia '}'
+   46 expr: expr . SUMA expr
+   47     | expr . MENOS expr
+   48     | expr . MULTIPLICACION expr
+   49     | expr . DIVISION expr
+   49     | expr DIVISION expr .
+   50     | expr . EXPONENCIAL expr
 
-    ID         shift, and go to state 1
-    IMPR       shift, and go to state 2
-    IF         shift, and go to state 3
-    WHILE      shift, and go to state 4
-    FOR        shift, and go to state 5
-    INCREMENT  shift, and go to state 6
-    DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
+    EXPONENCIAL  shift, and go to state 82
 
-    lSentencia       go to state 106
-    sentencia        go to state 11
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
+    $default  reduce using rule 49 (expr)
 
 
 State 104
 
-   13 ciclo_for: FOR '(' declaracion_var z x . z aumento ')' '{' lSentencia '}'
+   46 expr: expr . SUMA expr
+   47     | expr . MENOS expr
+   48     | expr . MULTIPLICACION expr
+   49     | expr . DIVISION expr
+   50     | expr . EXPONENCIAL expr
+   50     | expr EXPONENCIAL expr .
 
-    ';'  shift, and go to state 34
+    EXPONENCIAL  shift, and go to state 82
 
-    $default  reduce using rule 25 (z)
-
-    z  go to state 107
+    $default  reduce using rule 50 (expr)
 
 
 State 105
 
-    2 lSentencia: lSentencia . sentencia z
-   15 ins_if: IF '(' x ')' '{' lSentencia . '}'
-   16       | IF '(' x ')' '{' lSentencia . '}' ELSE '{' lSentencia '}'
-   17       | IF '(' x ')' '{' lSentencia . '}' ELSE ins_if
+   38 cond: expr oprel expr .
+   46 expr: expr . SUMA expr
+   47     | expr . MENOS expr
+   48     | expr . MULTIPLICACION expr
+   49     | expr . DIVISION expr
+   50     | expr . EXPONENCIAL expr
 
-    ID         shift, and go to state 1
-    IMPR       shift, and go to state 2
-    IF         shift, and go to state 3
-    WHILE      shift, and go to state 4
-    FOR        shift, and go to state 5
-    INCREMENT  shift, and go to state 6
-    DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
-    '}'        shift, and go to state 108
+    SUMA            shift, and go to state 78
+    MENOS           shift, and go to state 79
+    MULTIPLICACION  shift, and go to state 80
+    DIVISION        shift, and go to state 81
+    EXPONENCIAL     shift, and go to state 82
 
-    sentencia        go to state 33
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
+    MENOS     [reduce using rule 38 (cond)]
+    $default  reduce using rule 38 (cond)
 
 
 State 106
 
-    2 lSentencia: lSentencia . sentencia z
-   14 ciclo_while: WHILE '(' x ')' '{' lSentencia . '}'
+   16 ins_if: IF '(' x ')' '{' . lSentencia '}'
+   17       | IF '(' x ')' '{' . lSentencia '}' ELSE '{' lSentencia '}'
+   18       | IF '(' x ')' '{' . lSentencia '}' ELSE ins_if
 
     ID         shift, and go to state 1
     IMPR       shift, and go to state 2
@@ -1561,203 +1523,328 @@ State 106
     FOR        shift, and go to state 5
     INCREMENT  shift, and go to state 6
     DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
-    '}'        shift, and go to state 109
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
 
-    sentencia        go to state 33
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
+    lSentencia       go to state 109
+    sentencia        go to state 14
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
 
 
 State 107
 
-   13 ciclo_for: FOR '(' declaracion_var z x z . aumento ')' '{' lSentencia '}'
+   15 ciclo_while: WHILE '(' x ')' '{' . lSentencia '}'
 
-    ID         shift, and go to state 110
+    ID         shift, and go to state 1
+    IMPR       shift, and go to state 2
+    IF         shift, and go to state 3
+    WHILE      shift, and go to state 4
+    FOR        shift, and go to state 5
     INCREMENT  shift, and go to state 6
+    DECREMENT  shift, and go to state 7
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
 
-    aumento  go to state 111
+    lSentencia       go to state 110
+    sentencia        go to state 14
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
 
 
 State 108
 
-   15 ins_if: IF '(' x ')' '{' lSentencia '}' .
-   16       | IF '(' x ')' '{' lSentencia '}' . ELSE '{' lSentencia '}'
-   17       | IF '(' x ')' '{' lSentencia '}' . ELSE ins_if
+   14 ciclo_for: FOR '(' declaracion_var z x . z aumento ')' '{' lSentencia '}'
 
-    ELSE  shift, and go to state 112
+    ';'  shift, and go to state 38
 
-    $default  reduce using rule 15 (ins_if)
+    $default  reduce using rule 29 (z)
+
+    z  go to state 111
 
 
 State 109
 
-   14 ciclo_while: WHILE '(' x ')' '{' lSentencia '}' .
+    2 lSentencia: lSentencia . sentencia z
+   16 ins_if: IF '(' x ')' '{' lSentencia . '}'
+   17       | IF '(' x ')' '{' lSentencia . '}' ELSE '{' lSentencia '}'
+   18       | IF '(' x ')' '{' lSentencia . '}' ELSE ins_if
 
-    $default  reduce using rule 14 (ciclo_while)
+    ID         shift, and go to state 1
+    IMPR       shift, and go to state 2
+    IF         shift, and go to state 3
+    WHILE      shift, and go to state 4
+    FOR        shift, and go to state 5
+    INCREMENT  shift, and go to state 6
+    DECREMENT  shift, and go to state 7
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
+    '}'        shift, and go to state 112
+
+    sentencia        go to state 37
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
 
 
 State 110
 
-   19 aumento: ID . INCREMENT
+    2 lSentencia: lSentencia . sentencia z
+   15 ciclo_while: WHILE '(' x ')' '{' lSentencia . '}'
 
-    INCREMENT  shift, and go to state 22
+    ID         shift, and go to state 1
+    IMPR       shift, and go to state 2
+    IF         shift, and go to state 3
+    WHILE      shift, and go to state 4
+    FOR        shift, and go to state 5
+    INCREMENT  shift, and go to state 6
+    DECREMENT  shift, and go to state 7
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
+    '}'        shift, and go to state 113
+
+    sentencia        go to state 37
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
 
 
 State 111
 
-   13 ciclo_for: FOR '(' declaracion_var z x z aumento . ')' '{' lSentencia '}'
+   14 ciclo_for: FOR '(' declaracion_var z x z . aumento ')' '{' lSentencia '}'
 
-    ')'  shift, and go to state 113
+    ID         shift, and go to state 114
+    INCREMENT  shift, and go to state 6
+
+    aumento  go to state 115
 
 
 State 112
 
-   16 ins_if: IF '(' x ')' '{' lSentencia '}' ELSE . '{' lSentencia '}'
-   17       | IF '(' x ')' '{' lSentencia '}' ELSE . ins_if
+   16 ins_if: IF '(' x ')' '{' lSentencia '}' .
+   17       | IF '(' x ')' '{' lSentencia '}' . ELSE '{' lSentencia '}'
+   18       | IF '(' x ')' '{' lSentencia '}' . ELSE ins_if
 
-    IF   shift, and go to state 3
-    '{'  shift, and go to state 114
-
-    ins_if  go to state 115
-
-
-State 113
-
-   13 ciclo_for: FOR '(' declaracion_var z x z aumento ')' . '{' lSentencia '}'
-
-    '{'  shift, and go to state 116
-
-
-State 114
-
-   16 ins_if: IF '(' x ')' '{' lSentencia '}' ELSE '{' . lSentencia '}'
-
-    ID         shift, and go to state 1
-    IMPR       shift, and go to state 2
-    IF         shift, and go to state 3
-    WHILE      shift, and go to state 4
-    FOR        shift, and go to state 5
-    INCREMENT  shift, and go to state 6
-    DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
-
-    lSentencia       go to state 117
-    sentencia        go to state 11
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
-
-
-State 115
-
-   17 ins_if: IF '(' x ')' '{' lSentencia '}' ELSE ins_if .
-
-    $default  reduce using rule 17 (ins_if)
-
-
-State 116
-
-   13 ciclo_for: FOR '(' declaracion_var z x z aumento ')' '{' . lSentencia '}'
-
-    ID         shift, and go to state 1
-    IMPR       shift, and go to state 2
-    IF         shift, and go to state 3
-    WHILE      shift, and go to state 4
-    FOR        shift, and go to state 5
-    INCREMENT  shift, and go to state 6
-    DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
-
-    lSentencia       go to state 118
-    sentencia        go to state 11
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
-
-
-State 117
-
-    2 lSentencia: lSentencia . sentencia z
-   16 ins_if: IF '(' x ')' '{' lSentencia '}' ELSE '{' lSentencia . '}'
-
-    ID         shift, and go to state 1
-    IMPR       shift, and go to state 2
-    IF         shift, and go to state 3
-    WHILE      shift, and go to state 4
-    FOR        shift, and go to state 5
-    INCREMENT  shift, and go to state 6
-    DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
-    '}'        shift, and go to state 119
-
-    sentencia        go to state 33
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
-
-
-State 118
-
-    2 lSentencia: lSentencia . sentencia z
-   13 ciclo_for: FOR '(' declaracion_var z x z aumento ')' '{' lSentencia . '}'
-
-    ID         shift, and go to state 1
-    IMPR       shift, and go to state 2
-    IF         shift, and go to state 3
-    WHILE      shift, and go to state 4
-    FOR        shift, and go to state 5
-    INCREMENT  shift, and go to state 6
-    DECREMENT  shift, and go to state 7
-    '{'        shift, and go to state 8
-    '}'        shift, and go to state 120
-
-    sentencia        go to state 33
-    ciclo_for        go to state 12
-    ciclo_while      go to state 13
-    ins_if           go to state 14
-    aumento          go to state 15
-    decremento       go to state 16
-    imprimir         go to state 17
-    bloque           go to state 18
-    declaracion_var  go to state 19
-    asignacion_var   go to state 20
-
-
-State 119
-
-   16 ins_if: IF '(' x ')' '{' lSentencia '}' ELSE '{' lSentencia '}' .
+    ELSE  shift, and go to state 116
 
     $default  reduce using rule 16 (ins_if)
 
 
+State 113
+
+   15 ciclo_while: WHILE '(' x ')' '{' lSentencia '}' .
+
+    $default  reduce using rule 15 (ciclo_while)
+
+
+State 114
+
+   23 aumento: ID . INCREMENT
+
+    INCREMENT  shift, and go to state 26
+
+
+State 115
+
+   14 ciclo_for: FOR '(' declaracion_var z x z aumento . ')' '{' lSentencia '}'
+
+    ')'  shift, and go to state 117
+
+
+State 116
+
+   17 ins_if: IF '(' x ')' '{' lSentencia '}' ELSE . '{' lSentencia '}'
+   18       | IF '(' x ')' '{' lSentencia '}' ELSE . ins_if
+
+    IF   shift, and go to state 3
+    '{'  shift, and go to state 118
+
+    ins_if  go to state 119
+
+
+State 117
+
+   14 ciclo_for: FOR '(' declaracion_var z x z aumento ')' . '{' lSentencia '}'
+
+    '{'  shift, and go to state 120
+
+
+State 118
+
+   17 ins_if: IF '(' x ')' '{' lSentencia '}' ELSE '{' . lSentencia '}'
+
+    ID         shift, and go to state 1
+    IMPR       shift, and go to state 2
+    IF         shift, and go to state 3
+    WHILE      shift, and go to state 4
+    FOR        shift, and go to state 5
+    INCREMENT  shift, and go to state 6
+    DECREMENT  shift, and go to state 7
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
+
+    lSentencia       go to state 121
+    sentencia        go to state 14
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
+
+
+State 119
+
+   18 ins_if: IF '(' x ')' '{' lSentencia '}' ELSE ins_if .
+
+    $default  reduce using rule 18 (ins_if)
+
+
 State 120
 
-   13 ciclo_for: FOR '(' declaracion_var z x z aumento ')' '{' lSentencia '}' .
+   14 ciclo_for: FOR '(' declaracion_var z x z aumento ')' '{' . lSentencia '}'
 
-    $default  reduce using rule 13 (ciclo_for)
+    ID         shift, and go to state 1
+    IMPR       shift, and go to state 2
+    IF         shift, and go to state 3
+    WHILE      shift, and go to state 4
+    FOR        shift, and go to state 5
+    INCREMENT  shift, and go to state 6
+    DECREMENT  shift, and go to state 7
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
+
+    lSentencia       go to state 122
+    sentencia        go to state 14
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
+
+
+State 121
+
+    2 lSentencia: lSentencia . sentencia z
+   17 ins_if: IF '(' x ')' '{' lSentencia '}' ELSE '{' lSentencia . '}'
+
+    ID         shift, and go to state 1
+    IMPR       shift, and go to state 2
+    IF         shift, and go to state 3
+    WHILE      shift, and go to state 4
+    FOR        shift, and go to state 5
+    INCREMENT  shift, and go to state 6
+    DECREMENT  shift, and go to state 7
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
+    '}'        shift, and go to state 123
+
+    sentencia        go to state 37
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
+
+
+State 122
+
+    2 lSentencia: lSentencia . sentencia z
+   14 ciclo_for: FOR '(' declaracion_var z x z aumento ')' '{' lSentencia . '}'
+
+    ID         shift, and go to state 1
+    IMPR       shift, and go to state 2
+    IF         shift, and go to state 3
+    WHILE      shift, and go to state 4
+    FOR        shift, and go to state 5
+    INCREMENT  shift, and go to state 6
+    DECREMENT  shift, and go to state 7
+    RETORNO    shift, and go to state 8
+    BREAK      shift, and go to state 9
+    CONTINUE   shift, and go to state 10
+    '{'        shift, and go to state 11
+    '}'        shift, and go to state 124
+
+    sentencia        go to state 37
+    ciclo_for        go to state 15
+    ciclo_while      go to state 16
+    ins_if           go to state 17
+    escapa           go to state 18
+    aumento          go to state 19
+    decremento       go to state 20
+    imprimir         go to state 21
+    bloque           go to state 22
+    declaracion_var  go to state 23
+    asignacion_var   go to state 24
+
+
+State 123
+
+   17 ins_if: IF '(' x ')' '{' lSentencia '}' ELSE '{' lSentencia '}' .
+
+    $default  reduce using rule 17 (ins_if)
+
+
+State 124
+
+   14 ciclo_for: FOR '(' declaracion_var z x z aumento ')' '{' lSentencia '}' .
+
+    $default  reduce using rule 14 (ciclo_for)

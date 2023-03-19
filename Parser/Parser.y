@@ -61,6 +61,7 @@
     #include "../AST/No_Terminales/Expresiones/nt_negacion.h"
     #include "../AST/No_Terminales/Expresiones/nt_id.h"
     #include "../AST/No_Terminales/nt_tipo.h"
+    #include "../AST/No_Terminales/nt_escape.h"
 
     // nodos terminales
     #include "../AST/Terminales/t_numero.h"
@@ -125,7 +126,7 @@ yy::Parser::symbol_type yylex(void* yyscanner, yy::location& loc, class Clase3::
 %token TRUE FALSE AND NOT IF THEN ELSE WHILE PRINT PRINTF FOR
 %token MULTIPLICACION DIVISION EXPONENCIAL  MENOR_IGUAL MAYOR_IGUAL IGUAL_IGUAL DIFERENTE MENOR MAYOR OR INTERROGACION INCREMENT DECREMENT
 %token DOT LEFT_BRACKET RIGHT_BRACKET VECTOR
-%token PUSH_FRONT DOT_PUSH_BACK STRUCT REMOVE MEDIAN IOTA MEAN SIZE ATOI GET
+%token PUSH_FRONT DOT_PUSH_BACK STRUCT REMOVE MEDIAN IOTA MEAN SIZE ATOI GET RETORNO BREAK CONTINUE
     //token por texto
 %token ';' '(' ')' '=' '{' '}' '[' ']'  '.';
 // negación unaria
@@ -158,7 +159,7 @@ del parser al escaner evitando crear variables globales
 %parse-param {void *scanner} {yy::location& loc} { class Clase3::Interfaz & intr }
 
 
-%type<AbstractExpr*>   declaracion_var;
+%type<AbstractExpr*>   declaracion_var escapa;
 %type<QVector<AbstractExpr*>*> s lSentencia;
 %type<AbstractExpr*> sentencia asignacion_var aumento decremento;
 %type<AbstractExpr*> expr tipo cond x;
@@ -217,6 +218,7 @@ sentencia: declaracion_var {$$ = $1;}
     | ciclo_for{$$=$1;}
     |ciclo_while{$$=$1;}
     | ins_if{$$=$1;}
+    |escapa {$$=$1;}
     ;
 
 ciclo_for:FOR '(' declaracion_var z x z aumento ')' '{' lSentencia '}' {$$ = new Bloque(*$10,$3,$5,$7,true,nullptr);}
@@ -232,7 +234,10 @@ ins_if: IF '(' x ')' '{' lSentencia '}' {$$ = new Bloque(*$6,nullptr,$3,nullptr,
     |   IF '(' x ')' '{' lSentencia '}' ELSE ins_if {$$ = new Bloque(*$6,nullptr,$3,nullptr,false,$9);}
     ;
 
-
+escapa: BREAK { $$ = new NT_Escape(QString::fromStdString("break"));}
+    | CONTINUE { $$ = new NT_Escape(QString::fromStdString("continue"));}
+    | RETORNO { $$ = new NT_Escape(QString::fromStdString("return"));}           
+    ;
 
 
  ;

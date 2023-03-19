@@ -62,6 +62,7 @@ set(PROJECT_SOURCES
         AST/No_Terminales/nt_assignvector.h AST/No_Terminales/nt_assignvector.cpp
         Interprete/Contexto/environment.h Interprete/Contexto/environment.cpp
         AST/Terminales/t_boolean.h AST/Terminales/t_boolean.cpp
+        AST/No_Terminales/nt_escape.h AST/No_Terminales/nt_escape.cpp
 
 
 

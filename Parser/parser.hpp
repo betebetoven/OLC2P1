@@ -73,6 +73,7 @@
     #include "../AST/No_Terminales/Expresiones/nt_negacion.h"
     #include "../AST/No_Terminales/Expresiones/nt_id.h"
     #include "../AST/No_Terminales/nt_tipo.h"
+    #include "../AST/No_Terminales/nt_escape.h"
 
     // nodos terminales
     #include "../AST/Terminales/t_numero.h"
@@ -118,7 +119,7 @@
     */
 
 
-#line 122 "parser.hpp"
+#line 123 "parser.hpp"
 
 
 # include <cstdlib> // std::abort
@@ -247,7 +248,7 @@
 #endif
 
 namespace yy {
-#line 251 "parser.hpp"
+#line 252 "parser.hpp"
 
 
 
@@ -442,6 +443,7 @@ namespace yy {
       // ciclo_for
       // ciclo_while
       // ins_if
+      // escapa
       // aumento
       // decremento
       // bloque
@@ -569,7 +571,10 @@ namespace yy {
     SIZE = 306,                    // SIZE
     ATOI = 307,                    // ATOI
     GET = 308,                     // GET
-    NEG = 309                      // NEG
+    RETORNO = 309,                 // RETORNO
+    BREAK = 310,                   // BREAK
+    CONTINUE = 311,                // CONTINUE
+    NEG = 312                      // NEG
       };
       /// Backward compatibility alias (Bison 3.6).
       typedef token_kind_type yytokentype;
@@ -586,7 +591,7 @@ namespace yy {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 65, ///< Number of tokens.
+        YYNTOKENS = 68, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // END
         S_YYerror = 1,                           // error
@@ -642,36 +647,40 @@ namespace yy {
         S_SIZE = 51,                             // SIZE
         S_ATOI = 52,                             // ATOI
         S_GET = 53,                              // GET
-        S_54_ = 54,                              // ';'
-        S_55_ = 55,                              // '('
-        S_56_ = 56,                              // ')'
-        S_57_ = 57,                              // '='
-        S_58_ = 58,                              // '{'
-        S_59_ = 59,                              // '}'
-        S_60_ = 60,                              // '['
-        S_61_ = 61,                              // ']'
-        S_62_ = 62,                              // '.'
-        S_NEG = 63,                              // NEG
-        S_64_ = 64,                              // ','
-        S_YYACCEPT = 65,                         // $accept
-        S_s = 66,                                // s
-        S_lSentencia = 67,                       // lSentencia
-        S_sentencia = 68,                        // sentencia
-        S_ciclo_for = 69,                        // ciclo_for
-        S_ciclo_while = 70,                      // ciclo_while
-        S_ins_if = 71,                           // ins_if
-        S_aumento = 72,                          // aumento
-        S_decremento = 73,                       // decremento
-        S_imprimir = 74,                         // imprimir
-        S_bloque = 75,                           // bloque
-        S_z = 76,                                // z
-        S_declaracion_var = 77,                  // declaracion_var
-        S_asignacion_var = 78,                   // asignacion_var
-        S_x = 79,                                // x
-        S_cond = 80,                             // cond
-        S_oprel = 81,                            // oprel
-        S_expr = 82,                             // expr
-        S_tipo = 83                              // tipo
+        S_RETORNO = 54,                          // RETORNO
+        S_BREAK = 55,                            // BREAK
+        S_CONTINUE = 56,                         // CONTINUE
+        S_57_ = 57,                              // ';'
+        S_58_ = 58,                              // '('
+        S_59_ = 59,                              // ')'
+        S_60_ = 60,                              // '='
+        S_61_ = 61,                              // '{'
+        S_62_ = 62,                              // '}'
+        S_63_ = 63,                              // '['
+        S_64_ = 64,                              // ']'
+        S_65_ = 65,                              // '.'
+        S_NEG = 66,                              // NEG
+        S_67_ = 67,                              // ','
+        S_YYACCEPT = 68,                         // $accept
+        S_s = 69,                                // s
+        S_lSentencia = 70,                       // lSentencia
+        S_sentencia = 71,                        // sentencia
+        S_ciclo_for = 72,                        // ciclo_for
+        S_ciclo_while = 73,                      // ciclo_while
+        S_ins_if = 74,                           // ins_if
+        S_escapa = 75,                           // escapa
+        S_aumento = 76,                          // aumento
+        S_decremento = 77,                       // decremento
+        S_imprimir = 78,                         // imprimir
+        S_bloque = 79,                           // bloque
+        S_z = 80,                                // z
+        S_declaracion_var = 81,                  // declaracion_var
+        S_asignacion_var = 82,                   // asignacion_var
+        S_x = 83,                                // x
+        S_cond = 84,                             // cond
+        S_oprel = 85,                            // oprel
+        S_expr = 86,                             // expr
+        S_tipo = 87                              // tipo
       };
     };
 
@@ -712,6 +721,7 @@ namespace yy {
       case symbol_kind::S_ciclo_for: // ciclo_for
       case symbol_kind::S_ciclo_while: // ciclo_while
       case symbol_kind::S_ins_if: // ins_if
+      case symbol_kind::S_escapa: // escapa
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_bloque: // bloque
@@ -850,6 +860,7 @@ switch (yykind)
       case symbol_kind::S_ciclo_for: // ciclo_for
       case symbol_kind::S_ciclo_while: // ciclo_while
       case symbol_kind::S_ins_if: // ins_if
+      case symbol_kind::S_escapa: // escapa
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_bloque: // bloque
@@ -1846,6 +1857,51 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
+      make_RETORNO (location_type l)
+      {
+        return symbol_type (token::RETORNO, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_RETORNO (const location_type& l)
+      {
+        return symbol_type (token::RETORNO, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_BREAK (location_type l)
+      {
+        return symbol_type (token::BREAK, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_BREAK (const location_type& l)
+      {
+        return symbol_type (token::BREAK, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_CONTINUE (location_type l)
+      {
+        return symbol_type (token::CONTINUE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_CONTINUE (const location_type& l)
+      {
+        return symbol_type (token::CONTINUE, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
       make_NEG (location_type l)
       {
         return symbol_type (token::NEG, std::move (l));
@@ -2188,9 +2244,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 234,     ///< Last index in yytable_.
-      yynnts_ = 19,  ///< Number of nonterminal symbols.
-      yyfinal_ = 32 ///< Termination state number.
+      yylast_ = 274,     ///< Last index in yytable_.
+      yynnts_ = 20,  ///< Number of nonterminal symbols.
+      yyfinal_ = 36 ///< Termination state number.
     };
 
 
@@ -2215,15 +2271,15 @@ switch (yykind)
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      55,    56,     2,     2,    64,     2,    62,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,    54,
-       2,    57,     2,     2,     2,     2,     2,     2,     2,     2,
+      58,    59,     2,     2,    67,     2,    65,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,    57,
+       2,    60,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,    60,     2,    61,     2,     2,     2,     2,     2,     2,
+       2,    63,     2,    64,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,    58,     2,    59,     2,     2,     2,     2,
+       2,     2,     2,    61,     2,    62,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -2241,10 +2297,11 @@ switch (yykind)
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
       35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
-      45,    46,    47,    48,    49,    50,    51,    52,    53,    63
+      45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
+      55,    56,    66
     };
     // Last valid token kind.
-    const int code_max = 309;
+    const int code_max = 312;
 
     if (t <= 0)
       return symbol_kind::S_YYEOF;
@@ -2267,6 +2324,7 @@ switch (yykind)
       case symbol_kind::S_ciclo_for: // ciclo_for
       case symbol_kind::S_ciclo_while: // ciclo_while
       case symbol_kind::S_ins_if: // ins_if
+      case symbol_kind::S_escapa: // escapa
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_bloque: // bloque
@@ -2333,6 +2391,7 @@ switch (yykind)
       case symbol_kind::S_ciclo_for: // ciclo_for
       case symbol_kind::S_ciclo_while: // ciclo_while
       case symbol_kind::S_ins_if: // ins_if
+      case symbol_kind::S_escapa: // escapa
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_bloque: // bloque
@@ -2428,7 +2487,7 @@ switch (yykind)
   }
 
 } // yy
-#line 2432 "parser.hpp"
+#line 2491 "parser.hpp"
 
 
 

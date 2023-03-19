@@ -5,7 +5,10 @@
 
 #include "../Interprete/Contexto/resultado.h"
 #include "../Interprete/Contexto/environment.h"
+//class Environment;
 #include <sstream>
+
+
 class AbstractExpr
 {
 public:

@@ -61,7 +61,9 @@ ID  {LETRAS}({DIGITO}|{LETRAS}|"_")*
 
 "++"     return Parser::symbol_type( token::INCREMENT, loc );
 "--"     return Parser::symbol_type( token::DECREMENT, loc );
-
+"return"     return Parser::symbol_type( token::RETORNO, loc );
+"break"     return Parser::symbol_type( token::BREAK, loc );
+"continue"     return Parser::symbol_type( token::CONTINUE, loc );
 "+"     return Parser::symbol_type( token::SUMA, loc );
 "-"     return Parser::symbol_type( token::MENOS, loc );
 "*" return Parser::symbol_type(token::MULTIPLICACION, loc);
@@ -69,7 +71,7 @@ ID  {LETRAS}({DIGITO}|{LETRAS}|"_")*
 "^" return Parser::symbol_type(token::EXPONENCIAL, loc);
 "Dim"   return Parser::symbol_type( token::DIM, loc);
 "as"    return Parser::symbol_type( token::AS, loc);
-"Println"  return Parser::symbol_type( token::IMPR, loc);
+"Printf"  return Parser::symbol_type( token::IMPR, loc);
 "Int"    return Parser::symbol_type( token::INT, loc);
 "String"   return Parser::symbol_type( token::STR , loc);
 "Float"   return Parser::symbol_type( token::FLO , loc);

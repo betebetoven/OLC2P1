@@ -6,7 +6,9 @@
 #include <map>
 #include <variant>
 #include<QString>
-
+#include<Qvector>
+#include <sstream>
+//#include"../../AST/abstractexpr.h"
 
 struct VariableInfo {
     std::string type;
