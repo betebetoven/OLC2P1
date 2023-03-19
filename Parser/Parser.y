@@ -271,11 +271,11 @@ z: ';' {  }
     ;
 
 
-declaracion_var: ID AS tipo {   NT_ID* id = new NT_ID(QString::fromStdString($1));
-                                    $$ = new NT_DeclVar($3, id); }
-    | ID AS tipo '=' x {    std::cout << "declaracion con asignacion" << std::endl;
-                                NT_ID* id = new NT_ID(QString::fromStdString($1));
-                                $$ = new NT_DeclVar($3, id,$5 );  }
+declaracion_var: tipo ID  {   NT_ID* id = new NT_ID(QString::fromStdString($2));
+                                    $$ = new NT_DeclVar($1, id); }
+    | tipo ID  '=' x {    
+                                NT_ID* id = new NT_ID(QString::fromStdString($2));
+                                $$ = new NT_DeclVar($1, id,$4 );  }
     ;
 
 asignacion_var: ID '=' x {   NT_ID* id_avar = new NT_ID(QString::fromStdString($1));

@@ -2009,7 +2009,7 @@ switch (yykind)
     static const signed char yydefact_[];
 
     // YYPGOTO[NTERM-NUM].
-    static const short yypgoto_[];
+    static const signed char yypgoto_[];
 
     // YYDEFGOTO[NTERM-NUM].
     static const signed char yydefgoto_[];
@@ -2261,9 +2261,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 262,     ///< Last index in yytable_.
+      yylast_ = 318,     ///< Last index in yytable_.
       yynnts_ = 20,  ///< Number of nonterminal symbols.
-      yyfinal_ = 36 ///< Termination state number.
+      yyfinal_ = 40 ///< Termination state number.
     };
 
 
