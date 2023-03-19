@@ -31,10 +31,14 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
         Clase3::Interfaz* interfaz = new Clase3::Interfaz();
-        ui->textEdit->setText(
-                interfaz->Ejecutar(
-                        ui->textEdit_2->toPlainText().toStdString())
-                );
+
+        QString cabecera = QString("digraph G {\n \
+                                   graph [ratio=.48];\n \
+                                   node [style=filled, color=black, shape=circle, width=.6\n \
+                                       fontname=Helvetica, fontweight=bold, fontcolor=white,\n \
+                                       fontsize=10, fixedsize=true];\n");
+                                   QString dot = interfaz->Ejecutar(ui->textEdit->toPlainText().toStdString());
+                                                              ui->textEdit_2->setText( cabecera + dot + "}");
 
 }
 

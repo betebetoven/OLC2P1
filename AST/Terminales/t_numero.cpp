@@ -16,7 +16,6 @@ QString T_Numero::Graficar() {
 }
 
 T_Numero::T_Numero(QString num) {
-    std::cout << "Crea el T numero" << std::endl;
     this->numero = num;
 }
 

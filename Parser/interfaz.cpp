@@ -8,22 +8,12 @@ QString Clase3::Interfaz::Analaizar(std::string entrada) {
 
     this->Parser->parse();
 std::cout << "Size of raiz in Analaizar: " << this->raiz.size() << std::endl;
-   /*  if (this->raiz != nullptr) {
-        return this->raiz->Graficar();
 
-    }
-    return QString();*/
 std::cout << "Class name of the first element in raiz: "
                   << typeid(*this->raiz[0]).name() << std::endl;
 
 
     Environment *env = new Environment(nullptr);
-    /**this->raiz[0]->Interpretar(env);
-    for (AbstractExpr *expr: this->raiz) {
-                std::cout << "sientrafor" << std::endl;
-                expr->Interpretar(env);
-                env->report();
-            }*/
     for (int i = 0; i < this->raiz.size(); i ++){
 
       Resultado* temp = this->raiz[i]->Interpretar(env);
@@ -43,6 +33,7 @@ QString Clase3::Interfaz::Ejecutar(std::string entrada) {
 
     this->Parser->parse();
     std::cout << "Size of raiz in Ejecutar: " << this->raiz.size() << std::endl;
+    /*
     if (!this->raiz.isEmpty()) {
 
         Environment *env = new Environment(nullptr);
@@ -52,9 +43,30 @@ QString Clase3::Interfaz::Ejecutar(std::string entrada) {
         env->report();
 
         return "salida";
+    }*/
+    /*  if (this->raiz != nullptr) {
+         return this->raiz->Graficar();
+
+     }
+     return QString();*/
+    std::stringstream  pPosicion, lPosicion;
+    pPosicion <<(void*)this;
+    QString temp = QString::fromStdString("n" + pPosicion.str()  +
+                " [ label=\"MAIN\" fillcolor=springgreen];\n");
+
+
+    for (int i = 0; i < this->raiz.size(); i ++){
+        lPosicion.str(std::string());
+        lPosicion.clear();
+        lPosicion << (void*)this->raiz[i];
+
+        temp +=  QString::fromStdString("n" + pPosicion.str() + " -> n"
+                        + lPosicion.str()+ ";\n");
+      temp += this->raiz[i]->Graficar();
+        /// es un return? es un break, es un continue, etc....
     }
     std::cout << "alv si esta vacio" << std::endl;
-    return 0;
+    return temp;
 
 }
 
