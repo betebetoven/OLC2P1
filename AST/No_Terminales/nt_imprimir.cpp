@@ -1,31 +1,14 @@
 #include "nt_imprimir.h"
 
 Resultado *NT_Imprimir::Interpretar(Environment *ctx) {
-    // imprimimos las expresiones
-    /*Resultado *expr;
-    for (int i = 0; i < this->lista_expr->lista_expresiones.size(); i++) {
-        expr = this->lista_expr->lista_expresiones[i]->Interpretar(ctx);
-        if (expr != nullptr) {
-
-
-            if (QString::compare(expr->tipo->Nombre, QString("Integer"), Qt::CaseSensitive)== 0 ) {
-                ctx->Imprimir(QString::number(expr->valor));
-
-            } else if (QString::compare(expr->tipo->Nombre, QString("Float"), Qt::CaseSensitive ) == 0 ) {
-                ctx->Imprimir(QString::number(expr->valorD));
-
-            } else if (QString::compare(expr->tipo->Nombre, QString("String"), Qt::CaseSensitive ) == 0 ){
-                ctx->Imprimir(expr->valorS);
-            }
-        }
-    }
-    ctx->Imprimir("\n");*/
-    return nullptr;
+    Resultado* r = this->lista_expr->Interpretar(ctx);
+    std::cout<<r->getValor().toString().toStdString()<<std::endl;
+    return r;
 }
 
 QString NT_Imprimir::Graficar() {
     std::stringstream pPosicion, lPosicion;
-    pPosicion << (void *) this;
+    /*pPosicion << (void *) this;
     lPosicion << (void *) this->lista_expr;
 
 
@@ -45,10 +28,11 @@ QString NT_Imprimir::Graficar() {
     nodo += QString::fromStdString("n" + pPosicion.str() + " -> n"
                                    + pPosicion.str() + "2" + ";\n");
 
-    return nodo;
+    return nodo;*/
+    return nullptr;
 }
 
-NT_Imprimir::NT_Imprimir(NT_ListaExpr *nodo) {
+NT_Imprimir::NT_Imprimir(AbstractExpr *nodo) {
     this->lista_expr = nodo;
 }
 

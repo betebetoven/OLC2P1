@@ -453,9 +453,12 @@ namespace yy {
       // tipo
       char dummy1[sizeof (AbstractExpr*)];
 
+      // imprimir
+      char dummy2[sizeof (NT_Imprimir*)];
+
       // s
       // lSentencia
-      char dummy2[sizeof (QVector<AbstractExpr*>*)];
+      char dummy3[sizeof (QVector<AbstractExpr*>*)];
 
       // NUMERO
       // ID
@@ -466,7 +469,7 @@ namespace yy {
       // FLO
       // BOOL
       // oprel
-      char dummy3[sizeof (std::string)];
+      char dummy4[sizeof (std::string)];
     };
 
     /// The size of the largest semantic type.
@@ -659,15 +662,16 @@ namespace yy {
         S_ins_if = 71,                           // ins_if
         S_aumento = 72,                          // aumento
         S_decremento = 73,                       // decremento
-        S_bloque = 74,                           // bloque
-        S_z = 75,                                // z
-        S_declaracion_var = 76,                  // declaracion_var
-        S_asignacion_var = 77,                   // asignacion_var
-        S_x = 78,                                // x
-        S_cond = 79,                             // cond
-        S_oprel = 80,                            // oprel
-        S_expr = 81,                             // expr
-        S_tipo = 82                              // tipo
+        S_imprimir = 74,                         // imprimir
+        S_bloque = 75,                           // bloque
+        S_z = 76,                                // z
+        S_declaracion_var = 77,                  // declaracion_var
+        S_asignacion_var = 78,                   // asignacion_var
+        S_x = 79,                                // x
+        S_cond = 80,                             // cond
+        S_oprel = 81,                            // oprel
+        S_expr = 82,                             // expr
+        S_tipo = 83                              // tipo
       };
     };
 
@@ -720,6 +724,10 @@ namespace yy {
         value.move< AbstractExpr* > (std::move (that.value));
         break;
 
+      case symbol_kind::S_imprimir: // imprimir
+        value.move< NT_Imprimir* > (std::move (that.value));
+        break;
+
       case symbol_kind::S_s: // s
       case symbol_kind::S_lSentencia: // lSentencia
         value.move< QVector<AbstractExpr*>* > (std::move (that.value));
@@ -768,6 +776,20 @@ namespace yy {
       {}
 #else
       basic_symbol (typename Base::kind_type t, const AbstractExpr*& v, const location_type& l)
+        : Base (t)
+        , value (v)
+        , location (l)
+      {}
+#endif
+
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, NT_Imprimir*&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const NT_Imprimir*& v, const location_type& l)
         : Base (t)
         , value (v)
         , location (l)
@@ -838,6 +860,10 @@ switch (yykind)
       case symbol_kind::S_expr: // expr
       case symbol_kind::S_tipo: // tipo
         value.template destroy< AbstractExpr* > ();
+        break;
+
+      case symbol_kind::S_imprimir: // imprimir
+        value.template destroy< NT_Imprimir* > ();
         break;
 
       case symbol_kind::S_s: // s
@@ -2162,9 +2188,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 221,     ///< Last index in yytable_.
-      yynnts_ = 18,  ///< Number of nonterminal symbols.
-      yyfinal_ = 29 ///< Termination state number.
+      yylast_ = 234,     ///< Last index in yytable_.
+      yynnts_ = 19,  ///< Number of nonterminal symbols.
+      yyfinal_ = 32 ///< Termination state number.
     };
 
 
@@ -2253,6 +2279,10 @@ switch (yykind)
         value.copy< AbstractExpr* > (YY_MOVE (that.value));
         break;
 
+      case symbol_kind::S_imprimir: // imprimir
+        value.copy< NT_Imprimir* > (YY_MOVE (that.value));
+        break;
+
       case symbol_kind::S_s: // s
       case symbol_kind::S_lSentencia: // lSentencia
         value.copy< QVector<AbstractExpr*>* > (YY_MOVE (that.value));
@@ -2313,6 +2343,10 @@ switch (yykind)
       case symbol_kind::S_expr: // expr
       case symbol_kind::S_tipo: // tipo
         value.move< AbstractExpr* > (YY_MOVE (s.value));
+        break;
+
+      case symbol_kind::S_imprimir: // imprimir
+        value.move< NT_Imprimir* > (YY_MOVE (s.value));
         break;
 
       case symbol_kind::S_s: // s
@@ -2394,7 +2428,7 @@ switch (yykind)
   }
 
 } // yy
-#line 2398 "parser.hpp"
+#line 2432 "parser.hpp"
 
 
 

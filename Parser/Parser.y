@@ -210,7 +210,7 @@ lSentencia: lSentencia sentencia z {
     /*sentencias*/
 sentencia: declaracion_var {$$ = $1;}
         | asignacion_var {$$ = $1; }
-    //| imprimir {$$ = $1; }
+    | imprimir {$$ = $1; }
     | bloque {$$ = $1;}
     | aumento{$$ = $1;}
     |decremento {$$ = $1;}
@@ -256,7 +256,7 @@ lista_Expr: lista_Expr ','  x {   $1->AddNodo($3);
     | x { $$ = new NT_ListaExpr($1);}
     ;
 
-imprimir: IMPR '(' lista_Expr ')' { $$ = new NT_Imprimir($3); }
+imprimir: IMPR '(' x ')' { $$ = new NT_Imprimir($3); }
     ;
 
 bloque: '{' lSentencia '}' { $$ = new Bloque(*$2,nullptr,nullptr,nullptr,false, nullptr); }

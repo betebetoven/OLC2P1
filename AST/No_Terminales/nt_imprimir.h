@@ -5,11 +5,11 @@
 #include "nt_listaexpr.h"
 
 class NT_Imprimir: public AbstractExpr {
-    NT_ListaExpr* lista_expr;
+   AbstractExpr* lista_expr;
 public:
     Resultado *Interpretar(Environment *ctx) override;
     QString Graficar() override;
-    explicit NT_Imprimir(NT_ListaExpr* nodo);
+    explicit NT_Imprimir(AbstractExpr* nodo);
 };
 
 
