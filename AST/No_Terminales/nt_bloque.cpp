@@ -31,7 +31,7 @@ Resultado* Bloque::Interpretar(Environment* env) {
                 temp = this->instrucciones[i]->Interpretar(envv);
                 if(temp!=nullptr)
                 {
-                if(temp->getValor().toString().toStdString()=="break")
+                if(temp->getValor().toString().toStdString()=="break")// aca puede ir el return como || pero primero hay que hacer las funcinoes
                 {env->updateCommonVariables(envv);
                     env->report();
                     return nullptr;}
