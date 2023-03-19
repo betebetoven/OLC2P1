@@ -65,6 +65,7 @@ ID  {LETRAS}({DIGITO}|{LETRAS}|"_")*
 "break"     return Parser::symbol_type( token::BREAK, loc );
 "continue"     return Parser::symbol_type( token::CONTINUE, loc );
 "+"     return Parser::symbol_type( token::SUMA, loc );
+"%"     return Parser::symbol_type( token::MOD, loc );
 "-"     return Parser::symbol_type( token::MENOS, loc );
 "*" return Parser::symbol_type(token::MULTIPLICACION, loc);
 "/" return Parser::symbol_type(token::DIVISION, loc);

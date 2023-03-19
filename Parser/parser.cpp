@@ -1225,118 +1225,124 @@ namespace yy {
 #line 1226 "parser.cpp"
     break;
 
-  case 51: // expr: expr EXPONENCIAL expr
+  case 51: // expr: expr MOD expr
 #line 322 "Parser.y"
-                            { yylhs.value.as < AbstractExpr* > () = new NT_Exponencial(yystack_[2].value.as < AbstractExpr* > (), yystack_[0].value.as < AbstractExpr* > ()); }
+                    { yylhs.value.as < AbstractExpr* > () = new NT_Modulo(yystack_[2].value.as < AbstractExpr* > (), yystack_[0].value.as < AbstractExpr* > ()); }
 #line 1232 "parser.cpp"
     break;
 
-  case 52: // expr: '(' expr ')'
+  case 52: // expr: expr EXPONENCIAL expr
 #line 323 "Parser.y"
-                   { yylhs.value.as < AbstractExpr* > () = yystack_[1].value.as < AbstractExpr* > (); }
+                            { yylhs.value.as < AbstractExpr* > () = new NT_Exponencial(yystack_[2].value.as < AbstractExpr* > (), yystack_[0].value.as < AbstractExpr* > ()); }
 #line 1238 "parser.cpp"
     break;
 
-  case 53: // expr: INCREMENT ID
+  case 53: // expr: '(' expr ')'
 #line 324 "Parser.y"
+                   { yylhs.value.as < AbstractExpr* > () = yystack_[1].value.as < AbstractExpr* > (); }
+#line 1244 "parser.cpp"
+    break;
+
+  case 54: // expr: INCREMENT ID
+#line 325 "Parser.y"
                    {            NT_ID* id_avar2 = new NT_ID(QString::fromStdString(yystack_[0].value.as < std::string > ()));
                                 T_ID* id_avar = new T_ID(QString::fromStdString(yystack_[0].value.as < std::string > ()));
                                 yylhs.value.as < AbstractExpr* > () = new NT_AsigVar(id_avar2,new NT_Suma(id_avar, new T_Numero( QString::fromStdString("1"))),true ); }
-#line 1246 "parser.cpp"
+#line 1252 "parser.cpp"
     break;
 
-  case 54: // expr: ID INCREMENT
-#line 327 "Parser.y"
+  case 55: // expr: ID INCREMENT
+#line 328 "Parser.y"
                    {            NT_ID* id_avar2 = new NT_ID(QString::fromStdString(yystack_[1].value.as < std::string > ()));
                                 T_ID* id_avar = new T_ID(QString::fromStdString(yystack_[1].value.as < std::string > ()));
                                 yylhs.value.as < AbstractExpr* > () = new NT_AsigVar(id_avar2,new NT_Suma(id_avar, new T_Numero( QString::fromStdString("1"))),false ); }
-#line 1254 "parser.cpp"
+#line 1260 "parser.cpp"
     break;
 
-  case 55: // expr: DECREMENT ID
-#line 330 "Parser.y"
+  case 56: // expr: DECREMENT ID
+#line 331 "Parser.y"
                    {            NT_ID* id_avar2 = new NT_ID(QString::fromStdString(yystack_[0].value.as < std::string > ()));
                                 T_ID* id_avar = new T_ID(QString::fromStdString(yystack_[0].value.as < std::string > ()));
                                 yylhs.value.as < AbstractExpr* > () = new NT_AsigVar(id_avar2,new NT_Resta(id_avar, new T_Numero( QString::fromStdString("1"))),true ); }
-#line 1262 "parser.cpp"
+#line 1268 "parser.cpp"
     break;
 
-  case 56: // expr: ID DECREMENT
-#line 333 "Parser.y"
+  case 57: // expr: ID DECREMENT
+#line 334 "Parser.y"
                    {            NT_ID* id_avar2 = new NT_ID(QString::fromStdString(yystack_[1].value.as < std::string > ()));
                                 T_ID* id_avar = new T_ID(QString::fromStdString(yystack_[1].value.as < std::string > ()));
                                 yylhs.value.as < AbstractExpr* > () = new NT_AsigVar(id_avar2,new NT_Resta(id_avar, new T_Numero( QString::fromStdString("1"))),false ); }
-#line 1270 "parser.cpp"
-    break;
-
-  case 57: // expr: MENOS expr
-#line 336 "Parser.y"
-                            { yylhs.value.as < AbstractExpr* > () = new NT_Negacion(yystack_[0].value.as < AbstractExpr* > ());  }
 #line 1276 "parser.cpp"
     break;
 
-  case 58: // expr: NUMERO
+  case 58: // expr: MENOS expr
 #line 337 "Parser.y"
-             { yylhs.value.as < AbstractExpr* > () = new T_Numero( QString::fromStdString(yystack_[0].value.as < std::string > ())); }
+                            { yylhs.value.as < AbstractExpr* > () = new NT_Negacion(yystack_[0].value.as < AbstractExpr* > ());  }
 #line 1282 "parser.cpp"
     break;
 
-  case 59: // expr: ID
+  case 59: // expr: NUMERO
 #line 338 "Parser.y"
-         { yylhs.value.as < AbstractExpr* > () = new T_ID( QString::fromStdString(yystack_[0].value.as < std::string > ())); }
+             { yylhs.value.as < AbstractExpr* > () = new T_Numero( QString::fromStdString(yystack_[0].value.as < std::string > ())); }
 #line 1288 "parser.cpp"
     break;
 
-  case 60: // expr: STRING
+  case 60: // expr: ID
 #line 339 "Parser.y"
-             { yylhs.value.as < AbstractExpr* > () = new T_String( QString::fromStdString(yystack_[0].value.as < std::string > ()));  }
+         { yylhs.value.as < AbstractExpr* > () = new T_ID( QString::fromStdString(yystack_[0].value.as < std::string > ())); }
 #line 1294 "parser.cpp"
     break;
 
-  case 61: // expr: FLOAT
+  case 61: // expr: STRING
 #line 340 "Parser.y"
-            { yylhs.value.as < AbstractExpr* > () = new T_Float( QString::fromStdString(yystack_[0].value.as < std::string > ()));  }
+             { yylhs.value.as < AbstractExpr* > () = new T_String( QString::fromStdString(yystack_[0].value.as < std::string > ()));  }
 #line 1300 "parser.cpp"
     break;
 
-  case 62: // expr: TRUE
+  case 62: // expr: FLOAT
 #line 341 "Parser.y"
-           { yylhs.value.as < AbstractExpr* > () = new T_Boolean( QString::fromStdString("true"));  }
+            { yylhs.value.as < AbstractExpr* > () = new T_Float( QString::fromStdString(yystack_[0].value.as < std::string > ()));  }
 #line 1306 "parser.cpp"
     break;
 
-  case 63: // expr: FALSE
+  case 63: // expr: TRUE
 #line 342 "Parser.y"
-            { yylhs.value.as < AbstractExpr* > () = new T_Boolean( QString::fromStdString("false"));  }
+           { yylhs.value.as < AbstractExpr* > () = new T_Boolean( QString::fromStdString("true"));  }
 #line 1312 "parser.cpp"
     break;
 
-  case 64: // tipo: INT
-#line 345 "Parser.y"
-           { yylhs.value.as < AbstractExpr* > () = new NT_Tipo( QString::fromStdString("Integer")); }
+  case 64: // expr: FALSE
+#line 343 "Parser.y"
+            { yylhs.value.as < AbstractExpr* > () = new T_Boolean( QString::fromStdString("false"));  }
 #line 1318 "parser.cpp"
     break;
 
-  case 65: // tipo: STR
+  case 65: // tipo: INT
 #line 346 "Parser.y"
-          { yylhs.value.as < AbstractExpr* > () = new NT_Tipo( QString::fromStdString("String")); }
+           { yylhs.value.as < AbstractExpr* > () = new NT_Tipo( QString::fromStdString("Integer")); }
 #line 1324 "parser.cpp"
     break;
 
-  case 66: // tipo: FLO
+  case 66: // tipo: STR
 #line 347 "Parser.y"
-          { yylhs.value.as < AbstractExpr* > () = new NT_Tipo( QString::fromStdString("Float")); }
+          { yylhs.value.as < AbstractExpr* > () = new NT_Tipo( QString::fromStdString("String")); }
 #line 1330 "parser.cpp"
     break;
 
-  case 67: // tipo: BOOL
+  case 67: // tipo: FLO
 #line 348 "Parser.y"
-           { yylhs.value.as < AbstractExpr* > () = new NT_Tipo( QString::fromStdString("Boolean")); }
+          { yylhs.value.as < AbstractExpr* > () = new NT_Tipo( QString::fromStdString("Float")); }
 #line 1336 "parser.cpp"
     break;
 
+  case 68: // tipo: BOOL
+#line 349 "Parser.y"
+           { yylhs.value.as < AbstractExpr* > () = new NT_Tipo( QString::fromStdString("Boolean")); }
+#line 1342 "parser.cpp"
+    break;
 
-#line 1340 "parser.cpp"
+
+#line 1346 "parser.cpp"
 
             default:
               break;
@@ -1685,26 +1691,26 @@ namespace yy {
   }
 
 
-  const signed char Parser::yypact_ninf_ = -50;
+  const signed char Parser::yypact_ninf_ = -53;
 
   const signed char Parser::yytable_ninf_ = -1;
 
   const short
   Parser::yypact_[] =
   {
-     144,     1,   -49,   -47,   -44,   -42,    22,    25,   -50,   -50,
-     -50,   144,    30,   144,     0,   -50,   -50,   -50,   -50,   -50,
-     -50,   -50,   -50,   -50,   -50,   120,   -50,   -50,   185,   185,
-     185,   185,    34,   -50,   -50,    -2,   -50,     0,   -50,   -50,
-     -50,   -50,   -50,   -50,    -5,   -50,   -19,   -50,   -50,   203,
-     -50,   -50,   185,    52,    61,   185,   -50,   -11,   239,    12,
-      14,    17,    53,     0,   -50,   -50,   185,   -50,   -50,   203,
-      49,   -11,   -50,   -50,    -1,   198,   185,   185,   203,   203,
-     203,   203,   203,   -50,   -50,   -50,   -50,   -50,   -50,   203,
-     -50,    18,    26,   185,   -50,    21,   -50,   -50,   -50,    65,
-      16,    16,    49,    49,    49,    63,   144,   144,     0,     8,
-      62,     4,    64,   -50,    51,    35,   -10,    32,   144,   -50,
-     144,    99,   124,   -50,   -50
+     134,   125,   -52,   -48,   -44,   -41,    16,    26,   -53,   -53,
+     -53,   134,    40,   134,   -32,   -53,   -53,   -53,   -53,   -53,
+     -53,   -53,   -53,   -53,   -53,     7,   -53,   -53,   139,   139,
+     139,   139,    41,   -53,   -53,     4,   -53,   -32,   -53,   -53,
+     -53,   -53,   -53,   -53,   -15,   -53,   -30,   -53,   -53,   189,
+     -53,   -53,   139,    45,    69,   139,   -53,     5,   226,    18,
+      20,    27,    61,   -32,   -53,   -53,   139,   -53,   -53,   189,
+      46,     5,   -53,   -53,     2,    22,   139,   139,   189,   189,
+     189,   189,   189,   189,   -53,   -53,   -53,   -53,   -53,   -53,
+     189,   -53,    24,    28,   139,   -53,   155,   -53,   -53,   -53,
+      74,   195,   195,    46,    46,    46,    46,   188,   134,   134,
+     -32,     8,    64,    -2,    71,   -53,    57,    37,    15,    47,
+     134,   -53,   134,    68,   113,   -53,   -53
   };
 
   const signed char
@@ -1714,125 +1720,123 @@ namespace yy {
       21,     0,     0,     2,    30,    11,    12,    13,    14,     9,
       10,     7,     8,     5,     6,     0,    24,    26,     0,     0,
        0,     0,     0,    23,    25,     0,     1,    30,    29,     4,
-      64,    65,    66,    67,    31,    58,    59,    60,    61,     0,
-      62,    63,     0,     0,     0,     0,    33,    34,    40,     0,
-       0,     0,     0,    30,    28,     3,     0,    54,    56,     0,
-      57,    37,    53,    55,     0,    40,     0,     0,     0,     0,
-       0,     0,     0,    44,    45,    43,    46,    42,    41,     0,
-      27,     0,     0,     0,    32,     0,    38,    52,    36,    35,
-      47,    48,    49,    50,    51,    39,     0,     0,    30,     0,
-       0,     0,    17,    16,     0,     0,     0,     0,     0,    19,
-       0,     0,     0,    18,    15
+      65,    66,    67,    68,    31,    59,    60,    61,    62,     0,
+      63,    64,     0,     0,     0,     0,    33,    34,    40,     0,
+       0,     0,     0,    30,    28,     3,     0,    55,    57,     0,
+      58,    37,    54,    56,     0,    40,     0,     0,     0,     0,
+       0,     0,     0,     0,    44,    45,    43,    46,    42,    41,
+       0,    27,     0,     0,     0,    32,     0,    38,    53,    36,
+      35,    47,    48,    51,    49,    50,    52,    39,     0,     0,
+      30,     0,     0,     0,    17,    16,     0,     0,     0,     0,
+       0,    19,     0,     0,     0,    18,    15
   };
 
   const short
   Parser::yypgoto_[] =
   {
-     -50,   -50,    -8,   -13,   -50,   -50,   -21,   -50,    -9,   -50,
-     -50,   -50,   -36,    72,   -50,   -25,    29,   -50,   167,   -50
+     -53,   -53,    -8,   -13,   -53,   -53,   -16,   -53,     0,   -53,
+     -53,   -53,   -36,    83,   -53,   -25,    29,   -53,   153,   -53
   };
 
   const signed char
   Parser::yydefgoto_[] =
   {
       -1,    12,    13,    14,    15,    16,    17,    18,    19,    20,
-      21,    22,    39,    23,    24,    56,    57,    89,    58,    44
+      21,    22,    39,    23,    24,    56,    57,    90,    58,    44
   };
 
   const signed char
   Parser::yytable_[] =
   {
-      37,    65,     1,    35,    59,    60,    61,    76,   114,    29,
-       3,    30,     1,     2,    31,    25,    32,    76,     3,    67,
-      68,     4,    37,     2,     5,    77,    33,    93,     3,    34,
-      36,     4,    78,    79,     5,    77,     6,     7,    62,    26,
-      27,    94,     6,    80,    81,    82,     6,     7,    80,    81,
-      82,   118,     8,     9,    10,    66,    72,    38,    96,    11,
-      64,    28,     8,     9,    10,    73,     1,    25,   108,    11,
-     112,    90,   111,    91,    78,    79,    92,     2,    82,   106,
-      97,    71,     3,    76,    74,     4,   116,   107,     5,    26,
-      80,    81,    82,   120,   117,   119,    37,    37,   109,   110,
-       6,     7,   115,     1,    63,    98,    99,     0,    37,    37,
-     121,     0,   122,     0,     2,     0,     8,     9,    10,     3,
-       0,     0,     4,    11,   113,     5,    40,    41,     1,    42,
-      43,     0,     0,     0,     0,     0,     0,     6,     7,     2,
-       0,     0,     0,     0,     3,     0,     0,     4,     1,     0,
-       5,     0,     0,     8,     9,    10,     0,     0,     0,     2,
-      11,   123,     6,     7,     3,     0,     0,     4,     0,     0,
-       5,     0,     0,     0,     0,     0,     0,     0,     8,     9,
-      10,     0,     6,     7,     0,    11,   124,     0,    45,    46,
-      47,     0,     0,    48,     0,     0,     0,    49,     8,     9,
-      10,    50,    51,     0,    52,    11,    45,    46,    47,    78,
-      79,    48,     0,     0,     0,    49,    70,     0,     0,    50,
-      51,     0,    75,    53,    54,    80,    81,    82,    83,    84,
-      85,    86,    87,    88,     0,     0,    95,     0,     0,     0,
-       0,    53,    54,    55,     0,   100,   101,   102,   103,   104,
-      78,    79,     0,     0,     0,     0,   105,    97,     0,     0,
-       0,    69,     0,     0,     0,     0,    80,    81,    82,    83,
-      84,    85,    86,    87,    88
+      37,    65,   116,    35,    59,    60,    61,    29,     1,    67,
+      68,    30,     1,    40,    41,    31,    42,    43,    32,     2,
+      33,    76,    37,     2,    76,     3,    38,    94,     4,     3,
+      34,     5,     4,    78,    79,     5,     3,     6,    80,    77,
+      36,    95,    77,     6,     7,    62,    66,     6,     7,    72,
+      81,    82,    83,    84,    85,    86,    87,    88,    89,     8,
+       9,    10,    97,     8,     9,    10,    11,    64,     1,   110,
+      11,   114,     1,    73,   113,    25,    83,   120,    91,     2,
+      92,    71,    98,     2,    74,     3,   108,    93,     4,     3,
+     109,     5,     4,    76,   118,     5,    26,   119,    37,    37,
+     111,   112,   121,     6,     7,    99,   100,     6,     7,   122,
+      37,    37,   123,   117,   124,    63,     0,     1,     0,     8,
+       9,    10,     0,     8,     9,    10,    11,   115,     2,     0,
+      11,   125,     0,     0,     3,     0,     0,     4,     1,    25,
+       5,     0,    45,    46,    47,     0,     0,    48,     0,     2,
+       0,    49,     6,     7,     0,     3,    50,    51,     4,    52,
+       0,     5,     0,     0,    26,    27,    78,    79,     8,     9,
+      10,    80,     0,     6,     7,    11,   126,     0,    53,    54,
+       0,     0,     0,    81,    82,    83,    28,     0,     0,     8,
+       9,    10,    45,    46,    47,     0,    11,    48,    55,    78,
+      79,    49,    70,     0,    80,     0,    50,    51,    75,     0,
+       0,    80,     0,     0,     0,    98,    81,    82,    83,     0,
+       0,     0,    96,    81,    82,    83,     0,     0,    53,    54,
+       0,   101,   102,   103,   104,   105,   106,    78,    79,     0,
+       0,     0,    80,   107,     0,     0,     0,     0,    69,     0,
+       0,     0,     0,     0,    81,    82,    83,    84,    85,    86,
+      87,    88,    89
   };
 
   const signed char
   Parser::yycheck_[] =
   {
-      13,    37,     4,    11,    29,    30,    31,    18,     4,    58,
-      20,    58,     4,    15,    58,    14,    58,    18,    20,    38,
-      39,    23,    35,    15,    26,    36,     4,    63,    20,     4,
-       0,    23,    11,    12,    26,    36,    38,    39,     4,    38,
-      39,    66,    38,    27,    28,    29,    38,    39,    27,    28,
-      29,    61,    54,    55,    56,    60,     4,    57,    59,    61,
-      62,    60,    54,    55,    56,     4,     4,    14,    93,    61,
-      62,    59,   108,    59,    11,    12,    59,    15,    29,    61,
-      59,    52,    20,    18,    55,    23,    22,    61,    26,    38,
-      27,    28,    29,    61,    59,   116,   109,   110,   106,   107,
-      38,    39,   111,     4,    32,    76,    77,    -1,   121,   122,
-     118,    -1,   120,    -1,    15,    -1,    54,    55,    56,    20,
-      -1,    -1,    23,    61,    62,    26,     6,     7,     4,     9,
-      10,    -1,    -1,    -1,    -1,    -1,    -1,    38,    39,    15,
-      -1,    -1,    -1,    -1,    20,    -1,    -1,    23,     4,    -1,
-      26,    -1,    -1,    54,    55,    56,    -1,    -1,    -1,    15,
-      61,    62,    38,    39,    20,    -1,    -1,    23,    -1,    -1,
-      26,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    54,    55,
-      56,    -1,    38,    39,    -1,    61,    62,    -1,     3,     4,
-       5,    -1,    -1,     8,    -1,    -1,    -1,    12,    54,    55,
-      56,    16,    17,    -1,    19,    61,     3,     4,     5,    11,
-      12,     8,    -1,    -1,    -1,    12,    49,    -1,    -1,    16,
-      17,    -1,    55,    38,    39,    27,    28,    29,    30,    31,
-      32,    33,    34,    35,    -1,    -1,    69,    -1,    -1,    -1,
-      -1,    38,    39,    58,    -1,    78,    79,    80,    81,    82,
-      11,    12,    -1,    -1,    -1,    -1,    89,    59,    -1,    -1,
-      -1,    58,    -1,    -1,    -1,    -1,    27,    28,    29,    30,
-      31,    32,    33,    34,    35
+      13,    37,     4,    11,    29,    30,    31,    59,     4,    39,
+      40,    59,     4,     6,     7,    59,     9,    10,    59,    15,
+       4,    19,    35,    15,    19,    21,    58,    63,    24,    21,
+       4,    27,    24,    11,    12,    27,    21,    39,    16,    37,
+       0,    66,    37,    39,    40,     4,    61,    39,    40,     4,
+      28,    29,    30,    31,    32,    33,    34,    35,    36,    55,
+      56,    57,    60,    55,    56,    57,    62,    63,     4,    94,
+      62,    63,     4,     4,   110,    14,    30,    62,    60,    15,
+      60,    52,    60,    15,    55,    21,    62,    60,    24,    21,
+      62,    27,    24,    19,    23,    27,    39,    60,   111,   112,
+     108,   109,   118,    39,    40,    76,    77,    39,    40,    62,
+     123,   124,   120,   113,   122,    32,    -1,     4,    -1,    55,
+      56,    57,    -1,    55,    56,    57,    62,    63,    15,    -1,
+      62,    63,    -1,    -1,    21,    -1,    -1,    24,     4,    14,
+      27,    -1,     3,     4,     5,    -1,    -1,     8,    -1,    15,
+      -1,    12,    39,    40,    -1,    21,    17,    18,    24,    20,
+      -1,    27,    -1,    -1,    39,    40,    11,    12,    55,    56,
+      57,    16,    -1,    39,    40,    62,    63,    -1,    39,    40,
+      -1,    -1,    -1,    28,    29,    30,    61,    -1,    -1,    55,
+      56,    57,     3,     4,     5,    -1,    62,     8,    59,    11,
+      12,    12,    49,    -1,    16,    -1,    17,    18,    55,    -1,
+      -1,    16,    -1,    -1,    -1,    60,    28,    29,    30,    -1,
+      -1,    -1,    69,    28,    29,    30,    -1,    -1,    39,    40,
+      -1,    78,    79,    80,    81,    82,    83,    11,    12,    -1,
+      -1,    -1,    16,    90,    -1,    -1,    -1,    -1,    59,    -1,
+      -1,    -1,    -1,    -1,    28,    29,    30,    31,    32,    33,
+      34,    35,    36
   };
 
   const signed char
   Parser::yystos_[] =
   {
-       0,     4,    15,    20,    23,    26,    38,    39,    54,    55,
-      56,    61,    69,    70,    71,    72,    73,    74,    75,    76,
-      77,    78,    79,    81,    82,    14,    38,    39,    60,    58,
-      58,    58,    58,     4,     4,    70,     0,    71,    57,    80,
-       6,     7,     9,    10,    87,     3,     4,     5,     8,    12,
-      16,    17,    19,    38,    39,    58,    83,    84,    86,    83,
-      83,    83,     4,    81,    62,    80,    60,    38,    39,    58,
-      86,    84,     4,     4,    84,    86,    18,    36,    11,    12,
-      27,    28,    29,    30,    31,    32,    33,    34,    35,    85,
-      59,    59,    59,    80,    83,    86,    59,    59,    84,    84,
-      86,    86,    86,    86,    86,    86,    61,    61,    83,    70,
-      70,    80,    62,    62,     4,    76,    22,    59,    61,    74,
-      61,    70,    70,    62,    62
+       0,     4,    15,    21,    24,    27,    39,    40,    55,    56,
+      57,    62,    70,    71,    72,    73,    74,    75,    76,    77,
+      78,    79,    80,    82,    83,    14,    39,    40,    61,    59,
+      59,    59,    59,     4,     4,    71,     0,    72,    58,    81,
+       6,     7,     9,    10,    88,     3,     4,     5,     8,    12,
+      17,    18,    20,    39,    40,    59,    84,    85,    87,    84,
+      84,    84,     4,    82,    63,    81,    61,    39,    40,    59,
+      87,    85,     4,     4,    85,    87,    19,    37,    11,    12,
+      16,    28,    29,    30,    31,    32,    33,    34,    35,    36,
+      86,    60,    60,    60,    81,    84,    87,    60,    60,    85,
+      85,    87,    87,    87,    87,    87,    87,    87,    62,    62,
+      84,    71,    71,    81,    63,    63,     4,    77,    23,    60,
+      62,    75,    62,    71,    71,    63,    63
   };
 
   const signed char
   Parser::yyr1_[] =
   {
-       0,    68,    69,    70,    70,    71,    71,    71,    71,    71,
-      71,    71,    71,    71,    71,    72,    73,    74,    74,    74,
-      75,    75,    75,    76,    76,    77,    77,    78,    79,    80,
-      80,    81,    81,    82,    83,    84,    84,    84,    84,    84,
-      84,    85,    85,    85,    85,    85,    85,    86,    86,    86,
-      86,    86,    86,    86,    86,    86,    86,    86,    86,    86,
-      86,    86,    86,    86,    87,    87,    87,    87
+       0,    69,    70,    71,    71,    72,    72,    72,    72,    72,
+      72,    72,    72,    72,    72,    73,    74,    75,    75,    75,
+      76,    76,    76,    77,    77,    78,    78,    79,    80,    81,
+      81,    82,    82,    83,    84,    85,    85,    85,    85,    85,
+      85,    86,    86,    86,    86,    86,    86,    87,    87,    87,
+      87,    87,    87,    87,    87,    87,    87,    87,    87,    87,
+      87,    87,    87,    87,    87,    88,    88,    88,    88
   };
 
   const signed char
@@ -1843,8 +1847,8 @@ namespace yy {
        1,     1,     1,     2,     2,     2,     2,     4,     3,     1,
        0,     3,     5,     3,     1,     3,     3,     2,     3,     3,
        1,     1,     1,     1,     1,     1,     1,     3,     3,     3,
-       3,     3,     3,     2,     2,     2,     2,     2,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1
+       3,     3,     3,     3,     2,     2,     2,     2,     2,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1
   };
 
 
@@ -1856,8 +1860,8 @@ namespace yy {
   {
   "END", "error", "\"invalid token\"", "NUMERO", "ID", "STRING", "INT",
   "STR", "FLOAT", "FLO", "BOOL", "SUMA", "MENOS", "DIM", "AS", "IMPR",
-  "TRUE", "FALSE", "AND", "NOT", "IF", "THEN", "ELSE", "WHILE", "PRINT",
-  "PRINTF", "FOR", "MULTIPLICACION", "DIVISION", "EXPONENCIAL",
+  "MOD", "TRUE", "FALSE", "AND", "NOT", "IF", "THEN", "ELSE", "WHILE",
+  "PRINT", "PRINTF", "FOR", "MULTIPLICACION", "DIVISION", "EXPONENCIAL",
   "MENOR_IGUAL", "MAYOR_IGUAL", "IGUAL_IGUAL", "DIFERENTE", "MENOR",
   "MAYOR", "OR", "INTERROGACION", "INCREMENT", "DECREMENT", "DOT",
   "LEFT_BRACKET", "RIGHT_BRACKET", "VECTOR", "PUSH_FRONT", "DOT_PUSH_BACK",
@@ -1880,8 +1884,8 @@ namespace yy {
      237,   238,   239,   244,   247,   251,   254,   264,   267,   269,
      270,   274,   276,   281,   287,   290,   291,   292,   293,   294,
      309,   311,   312,   313,   314,   315,   316,   318,   319,   320,
-     321,   322,   323,   324,   327,   330,   333,   336,   337,   338,
-     339,   340,   341,   342,   345,   346,   347,   348
+     321,   322,   323,   324,   325,   328,   331,   334,   337,   338,
+     339,   340,   341,   342,   343,   346,   347,   348,   349
   };
 
   void
@@ -1913,9 +1917,9 @@ namespace yy {
 
 
 } // yy
-#line 1917 "parser.cpp"
+#line 1921 "parser.cpp"
 
-#line 351 "Parser.y"
+#line 352 "Parser.y"
 
 void yy::Parser::error(const yy::location& l, const std::string& m)
 {

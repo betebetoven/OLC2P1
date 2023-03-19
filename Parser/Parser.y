@@ -56,7 +56,7 @@
     #include "../AST/No_Terminales/Expresiones/nt_resta.h"
     #include "../AST/No_Terminales/Expresiones/nt_division.h"
     #include "../AST/No_Terminales/Expresiones/nt_exponencial.h"
-
+    #include "../AST/No_Terminales/Expresiones/nt_modulo.h"
 
     #include "../AST/No_Terminales/Expresiones/nt_negacion.h"
     #include "../AST/No_Terminales/Expresiones/nt_id.h"
@@ -122,7 +122,7 @@ yy::Parser::symbol_type yylex(void* yyscanner, yy::location& loc, class Clase3::
 %token <std::string>  NUMERO ID STRING INT STR FLOAT FLO BOOL
 // token de tipo por defecto
     //token por ID
-%token SUMA MENOS DIM AS IMPR ;
+%token SUMA MENOS DIM AS IMPR MOD;
 %token TRUE FALSE AND NOT IF THEN ELSE WHILE PRINT PRINTF FOR
 %token MULTIPLICACION DIVISION EXPONENCIAL  MENOR_IGUAL MAYOR_IGUAL IGUAL_IGUAL DIFERENTE MENOR MAYOR OR INTERROGACION INCREMENT DECREMENT
 %token DOT LEFT_BRACKET RIGHT_BRACKET VECTOR
@@ -143,7 +143,7 @@ forma alterna
 %precedence '='
 %left NUMERO
 %left SUMA MENOS //menos -
-%left MULTIPLICACION DIVISION //más
+%left MULTIPLICACION DIVISION MOD//más
 %left NEG
 %right EXPONENCIAL
 %left OR
@@ -319,6 +319,7 @@ expr: expr SUMA expr   { $$ = new NT_Suma($1, $3);  }
     | expr MENOS expr { $$ = new NT_Resta($1, $3); }
     | expr MULTIPLICACION expr { $$ = new NT_Multiplicacion($1, $3); }
     | expr DIVISION expr { $$ = new NT_Division($1, $3); }/*pendiente de implementar*/
+    | expr MOD expr { $$ = new NT_Modulo($1, $3); }/*pendiente de implementar*/
     | expr EXPONENCIAL expr { $$ = new NT_Exponencial($1, $3); }/*pendiente de implementar*/
     | '(' expr ')' { $$ = $2; }
     | INCREMENT ID {            NT_ID* id_avar2 = new NT_ID(QString::fromStdString($2));

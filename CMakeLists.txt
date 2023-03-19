@@ -63,6 +63,7 @@ set(PROJECT_SOURCES
         Interprete/Contexto/environment.h Interprete/Contexto/environment.cpp
         AST/Terminales/t_boolean.h AST/Terminales/t_boolean.cpp
         AST/No_Terminales/nt_escape.h AST/No_Terminales/nt_escape.cpp
+        AST/No_Terminales/Expresiones/nt_modulo.h AST/No_Terminales/Expresiones/nt_modulo.cpp
 
 
 
