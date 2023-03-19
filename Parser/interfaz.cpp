@@ -32,23 +32,8 @@ QString Clase3::Interfaz::Ejecutar(std::string entrada) {
     this->Parser->set_debug_level(true);
 
     this->Parser->parse();
-    std::cout << "Size of raiz in Ejecutar: " << this->raiz.size() << std::endl;
-    /*
-    if (!this->raiz.isEmpty()) {
 
-        Environment *env = new Environment(nullptr);
-        for (const auto& expr : this->raiz) {
-                    expr->Interpretar(env);
-                }
-        env->report();
 
-        return "salida";
-    }*/
-    /*  if (this->raiz != nullptr) {
-         return this->raiz->Graficar();
-
-     }
-     return QString();*/
     std::stringstream  pPosicion, lPosicion;
     pPosicion <<(void*)this;
     QString temp = QString::fromStdString("n" + pPosicion.str()  +

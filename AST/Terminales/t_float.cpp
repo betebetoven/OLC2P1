@@ -9,7 +9,7 @@ std::stringstream pPosicion;
 pPosicion <<(void*)this;
 return QString::fromStdString("n" + pPosicion.str() +
 " [ label=\"T_FLOAT " + this->val.toStdString() +
-"\" shape=record fillcolor=\"#004376\"];\n");
+"\"  fillcolor=\"#004376\"];\n");
 }
 
 T_Float::T_Float(QString val) {

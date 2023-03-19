@@ -17,6 +17,6 @@ QString T_Boolean::Graficar() {
     std::stringstream  pPosicion;
     pPosicion <<(void*)this;
     return QString::fromStdString("n" + pPosicion.str() +
-    " [ label=\"T STR: " + this->str.toStdString().substr(1,this->str.size()-2) +
-    "\"  shape=record fillcolor=\"#004376\"];\n");
+    " [ label=\" VALOR BOOLEAN:" +
+    "\"   fillcolor=\"#004376\"];\n");
 }

@@ -13,7 +13,7 @@ QString T_String::Graficar() {
     pPosicion <<(void*)this;
     return QString::fromStdString("n" + pPosicion.str() +
     " [ label=\"T STR: " + this->str.toStdString().substr(1,this->str.size()-2) +
-    "\"  shape=record fillcolor=\"#004376\"];\n");
+    "\"   fillcolor=\"#004376\"];\n");
 }
 
 T_String::T_String(QString str) {

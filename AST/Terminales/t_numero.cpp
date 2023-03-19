@@ -12,7 +12,7 @@ QString T_Numero::Graficar() {
     pPosicion <<(void*)this;
     return QString::fromStdString("n" + pPosicion.str()+
     " [ label=\"T_NUM " + this->numero.toStdString() +
-    "\"  shape=record fillcolor=\"#342012\"];\n");
+    "\"   fillcolor=\"#342012\"];\n");
 }
 
 T_Numero::T_Numero(QString num) {
