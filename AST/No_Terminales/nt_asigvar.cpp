@@ -62,7 +62,7 @@ QString NT_AsigVar::Graficar() {
 
 
     QString nodo = QString::fromStdString("n" + pPosicion.str() +
-            " [ label=\"AsigVar\" shape=record, fillcolor=midnightblue];\n");
+            " [ label=\"AsigVar\" , fillcolor=midnightblue];\n");
     nodo +=  QString::fromStdString("n" + pPosicion.str() + " -> n"
             + idPosicion.str()+ ";\n");
     nodo += this->ID->Graficar();

@@ -41,19 +41,20 @@ Resultado *NT_Multiplicacion::Interpretar(Environment *ctx) {
 
 
 QString NT_Multiplicacion::Graficar() {
-std::stringstream pPosicion, iPosicion, dPosicion;
-pPosicion << (void*)this;
-iPosicion << (void*)this->izquierda;
-dPosicion << (void*)this->derecha;
-QString nodo = QString::fromStdString("n" + pPosicion.str() +
-        " [ label=\"*\" fillcolor=cornflowerblue];\n");
-nodo += QString::fromStdString("n" + pPosicion.str() + " -> n" +
-        iPosicion.str() + ";\n");
-nodo += this->izquierda->Graficar();
-nodo += QString::fromStdString("n" + pPosicion.str() + " -> n" +
-        dPosicion.str() + ";\n");
-nodo += this->derecha->Graficar();
-return nullptr;
+    std::stringstream  pPosicion, dPosicion, iPosicion ;
+    pPosicion <<(void*)this;
+    dPosicion <<(void*)this->derecha;
+    iPosicion <<(void*)this->izquierda;
+
+    QString nodo = QString::fromStdString("n" + pPosicion.str() +
+            " [ label=\"*\" fillcolor=cornflowerblue];\n");
+    nodo +=  QString::fromStdString("n" + pPosicion.str() + " -> n"
+            + iPosicion.str()+ ";\n");
+    nodo += this->izquierda->Graficar();
+    nodo +=  QString::fromStdString("n" + pPosicion.str()+ " -> n"
+            + dPosicion.str() + ";\n" );
+    nodo += this->derecha->Graficar();
+    return nodo;
 }
 
 NT_Multiplicacion::NT_Multiplicacion(AbstractExpr* izq, AbstractExpr* der)

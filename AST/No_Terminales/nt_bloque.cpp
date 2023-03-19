@@ -94,6 +94,32 @@ Resultado* Bloque::Interpretar(Environment* env) {
 }
 
 QString Bloque::Graficar() {
-    // Implement the Graficar function here, as needed for your application
-    return QString();
+    std::stringstream  pPosicion, lPosicion,elseposicion;
+    pPosicion <<(void*)this;
+    QString temp = QString::fromStdString("n" + pPosicion.str()  +
+                " [ label=\"BLOQUE\" fillcolor=springgreen];\n");
+
+
+    for (int i = 0; i < this->instrucciones.size(); i ++){
+        lPosicion.str(std::string());
+        lPosicion.clear();
+        lPosicion << (void*)this->instrucciones[i];
+
+        temp +=  QString::fromStdString("n" + pPosicion.str() + " -> n"
+                        + lPosicion.str()+ ";\n");
+      temp += this->instrucciones[i]->Graficar();
+      if(this->elsebloque != nullptr)
+      {
+          lPosicion.str(std::string());
+          lPosicion.clear();
+          lPosicion << (void*)this->elsebloque;
+
+          temp +=  QString::fromStdString("n" + pPosicion.str() + " -> n"
+                          + lPosicion.str()+ ";\n");
+          temp+=this->elsebloque->Graficar();
+      }
+        /// es un return? es un break, es un continue, etc....
+    }
+    std::cout << "alv si esta vacio" << std::endl;
+    return temp;
 }

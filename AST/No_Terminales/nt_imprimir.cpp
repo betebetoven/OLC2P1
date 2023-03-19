@@ -8,12 +8,12 @@ Resultado *NT_Imprimir::Interpretar(Environment *ctx) {
 
 QString NT_Imprimir::Graficar() {
     std::stringstream pPosicion, lPosicion;
-    /*pPosicion << (void *) this;
+    pPosicion << (void *) this;
     lPosicion << (void *) this->lista_expr;
 
 
     QString nodo = QString::fromStdString("n" + pPosicion.str() +
-                                          " [ label=\"Impr\" fillcolor=\"#8f09b8\"];\n");
+                                          " [ label=\"PRINTF\" fillcolor=\"#8f09b8\"];\n");
     nodo += QString::fromStdString("n" + pPosicion.str() + "1" +
                                    " [ label=\"(\" fillcolor=\"#8f09b8\"];\n");
     nodo += QString::fromStdString("n" + pPosicion.str() + " -> n"
@@ -28,8 +28,8 @@ QString NT_Imprimir::Graficar() {
     nodo += QString::fromStdString("n" + pPosicion.str() + " -> n"
                                    + pPosicion.str() + "2" + ";\n");
 
-    return nodo;*/
-    return nullptr;
+    return nodo;
+
 }
 
 NT_Imprimir::NT_Imprimir(AbstractExpr *nodo) {

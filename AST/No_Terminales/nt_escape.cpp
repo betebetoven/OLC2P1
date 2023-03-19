@@ -9,7 +9,7 @@ QString NT_Escape::Graficar() {
     pPosicion << (void*)this;
     return QString::fromStdString("n" + pPosicion.str() +
                                   " [ label=\"EXP: Escape " + valor.toStdString() +
-                                  "\"  shape=record fillcolor=tomato];\n");
+                                  "\"   fillcolor=tomato];\n");
 }
 
 NT_Escape::NT_Escape(const QString& valor) : valor(valor) {}

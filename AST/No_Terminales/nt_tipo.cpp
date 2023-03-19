@@ -27,5 +27,5 @@ QString NT_Tipo::Graficar() {
 
     return QString::fromStdString("n" +pPosicion.str()+
     " [ label=\"Tipo " + this->tipo.toStdString() +
-    "\"  shape=record fillcolor=grey];\n");
+    "\"   fillcolor=grey];\n");
 }
