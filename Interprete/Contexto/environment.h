@@ -8,8 +8,8 @@
 #include<QString>
 #include<Qvector>
 #include <sstream>
-//#include"../../AST/abstractexpr.h"
-
+#include"../../AST/abstractexpr.h"
+class AbstracExpr;
 struct VariableInfo {
     std::string type;
     std::variant<std::nullptr_t, int, float, std::string, bool> content; // Added float

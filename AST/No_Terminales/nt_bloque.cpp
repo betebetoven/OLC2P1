@@ -27,7 +27,21 @@ Resultado* Bloque::Interpretar(Environment* env) {
             }
 
             for (int i = 0; i < this->instrucciones.size(); i++) {
+
                 temp = this->instrucciones[i]->Interpretar(envv);
+                if(temp!=nullptr)
+                {
+                if(temp->getValor().toString().toStdString()=="break")
+                {env->updateCommonVariables(envv);
+                    env->report();
+                    return nullptr;}
+                if(temp->getValor().toString().toStdString()=="continue"&&aumento != nullptr)
+                {
+                    //Resultado *aumentoResult = aumento->Interpretar(envv);
+                    break;
+
+                }}
+
                 //env->updateCommonVariables(envv);
                 // es un return? es un break, es un continue, etc....
             }
@@ -45,14 +59,25 @@ Resultado* Bloque::Interpretar(Environment* env) {
 
             for (int i = 0; i < this->instrucciones.size(); i++) {
                 temp = this->instrucciones[i]->Interpretar(envv);
-                //env->updateCommonVariables(envv);
-                // es un return? es un break, es un continue, etc....
+                if(temp!=nullptr)
+                {
+                if(temp->getValor().toString().toStdString()=="break")
+                {env->updateCommonVariables(envv);
+                    env->report();
+                    return new Resultado(QString::fromStdString("break"));}
+                if(temp->getValor().toString().toStdString()=="continue"&&aumento != nullptr)
+                {
+                    env->updateCommonVariables(envv);
+                                        env->report();
+                                        return new Resultado(QString::fromStdString("continue"));
+
+                }}
             }
         }
         else if(elsebloque != nullptr)
         {
             Resultado *aux = elsebloque->Interpretar(env);
-            return nullptr;
+            return aux;
 
         }
 

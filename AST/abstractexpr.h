@@ -5,9 +5,9 @@
 
 #include "../Interprete/Contexto/resultado.h"
 #include "../Interprete/Contexto/environment.h"
-//class Environment;
-#include <sstream>
 
+#include <sstream>
+class Environment;
 
 class AbstractExpr
 {
