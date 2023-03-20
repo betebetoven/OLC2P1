@@ -7,7 +7,7 @@ class NT_Or : public AbstractExpr {
     AbstractExpr* Izquierda;
     AbstractExpr* Derecha;
 public:
-    Resultado* Interpretar(Environment* ctx) override;
+    Resultado* Interpretar(Environment* ctx,EnvironmentFunc* ctx2) override;
     QString Graficar() override;
 
     NT_Or(AbstractExpr* izquierda, AbstractExpr* derecha);

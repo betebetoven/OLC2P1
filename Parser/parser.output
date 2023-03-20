@@ -2,6 +2,7 @@ Terminals unused in grammar
 
     DIM
     AS
+    VOID
     THEN
     PRINT
     PRINTF
@@ -154,112 +155,113 @@ Terminals, with rules where they appear
     AS (269)
     IMPR (270) 26
     MOD (271) 52
-    TRUE (272) 64
-    FALSE (273) 65
-    AND (274) 37
-    NOT (275) 38
-    IF (276) 16 17 18
-    THEN (277)
-    ELSE (278) 17 18
-    WHILE (279) 15
-    PRINT (280)
-    PRINTF (281)
-    FOR (282) 14
-    MULTIPLICACION (283) 50
-    DIVISION (284) 51
-    EXPONENCIAL (285) 53
-    MENOR_IGUAL (286) 45
-    MAYOR_IGUAL (287) 46
-    IGUAL_IGUAL (288) 44
-    DIFERENTE (289) 47
-    MENOR (290) 43
-    MAYOR (291) 42
-    OR (292) 36
-    INTERROGACION (293)
-    INCREMENT (294) 22 23 55 56
-    DECREMENT (295) 24 25 57 58
-    DOT (296)
-    LEFT_BRACKET (297)
-    RIGHT_BRACKET (298)
-    VECTOR (299)
-    PUSH_FRONT (300)
-    DOT_PUSH_BACK (301)
-    STRUCT (302)
-    REMOVE (303)
-    MEDIAN (304)
-    IOTA (305)
-    MEAN (306)
-    SIZE (307)
-    ATOI (308)
-    GET (309)
-    RETORNO (310) 21
-    BREAK (311) 19
-    CONTINUE (312) 20
-    NEG (313)
+    VOID (272)
+    TRUE (273) 64
+    FALSE (274) 65
+    AND (275) 37
+    NOT (276) 38
+    IF (277) 16 17 18
+    THEN (278)
+    ELSE (279) 17 18
+    WHILE (280) 15
+    PRINT (281)
+    PRINTF (282)
+    FOR (283) 14
+    MULTIPLICACION (284) 50
+    DIVISION (285) 51
+    EXPONENCIAL (286) 53
+    MENOR_IGUAL (287) 45
+    MAYOR_IGUAL (288) 46
+    IGUAL_IGUAL (289) 44
+    DIFERENTE (290) 47
+    MENOR (291) 43
+    MAYOR (292) 42
+    OR (293) 36
+    INTERROGACION (294)
+    INCREMENT (295) 22 23 55 56
+    DECREMENT (296) 24 25 57 58
+    DOT (297)
+    LEFT_BRACKET (298)
+    RIGHT_BRACKET (299)
+    VECTOR (300)
+    PUSH_FRONT (301)
+    DOT_PUSH_BACK (302)
+    STRUCT (303)
+    REMOVE (304)
+    MEDIAN (305)
+    IOTA (306)
+    MEAN (307)
+    SIZE (308)
+    ATOI (309)
+    GET (310)
+    RETORNO (311) 21
+    BREAK (312) 19
+    CONTINUE (313) 20
+    NEG (314)
 
 
 Nonterminals, with rules where they appear
 
-    $accept (69)
+    $accept (70)
         on left: 0
-    s <QVector<AbstractExpr*>*> (70)
+    s <QVector<AbstractExpr*>*> (71)
         on left: 1
         on right: 0
-    lSentencia <QVector<AbstractExpr*>*> (71)
+    lSentencia <QVector<AbstractExpr*>*> (72)
         on left: 2 3
         on right: 1 2 14 15 16 17 18 29
-    sentencia <AbstractExpr*> (72)
+    sentencia <AbstractExpr*> (73)
         on left: 4 5 6 7 8 9 10 11 12 13
         on right: 2 3
-    ciclo_for <AbstractExpr*> (73)
+    ciclo_for <AbstractExpr*> (74)
         on left: 14
         on right: 10
-    ciclo_while <AbstractExpr*> (74)
+    ciclo_while <AbstractExpr*> (75)
         on left: 15
         on right: 11
-    ins_if <AbstractExpr*> (75)
+    ins_if <AbstractExpr*> (76)
         on left: 16 17 18
         on right: 12 18
-    escapa <AbstractExpr*> (76)
+    escapa <AbstractExpr*> (77)
         on left: 19 20 21
         on right: 13
-    aumento <AbstractExpr*> (77)
+    aumento <AbstractExpr*> (78)
         on left: 22 23
         on right: 8 14
-    decremento <AbstractExpr*> (78)
+    decremento <AbstractExpr*> (79)
         on left: 24 25
         on right: 9
-    imprimir <NT_Imprimir*> (79)
+    imprimir <NT_Imprimir*> (80)
         on left: 26
         on right: 6
-    lista_Expr <AbstractExpr*> (80)
+    lista_Expr <AbstractExpr*> (81)
         on left: 27 28
         on right: 26 27
-    bloque <AbstractExpr*> (81)
+    bloque <AbstractExpr*> (82)
         on left: 29
         on right: 7
-    z (82)
+    z (83)
         on left: 30 31
         on right: 2 3 14
-    declaracion_var <AbstractExpr*> (83)
+    declaracion_var <AbstractExpr*> (84)
         on left: 32 33
         on right: 4 14
-    asignacion_var <AbstractExpr*> (84)
+    asignacion_var <AbstractExpr*> (85)
         on left: 34
         on right: 5
-    x <AbstractExpr*> (85)
+    x <AbstractExpr*> (86)
         on left: 35
         on right: 14 15 16 17 18 27 28 33 34
-    cond <AbstractExpr*> (86)
+    cond <AbstractExpr*> (87)
         on left: 36 37 38 39 40 41
         on right: 35 36 37 38 39
-    oprel <std::string> (87)
+    oprel <std::string> (88)
         on left: 42 43 44 45 46 47
         on right: 40
-    expr <AbstractExpr*> (88)
+    expr <AbstractExpr*> (89)
         on left: 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65
         on right: 40 41 48 49 50 51 52 53 54 59
-    tipo <AbstractExpr*> (89)
+    tipo <AbstractExpr*> (90)
         on left: 66 67 68 69
         on right: 32 33
 

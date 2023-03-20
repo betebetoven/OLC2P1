@@ -8,7 +8,7 @@ class NT_Exponencial : public AbstractExpr {
     AbstractExpr* derecha;
 
 public:
-    Resultado* Interpretar(Environment* ctx) override;
+    Resultado* Interpretar(Environment* ctx,EnvironmentFunc* ctx2) override;
     QString Graficar() override;
     NT_Exponencial(AbstractExpr* izq, AbstractExpr* der);
 };

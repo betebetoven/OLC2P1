@@ -9,7 +9,7 @@ class NT_DeclVar: public AbstractExpr {
 
 
 public:
-    Resultado *Interpretar(Environment *ctx) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
 
     QString Graficar() override;
 

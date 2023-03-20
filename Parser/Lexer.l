@@ -73,6 +73,7 @@ ID  {LETRAS}({DIGITO}|{LETRAS}|"_")*
 "Dim"   return Parser::symbol_type( token::DIM, loc);
 "as"    return Parser::symbol_type( token::AS, loc);
 "Printf"  return Parser::symbol_type( token::IMPR, loc);
+"void"    return Parser::symbol_type( token::VOID, loc);
 "Int"    return Parser::symbol_type( token::INT, loc);
 "String"   return Parser::symbol_type( token::STR , loc);
 "Float"   return Parser::symbol_type( token::FLO , loc);

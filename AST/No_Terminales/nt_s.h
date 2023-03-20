@@ -11,7 +11,7 @@ class NT_S : public AbstractExpr  {
 public:
     NT_S(AbstractExpr *sentencias);
 
-    Resultado *Interpretar(Environment* ctx) override;
+    Resultado *Interpretar(Environment* ctx,EnvironmentFunc* ctx2) override;
     QString Graficar() override;
 };
 

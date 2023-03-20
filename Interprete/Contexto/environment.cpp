@@ -12,7 +12,7 @@ Environment::Environment(Environment* father) {
 void Environment::addVariable(const std::string& name, const std::string& type, const std::variant<std::nullptr_t, int, float, std::string, bool>& content) {
     std::cout << "si llega al addvariable de env" << std::endl;
     if (!variableExists(name)) {
-        AbstractExpr*prueba;
+        //AbstractExpr*prueba;
         VariableInfo variable_info{type, content};
         symbol_table[name] = variable_info;
     }

@@ -8,7 +8,7 @@
 class Bloque: public AbstractExpr {
 public:
     Bloque(const QVector<AbstractExpr*>& instrucciones,AbstractExpr *decl,AbstractExpr *expr,AbstractExpr *aumento, bool is_while, AbstractExpr *elsebloque);
-    Resultado* Interpretar(Environment* env) override;
+    Resultado* Interpretar(Environment* env,EnvironmentFunc* ctx2) override;
     QString Graficar() override;
 
 private:

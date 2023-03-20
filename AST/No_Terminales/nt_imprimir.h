@@ -7,7 +7,7 @@
 class NT_Imprimir: public AbstractExpr {
    AbstractExpr* lista_expr;
 public:
-    Resultado *Interpretar(Environment *ctx) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
     QString Graficar() override;
     explicit NT_Imprimir(AbstractExpr* nodo);
 };

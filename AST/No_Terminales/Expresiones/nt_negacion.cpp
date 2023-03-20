@@ -2,9 +2,9 @@
 
 NT_Negacion::NT_Negacion(AbstractExpr *derecha) : Derecha(derecha) {}
 
-Resultado *NT_Negacion::Interpretar(Environment *ctx) {
+Resultado *NT_Negacion::Interpretar(Environment *ctx, EnvironmentFunc *ctx2) {
     Resultado* izqR = new Resultado(0);
-    Resultado* derR = this->Derecha->Interpretar(ctx);
+    Resultado* derR = this->Derecha->Interpretar(ctx,ctx2);
 
     if (!izqR || !derR) {
         return nullptr; // Return nullptr if either left or right operand is nullptr

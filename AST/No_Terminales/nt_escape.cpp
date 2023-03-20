@@ -1,6 +1,6 @@
 #include "nt_escape.h"
 
-Resultado* NT_Escape::Interpretar(Environment* env) {
+Resultado* NT_Escape::Interpretar(Environment* env,EnvironmentFunc* ctx2) {
     return new Resultado(valor);
 }
 

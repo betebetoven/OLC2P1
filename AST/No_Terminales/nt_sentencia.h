@@ -7,7 +7,7 @@ class NT_Sentencia: public AbstractExpr {
     AbstractExpr* hijo;
 
 public:
-    Resultado *Interpretar(Environment *ctx) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
     QString Graficar() override;
     void AddNodo(AbstractExpr* hijo);
 

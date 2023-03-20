@@ -1,6 +1,6 @@
 #include "nt_listaexpr.h"
 
-Resultado *NT_ListaExpr::Interpretar(Environment *ctx) {
+Resultado *NT_ListaExpr::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
     return nullptr;
 }
 

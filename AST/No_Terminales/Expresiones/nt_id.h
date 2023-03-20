@@ -7,7 +7,7 @@ class NT_ID: public AbstractExpr{
     QString id;
 
 public:
-    Resultado *Interpretar(Environment *ctx) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
 
     explicit NT_ID(const QString &id);
 

@@ -7,7 +7,7 @@
 class T_String: public AbstractExpr {
     QString str;
 public:
-    Resultado *Interpretar(Environment *ctx) override;
+    Resultado *Interpretar(Environment *ctx, EnvironmentFunc* ctx2) override;
 
     QString Graficar() override;
 

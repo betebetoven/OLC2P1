@@ -535,48 +535,49 @@ namespace yy {
     AS = 269,                      // AS
     IMPR = 270,                    // IMPR
     MOD = 271,                     // MOD
-    TRUE = 272,                    // TRUE
-    FALSE = 273,                   // FALSE
-    AND = 274,                     // AND
-    NOT = 275,                     // NOT
-    IF = 276,                      // IF
-    THEN = 277,                    // THEN
-    ELSE = 278,                    // ELSE
-    WHILE = 279,                   // WHILE
-    PRINT = 280,                   // PRINT
-    PRINTF = 281,                  // PRINTF
-    FOR = 282,                     // FOR
-    MULTIPLICACION = 283,          // MULTIPLICACION
-    DIVISION = 284,                // DIVISION
-    EXPONENCIAL = 285,             // EXPONENCIAL
-    MENOR_IGUAL = 286,             // MENOR_IGUAL
-    MAYOR_IGUAL = 287,             // MAYOR_IGUAL
-    IGUAL_IGUAL = 288,             // IGUAL_IGUAL
-    DIFERENTE = 289,               // DIFERENTE
-    MENOR = 290,                   // MENOR
-    MAYOR = 291,                   // MAYOR
-    OR = 292,                      // OR
-    INTERROGACION = 293,           // INTERROGACION
-    INCREMENT = 294,               // INCREMENT
-    DECREMENT = 295,               // DECREMENT
-    DOT = 296,                     // DOT
-    LEFT_BRACKET = 297,            // LEFT_BRACKET
-    RIGHT_BRACKET = 298,           // RIGHT_BRACKET
-    VECTOR = 299,                  // VECTOR
-    PUSH_FRONT = 300,              // PUSH_FRONT
-    DOT_PUSH_BACK = 301,           // DOT_PUSH_BACK
-    STRUCT = 302,                  // STRUCT
-    REMOVE = 303,                  // REMOVE
-    MEDIAN = 304,                  // MEDIAN
-    IOTA = 305,                    // IOTA
-    MEAN = 306,                    // MEAN
-    SIZE = 307,                    // SIZE
-    ATOI = 308,                    // ATOI
-    GET = 309,                     // GET
-    RETORNO = 310,                 // RETORNO
-    BREAK = 311,                   // BREAK
-    CONTINUE = 312,                // CONTINUE
-    NEG = 313                      // NEG
+    VOID = 272,                    // VOID
+    TRUE = 273,                    // TRUE
+    FALSE = 274,                   // FALSE
+    AND = 275,                     // AND
+    NOT = 276,                     // NOT
+    IF = 277,                      // IF
+    THEN = 278,                    // THEN
+    ELSE = 279,                    // ELSE
+    WHILE = 280,                   // WHILE
+    PRINT = 281,                   // PRINT
+    PRINTF = 282,                  // PRINTF
+    FOR = 283,                     // FOR
+    MULTIPLICACION = 284,          // MULTIPLICACION
+    DIVISION = 285,                // DIVISION
+    EXPONENCIAL = 286,             // EXPONENCIAL
+    MENOR_IGUAL = 287,             // MENOR_IGUAL
+    MAYOR_IGUAL = 288,             // MAYOR_IGUAL
+    IGUAL_IGUAL = 289,             // IGUAL_IGUAL
+    DIFERENTE = 290,               // DIFERENTE
+    MENOR = 291,                   // MENOR
+    MAYOR = 292,                   // MAYOR
+    OR = 293,                      // OR
+    INTERROGACION = 294,           // INTERROGACION
+    INCREMENT = 295,               // INCREMENT
+    DECREMENT = 296,               // DECREMENT
+    DOT = 297,                     // DOT
+    LEFT_BRACKET = 298,            // LEFT_BRACKET
+    RIGHT_BRACKET = 299,           // RIGHT_BRACKET
+    VECTOR = 300,                  // VECTOR
+    PUSH_FRONT = 301,              // PUSH_FRONT
+    DOT_PUSH_BACK = 302,           // DOT_PUSH_BACK
+    STRUCT = 303,                  // STRUCT
+    REMOVE = 304,                  // REMOVE
+    MEDIAN = 305,                  // MEDIAN
+    IOTA = 306,                    // IOTA
+    MEAN = 307,                    // MEAN
+    SIZE = 308,                    // SIZE
+    ATOI = 309,                    // ATOI
+    GET = 310,                     // GET
+    RETORNO = 311,                 // RETORNO
+    BREAK = 312,                   // BREAK
+    CONTINUE = 313,                // CONTINUE
+    NEG = 314                      // NEG
       };
       /// Backward compatibility alias (Bison 3.6).
       typedef token_kind_type yytokentype;
@@ -593,7 +594,7 @@ namespace yy {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 69, ///< Number of tokens.
+        YYNTOKENS = 70, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // END
         S_YYerror = 1,                           // error
@@ -612,79 +613,80 @@ namespace yy {
         S_AS = 14,                               // AS
         S_IMPR = 15,                             // IMPR
         S_MOD = 16,                              // MOD
-        S_TRUE = 17,                             // TRUE
-        S_FALSE = 18,                            // FALSE
-        S_AND = 19,                              // AND
-        S_NOT = 20,                              // NOT
-        S_IF = 21,                               // IF
-        S_THEN = 22,                             // THEN
-        S_ELSE = 23,                             // ELSE
-        S_WHILE = 24,                            // WHILE
-        S_PRINT = 25,                            // PRINT
-        S_PRINTF = 26,                           // PRINTF
-        S_FOR = 27,                              // FOR
-        S_MULTIPLICACION = 28,                   // MULTIPLICACION
-        S_DIVISION = 29,                         // DIVISION
-        S_EXPONENCIAL = 30,                      // EXPONENCIAL
-        S_MENOR_IGUAL = 31,                      // MENOR_IGUAL
-        S_MAYOR_IGUAL = 32,                      // MAYOR_IGUAL
-        S_IGUAL_IGUAL = 33,                      // IGUAL_IGUAL
-        S_DIFERENTE = 34,                        // DIFERENTE
-        S_MENOR = 35,                            // MENOR
-        S_MAYOR = 36,                            // MAYOR
-        S_OR = 37,                               // OR
-        S_INTERROGACION = 38,                    // INTERROGACION
-        S_INCREMENT = 39,                        // INCREMENT
-        S_DECREMENT = 40,                        // DECREMENT
-        S_DOT = 41,                              // DOT
-        S_LEFT_BRACKET = 42,                     // LEFT_BRACKET
-        S_RIGHT_BRACKET = 43,                    // RIGHT_BRACKET
-        S_VECTOR = 44,                           // VECTOR
-        S_PUSH_FRONT = 45,                       // PUSH_FRONT
-        S_DOT_PUSH_BACK = 46,                    // DOT_PUSH_BACK
-        S_STRUCT = 47,                           // STRUCT
-        S_REMOVE = 48,                           // REMOVE
-        S_MEDIAN = 49,                           // MEDIAN
-        S_IOTA = 50,                             // IOTA
-        S_MEAN = 51,                             // MEAN
-        S_SIZE = 52,                             // SIZE
-        S_ATOI = 53,                             // ATOI
-        S_GET = 54,                              // GET
-        S_RETORNO = 55,                          // RETORNO
-        S_BREAK = 56,                            // BREAK
-        S_CONTINUE = 57,                         // CONTINUE
-        S_58_ = 58,                              // ';'
-        S_59_ = 59,                              // '('
-        S_60_ = 60,                              // ')'
-        S_61_ = 61,                              // '='
-        S_62_ = 62,                              // '{'
-        S_63_ = 63,                              // '}'
-        S_64_ = 64,                              // '['
-        S_65_ = 65,                              // ']'
-        S_66_ = 66,                              // '.'
-        S_NEG = 67,                              // NEG
-        S_68_ = 68,                              // ','
-        S_YYACCEPT = 69,                         // $accept
-        S_s = 70,                                // s
-        S_lSentencia = 71,                       // lSentencia
-        S_sentencia = 72,                        // sentencia
-        S_ciclo_for = 73,                        // ciclo_for
-        S_ciclo_while = 74,                      // ciclo_while
-        S_ins_if = 75,                           // ins_if
-        S_escapa = 76,                           // escapa
-        S_aumento = 77,                          // aumento
-        S_decremento = 78,                       // decremento
-        S_imprimir = 79,                         // imprimir
-        S_lista_Expr = 80,                       // lista_Expr
-        S_bloque = 81,                           // bloque
-        S_z = 82,                                // z
-        S_declaracion_var = 83,                  // declaracion_var
-        S_asignacion_var = 84,                   // asignacion_var
-        S_x = 85,                                // x
-        S_cond = 86,                             // cond
-        S_oprel = 87,                            // oprel
-        S_expr = 88,                             // expr
-        S_tipo = 89                              // tipo
+        S_VOID = 17,                             // VOID
+        S_TRUE = 18,                             // TRUE
+        S_FALSE = 19,                            // FALSE
+        S_AND = 20,                              // AND
+        S_NOT = 21,                              // NOT
+        S_IF = 22,                               // IF
+        S_THEN = 23,                             // THEN
+        S_ELSE = 24,                             // ELSE
+        S_WHILE = 25,                            // WHILE
+        S_PRINT = 26,                            // PRINT
+        S_PRINTF = 27,                           // PRINTF
+        S_FOR = 28,                              // FOR
+        S_MULTIPLICACION = 29,                   // MULTIPLICACION
+        S_DIVISION = 30,                         // DIVISION
+        S_EXPONENCIAL = 31,                      // EXPONENCIAL
+        S_MENOR_IGUAL = 32,                      // MENOR_IGUAL
+        S_MAYOR_IGUAL = 33,                      // MAYOR_IGUAL
+        S_IGUAL_IGUAL = 34,                      // IGUAL_IGUAL
+        S_DIFERENTE = 35,                        // DIFERENTE
+        S_MENOR = 36,                            // MENOR
+        S_MAYOR = 37,                            // MAYOR
+        S_OR = 38,                               // OR
+        S_INTERROGACION = 39,                    // INTERROGACION
+        S_INCREMENT = 40,                        // INCREMENT
+        S_DECREMENT = 41,                        // DECREMENT
+        S_DOT = 42,                              // DOT
+        S_LEFT_BRACKET = 43,                     // LEFT_BRACKET
+        S_RIGHT_BRACKET = 44,                    // RIGHT_BRACKET
+        S_VECTOR = 45,                           // VECTOR
+        S_PUSH_FRONT = 46,                       // PUSH_FRONT
+        S_DOT_PUSH_BACK = 47,                    // DOT_PUSH_BACK
+        S_STRUCT = 48,                           // STRUCT
+        S_REMOVE = 49,                           // REMOVE
+        S_MEDIAN = 50,                           // MEDIAN
+        S_IOTA = 51,                             // IOTA
+        S_MEAN = 52,                             // MEAN
+        S_SIZE = 53,                             // SIZE
+        S_ATOI = 54,                             // ATOI
+        S_GET = 55,                              // GET
+        S_RETORNO = 56,                          // RETORNO
+        S_BREAK = 57,                            // BREAK
+        S_CONTINUE = 58,                         // CONTINUE
+        S_59_ = 59,                              // ';'
+        S_60_ = 60,                              // '('
+        S_61_ = 61,                              // ')'
+        S_62_ = 62,                              // '='
+        S_63_ = 63,                              // '{'
+        S_64_ = 64,                              // '}'
+        S_65_ = 65,                              // '['
+        S_66_ = 66,                              // ']'
+        S_67_ = 67,                              // '.'
+        S_NEG = 68,                              // NEG
+        S_69_ = 69,                              // ','
+        S_YYACCEPT = 70,                         // $accept
+        S_s = 71,                                // s
+        S_lSentencia = 72,                       // lSentencia
+        S_sentencia = 73,                        // sentencia
+        S_ciclo_for = 74,                        // ciclo_for
+        S_ciclo_while = 75,                      // ciclo_while
+        S_ins_if = 76,                           // ins_if
+        S_escapa = 77,                           // escapa
+        S_aumento = 78,                          // aumento
+        S_decremento = 79,                       // decremento
+        S_imprimir = 80,                         // imprimir
+        S_lista_Expr = 81,                       // lista_Expr
+        S_bloque = 82,                           // bloque
+        S_z = 83,                                // z
+        S_declaracion_var = 84,                  // declaracion_var
+        S_asignacion_var = 85,                   // asignacion_var
+        S_x = 86,                                // x
+        S_cond = 87,                             // cond
+        S_oprel = 88,                            // oprel
+        S_expr = 89,                             // expr
+        S_tipo = 90                              // tipo
       };
     };
 
@@ -1303,6 +1305,21 @@ switch (yykind)
       make_MOD (const location_type& l)
       {
         return symbol_type (token::MOD, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_VOID (location_type l)
+      {
+        return symbol_type (token::VOID, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_VOID (const location_type& l)
+      {
+        return symbol_type (token::VOID, l);
       }
 #endif
 #if 201103L <= YY_CPLUSPLUS
@@ -2265,7 +2282,7 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 343,     ///< Last index in yytable_.
+      yylast_ = 317,     ///< Last index in yytable_.
       yynnts_ = 21,  ///< Number of nonterminal symbols.
       yyfinal_ = 40 ///< Termination state number.
     };
@@ -2292,15 +2309,15 @@ switch (yykind)
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      59,    60,     2,     2,    68,     2,    66,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,    58,
-       2,    61,     2,     2,     2,     2,     2,     2,     2,     2,
+      60,    61,     2,     2,    69,     2,    67,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,    59,
+       2,    62,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,    64,     2,    65,     2,     2,     2,     2,     2,     2,
+       2,    65,     2,    66,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,    62,     2,    63,     2,     2,     2,     2,
+       2,     2,     2,    63,     2,    64,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -2319,10 +2336,10 @@ switch (yykind)
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
       35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
       45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
-      55,    56,    57,    67
+      55,    56,    57,    58,    68
     };
     // Last valid token kind.
-    const int code_max = 313;
+    const int code_max = 314;
 
     if (t <= 0)
       return symbol_kind::S_YYEOF;
@@ -2510,7 +2527,7 @@ switch (yykind)
   }
 
 } // yy
-#line 2514 "parser.hpp"
+#line 2531 "parser.hpp"
 
 
 

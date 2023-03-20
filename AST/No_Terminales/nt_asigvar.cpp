@@ -3,9 +3,9 @@
 NT_AsigVar::NT_AsigVar(AbstractExpr *id, AbstractExpr *expr, bool si) : ID(id), Expr(expr) {this->si = si;std::cout << "CREA ASIGNACION" << std::endl;}
 
 // asignamos variables a la memoria
-Resultado *NT_AsigVar::Interpretar(Environment *ctx) {
-    Resultado* idR = this->ID->Interpretar(ctx);
-    Resultado* expR = this->Expr->Interpretar(ctx);
+Resultado *NT_AsigVar::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
+    Resultado* idR = this->ID->Interpretar(ctx,ctx2);
+    Resultado* expR = this->Expr->Interpretar(ctx,ctx2);
 
     // Get variable name and value from the Resultado objects
     QString varName = idR->getValor().toString();

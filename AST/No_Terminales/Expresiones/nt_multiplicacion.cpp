@@ -1,8 +1,8 @@
 #include "nt_multiplicacion.h"
 
-Resultado *NT_Multiplicacion::Interpretar(Environment *ctx) {
-    Resultado* izqR = this->izquierda->Interpretar(ctx);
-    Resultado* derR = this->derecha->Interpretar(ctx);
+Resultado *NT_Multiplicacion::Interpretar(Environment *ctx,EnvironmentFunc *ctx2) {
+    Resultado* izqR = this->izquierda->Interpretar(ctx,ctx2);
+    Resultado* derR = this->derecha->Interpretar(ctx,ctx2);
 
     if (!izqR || !derR) {
         return nullptr; // Return nullptr if either left or right operand is nullptr

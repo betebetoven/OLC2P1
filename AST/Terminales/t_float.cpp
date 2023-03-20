@@ -1,6 +1,6 @@
 #include "t_float.h"
 
-Resultado *T_Float::Interpretar(Environment *ctx) {
+Resultado *T_Float::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
 return new Resultado(this->val.toFloat());
 }
 

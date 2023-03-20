@@ -2,7 +2,7 @@
 
 Bloque::Bloque(const QVector<AbstractExpr*>& instrucciones, AbstractExpr *decl, AbstractExpr *expr, AbstractExpr *aumento, bool is_while, AbstractExpr *elsebloque) : instrucciones(instrucciones), decl(decl), expr(expr), aumento(aumento), is_while(is_while), elsebloque(elsebloque) {std::cout<<"CREA BLOQUE"<<std::endl;}
 
-Resultado* Bloque::Interpretar(Environment* env) {
+Resultado* Bloque::Interpretar(Environment* env,EnvironmentFunc* ctx2) {
     Environment *envv = new Environment(env);
 
     Resultado* temp = new Resultado(nullptr);
@@ -10,16 +10,16 @@ Resultado* Bloque::Interpretar(Environment* env) {
 
     if (decl == nullptr && expr == nullptr && aumento == nullptr) {
         for (int i = 0; i < this->instrucciones.size(); i++) {
-            temp = this->instrucciones[i]->Interpretar(envv);
+            temp = this->instrucciones[i]->Interpretar(envv,ctx2);
             // es un return? es un break, es un continue, etc....
         }
     } else if (is_while){
         if(decl != nullptr)
-        Resultado *declResult = decl->Interpretar(envv);
+        Resultado *declResult = decl->Interpretar(envv,ctx2);
 
 
         while (true) {
-            Resultado *exprResult = expr->Interpretar(envv);
+            Resultado *exprResult = expr->Interpretar(envv,ctx2);
             //std::cout<<"VALOR DE EXPR RESULT: "<<exprResult->getValor().toString().toStdString() <<std::endl;
             if (exprResult->getValor().toBool() == false) {
 
@@ -28,7 +28,7 @@ Resultado* Bloque::Interpretar(Environment* env) {
 
             for (int i = 0; i < this->instrucciones.size(); i++) {
 
-                temp = this->instrucciones[i]->Interpretar(envv);
+                temp = this->instrucciones[i]->Interpretar(envv,ctx2);
                 if(temp!=nullptr)
                 {
                 if(temp->getValor().toString().toStdString()=="break")// aca puede ir el return como || pero primero hay que hacer las funcinoes
@@ -37,7 +37,7 @@ Resultado* Bloque::Interpretar(Environment* env) {
                     return nullptr;}
                 if(temp->getValor().toString().toStdString()=="continue"&&aumento != nullptr)
                 {
-                    //Resultado *aumentoResult = aumento->Interpretar(envv);
+                    //Resultado *aumentoResult = aumento->Interpretar(envv,ctx2);
                     break;
 
                 }}
@@ -48,17 +48,17 @@ Resultado* Bloque::Interpretar(Environment* env) {
 
 
             if (aumento != nullptr)
-            Resultado *aumentoResult = aumento->Interpretar(envv);
+            Resultado *aumentoResult = aumento->Interpretar(envv,ctx2);
         }
     }
     else
     {
-        Resultado *exprResult = expr->Interpretar(envv);
+        Resultado *exprResult = expr->Interpretar(envv,ctx2);
         //std::cout<<"VALOR DE EXPR RESULT: "<<exprResult->getValor().toString().toStdString() <<std::endl;
         if (exprResult->getValor().toBool()) {
 
             for (int i = 0; i < this->instrucciones.size(); i++) {
-                temp = this->instrucciones[i]->Interpretar(envv);
+                temp = this->instrucciones[i]->Interpretar(envv,ctx2);
                 if(temp!=nullptr)
                 {
                 if(temp->getValor().toString().toStdString()=="break")
@@ -76,7 +76,7 @@ Resultado* Bloque::Interpretar(Environment* env) {
         }
         else if(elsebloque != nullptr)
         {
-            Resultado *aux = elsebloque->Interpretar(env);
+            Resultado *aux = elsebloque->Interpretar(env,ctx2);
             return aux;
 
         }

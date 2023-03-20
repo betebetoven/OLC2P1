@@ -1,14 +1,14 @@
 #include "NT_DeclVector.h"
 
-Resultado *NT_DeclVector::Interpretar(Environment *ctx) {
+Resultado *NT_DeclVector::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
     std::cout << "si llega al Interpretar de declvaar" << std::endl;
-    Resultado* idR = this->ID->Interpretar(ctx);
-    Resultado* tipoR = this->tipo->Interpretar(ctx);
+    Resultado* idR = this->ID->Interpretar(ctx,ctx2);
+    Resultado* tipoR = this->tipo->Interpretar(ctx,ctx2);
     std::cout << "si llega al declvar idR--    " << idR->getValor().toString().toStdString() <<std::endl;
     std::cout << "si llega al declvar tipoR--    " << tipoR->getValor().toString().toStdString() <<std::endl;
     // Check if Expr is not nullptr and evaluate it
     if (this->Expr) {
-        Resultado* exprR = this->Expr->Interpretar(ctx);
+        Resultado* exprR = this->Expr->Interpretar(ctx,ctx2);
         std::cout << "si llega al declvar ExpR--    " << exprR->getValor().toString().toStdString() <<std::endl;
         // Check if Expr is not nullptr and evaluate it
         // Check if the types match before adding the variable

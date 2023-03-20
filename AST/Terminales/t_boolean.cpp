@@ -3,7 +3,7 @@
 
 T_Boolean::T_Boolean(QString str) : str(str) {}
 
-Resultado *T_Boolean::Interpretar(Environment *ctx) {
+Resultado *T_Boolean::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
     bool value = false;
     if (str.toLower() == "true") {
         value = true;

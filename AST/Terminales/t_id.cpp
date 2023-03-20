@@ -12,7 +12,7 @@ struct ResultadoVisitor {
     }
 };
 
-Resultado* T_ID::Interpretar(Environment* ctx) {
+Resultado* T_ID::Interpretar(Environment* ctx,EnvironmentFunc* ctx2) {
     std::string id_str = this->id.toStdString();
 
     // Retrieve the variable content from the environment

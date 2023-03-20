@@ -1,8 +1,8 @@
 #include "NT_MenorIgual.h"
 
-Resultado *NT_MenorIgual::Interpretar(Environment *ctx) {
-    Resultado* izqR = this->Izquierda->Interpretar(ctx);
-    Resultado* derR = this->Derecha->Interpretar(ctx);
+Resultado *NT_MenorIgual::Interpretar(Environment *ctx,EnvironmentFunc *ctx2) {
+    Resultado* izqR = this->Izquierda->Interpretar(ctx,ctx2);
+    Resultado* derR = this->Derecha->Interpretar(ctx,ctx2);
 
     if (!izqR || !derR) {
         return nullptr; // Return nullptr if either left or right operand is nullptr

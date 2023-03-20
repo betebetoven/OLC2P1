@@ -5,7 +5,7 @@ NT_Tipo::NT_Tipo(QString tipo) {
  this->tipo = tipo;
 }
 
-Resultado *NT_Tipo::Interpretar(Environment *ctx) {
+Resultado *NT_Tipo::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
     if (this->tipo == "Integer") {
         return new Resultado(0);
     } else if (this->tipo == "String") {

@@ -5,7 +5,7 @@
 #include "../AST/abstractexpr.h"
 #include "../AST/No_Terminales/nt_s.h"
 #include "../Interprete/Contexto/environment.h"
-
+#include "../Interprete/Contexto/environmentfunc.h"
 namespace yy {
     class Parser;
     class location;

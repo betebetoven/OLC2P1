@@ -7,7 +7,7 @@ class NT_ListaExpr: public  AbstractExpr{
 public:
     NT_ListaExpr(AbstractExpr* expr);
     QVector<AbstractExpr*>lista_expresiones;
-    Resultado *Interpretar(Environment *ctx) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
     QString Graficar() override;
     void AddNodo(AbstractExpr* nodo);
 };
