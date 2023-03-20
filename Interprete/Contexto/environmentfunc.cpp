@@ -11,3 +11,10 @@ void EnvironmentFunc::addVariable(const std::string& name, const std::string& ty
     func_table[name] = func_info;
 }
 
+AbstractExpr* EnvironmentFunc::getVariableExpr(const std::string& name) {
+    auto it = func_table.find(name);
+    if (it != func_table.end()) {
+        return it->second.expr;
+    }
+    return nullptr; // Return nullptr if the variable does not exist
+}

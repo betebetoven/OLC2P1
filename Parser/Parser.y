@@ -57,6 +57,7 @@
     #include "../AST/No_Terminales/Expresiones/nt_division.h"
     #include "../AST/No_Terminales/Expresiones/nt_exponencial.h"
     #include "../AST/No_Terminales/Expresiones/nt_modulo.h"
+    #include "../AST/No_Terminales/nt_declfunc.h"
 
     #include "../AST/No_Terminales/Expresiones/nt_negacion.h"
     #include "../AST/No_Terminales/Expresiones/nt_id.h"
@@ -159,7 +160,7 @@ del parser al escaner evitando crear variables globales
 %parse-param {void *scanner} {yy::location& loc} { class Clase3::Interfaz & intr }
 
 
-%type<AbstractExpr*>   declaracion_var escapa lista_Expr;
+%type<AbstractExpr*>   declaracion_var escapa lista_Expr declaracion_void;
 %type<QVector<AbstractExpr*>*> s lSentencia;
 %type<AbstractExpr*> sentencia asignacion_var aumento decremento;
 %type<AbstractExpr*> expr tipo cond x;
@@ -219,6 +220,7 @@ sentencia: declaracion_var {$$ = $1;}
     |ciclo_while{$$=$1;}
     | ins_if{$$=$1;}
     |escapa {$$=$1;}
+    |declaracion_void {$$=$1;}
     ;
 
 ciclo_for:FOR '(' declaracion_var z x z aumento ')' '{' lSentencia '}' {$$ = new Bloque(*$10,$3,$5,$7,true,nullptr);}
@@ -271,6 +273,15 @@ bloque: '{' lSentencia '}' { $$ = new Bloque(*$2,nullptr,nullptr,nullptr,false, 
 z: ';' {  }
     | %empty { }
     ;
+
+declaracion_void: tipo ID '('')' bloque { 
+                                NT_ID* id = new NT_ID(QString::fromStdString($2));
+                                $$ = new NT_DeclFunc($1, id, $5);
+                                }
+    ;
+
+
+
 
 
 declaracion_var: tipo ID  {   NT_ID* id = new NT_ID(QString::fromStdString($2));

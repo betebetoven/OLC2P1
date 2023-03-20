@@ -69,6 +69,7 @@
     #include "../AST/No_Terminales/Expresiones/nt_division.h"
     #include "../AST/No_Terminales/Expresiones/nt_exponencial.h"
     #include "../AST/No_Terminales/Expresiones/nt_modulo.h"
+    #include "../AST/No_Terminales/nt_declfunc.h"
 
     #include "../AST/No_Terminales/Expresiones/nt_negacion.h"
     #include "../AST/No_Terminales/Expresiones/nt_id.h"
@@ -119,7 +120,7 @@
     */
 
 
-#line 123 "parser.hpp"
+#line 124 "parser.hpp"
 
 
 # include <cstdlib> // std::abort
@@ -248,7 +249,7 @@
 #endif
 
 namespace yy {
-#line 252 "parser.hpp"
+#line 253 "parser.hpp"
 
 
 
@@ -448,6 +449,7 @@ namespace yy {
       // decremento
       // lista_Expr
       // bloque
+      // declaracion_void
       // declaracion_var
       // asignacion_var
       // x
@@ -680,13 +682,14 @@ namespace yy {
         S_lista_Expr = 81,                       // lista_Expr
         S_bloque = 82,                           // bloque
         S_z = 83,                                // z
-        S_declaracion_var = 84,                  // declaracion_var
-        S_asignacion_var = 85,                   // asignacion_var
-        S_x = 86,                                // x
-        S_cond = 87,                             // cond
-        S_oprel = 88,                            // oprel
-        S_expr = 89,                             // expr
-        S_tipo = 90                              // tipo
+        S_declaracion_void = 84,                 // declaracion_void
+        S_declaracion_var = 85,                  // declaracion_var
+        S_asignacion_var = 86,                   // asignacion_var
+        S_x = 87,                                // x
+        S_cond = 88,                             // cond
+        S_oprel = 89,                            // oprel
+        S_expr = 90,                             // expr
+        S_tipo = 91                              // tipo
       };
     };
 
@@ -732,6 +735,7 @@ namespace yy {
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_lista_Expr: // lista_Expr
       case symbol_kind::S_bloque: // bloque
+      case symbol_kind::S_declaracion_void: // declaracion_void
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_asignacion_var: // asignacion_var
       case symbol_kind::S_x: // x
@@ -872,6 +876,7 @@ switch (yykind)
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_lista_Expr: // lista_Expr
       case symbol_kind::S_bloque: // bloque
+      case symbol_kind::S_declaracion_void: // declaracion_void
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_asignacion_var: // asignacion_var
       case symbol_kind::S_x: // x
@@ -2040,7 +2045,7 @@ switch (yykind)
     // number is the opposite.  If YYTABLE_NINF, syntax error.
     static const unsigned char yytable_[];
 
-    static const signed char yycheck_[];
+    static const short yycheck_[];
 
     // YYSTOS[STATE-NUM] -- The (internal number of the) accessing
     // symbol of state STATE-NUM.
@@ -2282,9 +2287,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 335,     ///< Last index in yytable_.
-      yynnts_ = 21,  ///< Number of nonterminal symbols.
-      yyfinal_ = 41 ///< Termination state number.
+      yylast_ = 322,     ///< Last index in yytable_.
+      yynnts_ = 22,  ///< Number of nonterminal symbols.
+      yyfinal_ = 42 ///< Termination state number.
     };
 
 
@@ -2367,6 +2372,7 @@ switch (yykind)
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_lista_Expr: // lista_Expr
       case symbol_kind::S_bloque: // bloque
+      case symbol_kind::S_declaracion_void: // declaracion_void
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_asignacion_var: // asignacion_var
       case symbol_kind::S_x: // x
@@ -2435,6 +2441,7 @@ switch (yykind)
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_lista_Expr: // lista_Expr
       case symbol_kind::S_bloque: // bloque
+      case symbol_kind::S_declaracion_void: // declaracion_void
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_asignacion_var: // asignacion_var
       case symbol_kind::S_x: // x
@@ -2527,7 +2534,7 @@ switch (yykind)
   }
 
 } // yy
-#line 2531 "parser.hpp"
+#line 2538 "parser.hpp"
 
 
 

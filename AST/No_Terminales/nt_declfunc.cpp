@@ -22,7 +22,7 @@ QString NT_DeclFunc::Graficar() {
     tPosicion <<(void*)this->tipo;
 
     QString nodo = QString::fromStdString("n" + pPosicion.str() +
-            " [ label=\"Decl Var\" , fillcolor=red];\n");
+            " [ label=\"Decl FUNCION\" , fillcolor=red];\n");
     nodo +=  QString::fromStdString("n" + pPosicion.str() + " -> n"
             + idPosicion.str()+ ";\n");
     nodo += this->ID->Graficar();

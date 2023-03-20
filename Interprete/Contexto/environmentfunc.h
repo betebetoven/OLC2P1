@@ -17,6 +17,7 @@ public:
     EnvironmentFunc();
     EnvironmentFunc(EnvironmentFunc* father);
     void addVariable(const std::string& name, const std::string& type, AbstractExpr* expr);
+    AbstractExpr* getVariableExpr(const std::string& name);
     std::map<std::string, FuncInfo> func_table;
 };
 
