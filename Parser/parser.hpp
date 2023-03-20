@@ -75,6 +75,7 @@
     #include "../AST/No_Terminales/Expresiones/nt_id.h"
     #include "../AST/No_Terminales/nt_tipo.h"
     #include "../AST/No_Terminales/nt_escape.h"
+    #include "../AST/No_Terminales/nt_llamada.h"
 
     // nodos terminales
     #include "../AST/Terminales/t_numero.h"
@@ -120,7 +121,7 @@
     */
 
 
-#line 124 "parser.hpp"
+#line 125 "parser.hpp"
 
 
 # include <cstdlib> // std::abort
@@ -249,7 +250,7 @@
 #endif
 
 namespace yy {
-#line 253 "parser.hpp"
+#line 254 "parser.hpp"
 
 
 
@@ -445,6 +446,7 @@ namespace yy {
       // ciclo_while
       // ins_if
       // escapa
+      // llamada
       // aumento
       // decremento
       // lista_Expr
@@ -676,20 +678,21 @@ namespace yy {
         S_ciclo_while = 75,                      // ciclo_while
         S_ins_if = 76,                           // ins_if
         S_escapa = 77,                           // escapa
-        S_aumento = 78,                          // aumento
-        S_decremento = 79,                       // decremento
-        S_imprimir = 80,                         // imprimir
-        S_lista_Expr = 81,                       // lista_Expr
-        S_bloque = 82,                           // bloque
-        S_z = 83,                                // z
-        S_declaracion_void = 84,                 // declaracion_void
-        S_declaracion_var = 85,                  // declaracion_var
-        S_asignacion_var = 86,                   // asignacion_var
-        S_x = 87,                                // x
-        S_cond = 88,                             // cond
-        S_oprel = 89,                            // oprel
-        S_expr = 90,                             // expr
-        S_tipo = 91                              // tipo
+        S_llamada = 78,                          // llamada
+        S_aumento = 79,                          // aumento
+        S_decremento = 80,                       // decremento
+        S_imprimir = 81,                         // imprimir
+        S_lista_Expr = 82,                       // lista_Expr
+        S_bloque = 83,                           // bloque
+        S_z = 84,                                // z
+        S_declaracion_void = 85,                 // declaracion_void
+        S_declaracion_var = 86,                  // declaracion_var
+        S_asignacion_var = 87,                   // asignacion_var
+        S_x = 88,                                // x
+        S_cond = 89,                             // cond
+        S_oprel = 90,                            // oprel
+        S_expr = 91,                             // expr
+        S_tipo = 92                              // tipo
       };
     };
 
@@ -731,6 +734,7 @@ namespace yy {
       case symbol_kind::S_ciclo_while: // ciclo_while
       case symbol_kind::S_ins_if: // ins_if
       case symbol_kind::S_escapa: // escapa
+      case symbol_kind::S_llamada: // llamada
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_lista_Expr: // lista_Expr
@@ -872,6 +876,7 @@ switch (yykind)
       case symbol_kind::S_ciclo_while: // ciclo_while
       case symbol_kind::S_ins_if: // ins_if
       case symbol_kind::S_escapa: // escapa
+      case symbol_kind::S_llamada: // llamada
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_lista_Expr: // lista_Expr
@@ -2287,9 +2292,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 322,     ///< Last index in yytable_.
-      yynnts_ = 22,  ///< Number of nonterminal symbols.
-      yyfinal_ = 42 ///< Termination state number.
+      yylast_ = 333,     ///< Last index in yytable_.
+      yynnts_ = 23,  ///< Number of nonterminal symbols.
+      yyfinal_ = 44 ///< Termination state number.
     };
 
 
@@ -2368,6 +2373,7 @@ switch (yykind)
       case symbol_kind::S_ciclo_while: // ciclo_while
       case symbol_kind::S_ins_if: // ins_if
       case symbol_kind::S_escapa: // escapa
+      case symbol_kind::S_llamada: // llamada
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_lista_Expr: // lista_Expr
@@ -2437,6 +2443,7 @@ switch (yykind)
       case symbol_kind::S_ciclo_while: // ciclo_while
       case symbol_kind::S_ins_if: // ins_if
       case symbol_kind::S_escapa: // escapa
+      case symbol_kind::S_llamada: // llamada
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
       case symbol_kind::S_lista_Expr: // lista_Expr
@@ -2534,7 +2541,7 @@ switch (yykind)
   }
 
 } // yy
-#line 2538 "parser.hpp"
+#line 2545 "parser.hpp"
 
 
 

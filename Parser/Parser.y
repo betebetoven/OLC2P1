@@ -63,6 +63,7 @@
     #include "../AST/No_Terminales/Expresiones/nt_id.h"
     #include "../AST/No_Terminales/nt_tipo.h"
     #include "../AST/No_Terminales/nt_escape.h"
+    #include "../AST/No_Terminales/nt_llamada.h"
 
     // nodos terminales
     #include "../AST/Terminales/t_numero.h"
@@ -160,7 +161,7 @@ del parser al escaner evitando crear variables globales
 %parse-param {void *scanner} {yy::location& loc} { class Clase3::Interfaz & intr }
 
 
-%type<AbstractExpr*>   declaracion_var escapa lista_Expr declaracion_void;
+%type<AbstractExpr*>   declaracion_var escapa lista_Expr declaracion_void llamada;
 %type<QVector<AbstractExpr*>*> s lSentencia;
 %type<AbstractExpr*> sentencia asignacion_var aumento decremento;
 %type<AbstractExpr*> expr tipo cond x;
@@ -221,6 +222,7 @@ sentencia: declaracion_var {$$ = $1;}
     | ins_if{$$=$1;}
     |escapa {$$=$1;}
     |declaracion_void {$$=$1;}
+    |llamada {$$=$1;}
     ;
 
 ciclo_for:FOR '(' declaracion_var z x z aumento ')' '{' lSentencia '}' {$$ = new Bloque(*$10,$3,$5,$7,true,nullptr);}
@@ -243,6 +245,14 @@ escapa: BREAK { $$ = new NT_Escape(QString::fromStdString("break"));}
 
 
  ;
+llamada: /*ID '(' lista_Expr ')' { $$ = new NT_Llamada(QString::fromStdString($1),*$3);}
+    | */ID '(' ')' { NT_ID* id_av = new NT_ID(QString::fromStdString($1));
+        $$ = new NT_Llamada(id_av);}
+    ;
+
+
+
+
 aumento : INCREMENT ID {            NT_ID* id_avar2 = new NT_ID(QString::fromStdString($2));
                                 T_ID* id_avar = new T_ID(QString::fromStdString($2));
                                 $$ = new NT_AsigVar(id_avar2,new NT_Suma(id_avar, new T_Numero( QString::fromStdString("1"))),true ); }
