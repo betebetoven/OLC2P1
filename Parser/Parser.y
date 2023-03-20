@@ -349,6 +349,7 @@ tipo:  INT { $$ = new NT_Tipo( QString::fromStdString("Integer")); }
     | STR { $$ = new NT_Tipo( QString::fromStdString("String")); }
     | FLO { $$ = new NT_Tipo( QString::fromStdString("Float")); }
     | BOOL { $$ = new NT_Tipo( QString::fromStdString("Boolean")); }
+    | VOID { $$ = new NT_Tipo( QString::fromStdString("Void")); }
     ;
 
 %%

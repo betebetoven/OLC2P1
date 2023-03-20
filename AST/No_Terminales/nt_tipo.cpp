@@ -15,6 +15,8 @@ Resultado *NT_Tipo::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
         return new Resultado(x);
     } else if (this->tipo == "Boolean") {
         return new Resultado(false);
+    }  else if (this->tipo == "Void") {
+        return new Resultado(false);
     } else {
         return new Resultado(this->tipo);
     }
