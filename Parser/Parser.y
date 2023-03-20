@@ -159,13 +159,13 @@ del parser al escaner evitando crear variables globales
 %parse-param {void *scanner} {yy::location& loc} { class Clase3::Interfaz & intr }
 
 
-%type<AbstractExpr*>   declaracion_var escapa;
+%type<AbstractExpr*>   declaracion_var escapa lista_Expr;
 %type<QVector<AbstractExpr*>*> s lSentencia;
 %type<AbstractExpr*> sentencia asignacion_var aumento decremento;
 %type<AbstractExpr*> expr tipo cond x;
 %type<AbstractExpr*> bloque  ciclo_for ciclo_while ins_if;
 %type<NT_Imprimir*> imprimir;
-%type<NT_ListaExpr*> lista_Expr;
+
 %type<std::string> oprel;
 
 // printer
@@ -255,14 +255,16 @@ decremento: DECREMENT ID {            NT_ID* id_avar2 = new NT_ID(QString::fromS
                                 T_ID* id_avar = new T_ID(QString::fromStdString($1));
                                 $$ = new NT_AsigVar(id_avar2,new NT_Resta(id_avar, new T_Numero( QString::fromStdString("1"))),false ); }
 ;
-lista_Expr: lista_Expr ','  x {   $1->AddNodo($3);
-                                    $$ = $1;
-                                }
-    | x { $$ = new NT_ListaExpr($1);}
+imprimir: IMPR '(' lista_Expr ')' { $$ = new NT_Imprimir($3); }
     ;
 
-imprimir: IMPR '(' x ')' { $$ = new NT_Imprimir($3); }
+
+lista_Expr: lista_Expr ','  x {   $$ = new NT_Suma($1, $3);
+                                }
+    | x { $$ = $1;}
     ;
+
+
 
 bloque: '{' lSentencia '}' { $$ = new Bloque(*$2,nullptr,nullptr,nullptr,false, nullptr); }
 ;

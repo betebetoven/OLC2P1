@@ -446,6 +446,7 @@ namespace yy {
       // escapa
       // aumento
       // decremento
+      // lista_Expr
       // bloque
       // declaracion_var
       // asignacion_var
@@ -674,15 +675,16 @@ namespace yy {
         S_aumento = 77,                          // aumento
         S_decremento = 78,                       // decremento
         S_imprimir = 79,                         // imprimir
-        S_bloque = 80,                           // bloque
-        S_z = 81,                                // z
-        S_declaracion_var = 82,                  // declaracion_var
-        S_asignacion_var = 83,                   // asignacion_var
-        S_x = 84,                                // x
-        S_cond = 85,                             // cond
-        S_oprel = 86,                            // oprel
-        S_expr = 87,                             // expr
-        S_tipo = 88                              // tipo
+        S_lista_Expr = 80,                       // lista_Expr
+        S_bloque = 81,                           // bloque
+        S_z = 82,                                // z
+        S_declaracion_var = 83,                  // declaracion_var
+        S_asignacion_var = 84,                   // asignacion_var
+        S_x = 85,                                // x
+        S_cond = 86,                             // cond
+        S_oprel = 87,                            // oprel
+        S_expr = 88,                             // expr
+        S_tipo = 89                              // tipo
       };
     };
 
@@ -726,6 +728,7 @@ namespace yy {
       case symbol_kind::S_escapa: // escapa
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
+      case symbol_kind::S_lista_Expr: // lista_Expr
       case symbol_kind::S_bloque: // bloque
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_asignacion_var: // asignacion_var
@@ -865,6 +868,7 @@ switch (yykind)
       case symbol_kind::S_escapa: // escapa
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
+      case symbol_kind::S_lista_Expr: // lista_Expr
       case symbol_kind::S_bloque: // bloque
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_asignacion_var: // asignacion_var
@@ -1961,7 +1965,7 @@ switch (yykind)
 
 
     /// Stored state numbers (used for stacks).
-    typedef signed char state_type;
+    typedef unsigned char state_type;
 
     /// The arguments of the error message.
     int yy_syntax_error_arguments_ (const context& yyctx,
@@ -2009,7 +2013,7 @@ switch (yykind)
     static const signed char yydefact_[];
 
     // YYPGOTO[NTERM-NUM].
-    static const signed char yypgoto_[];
+    static const short yypgoto_[];
 
     // YYDEFGOTO[NTERM-NUM].
     static const signed char yydefgoto_[];
@@ -2017,7 +2021,7 @@ switch (yykind)
     // YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
     // positive, shift that token.  If negative, reduce the rule whose
     // number is the opposite.  If YYTABLE_NINF, syntax error.
-    static const signed char yytable_[];
+    static const unsigned char yytable_[];
 
     static const signed char yycheck_[];
 
@@ -2261,8 +2265,8 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 318,     ///< Last index in yytable_.
-      yynnts_ = 20,  ///< Number of nonterminal symbols.
+      yylast_ = 343,     ///< Last index in yytable_.
+      yynnts_ = 21,  ///< Number of nonterminal symbols.
       yyfinal_ = 40 ///< Termination state number.
     };
 
@@ -2344,6 +2348,7 @@ switch (yykind)
       case symbol_kind::S_escapa: // escapa
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
+      case symbol_kind::S_lista_Expr: // lista_Expr
       case symbol_kind::S_bloque: // bloque
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_asignacion_var: // asignacion_var
@@ -2411,6 +2416,7 @@ switch (yykind)
       case symbol_kind::S_escapa: // escapa
       case symbol_kind::S_aumento: // aumento
       case symbol_kind::S_decremento: // decremento
+      case symbol_kind::S_lista_Expr: // lista_Expr
       case symbol_kind::S_bloque: // bloque
       case symbol_kind::S_declaracion_var: // declaracion_var
       case symbol_kind::S_asignacion_var: // asignacion_var
@@ -2504,7 +2510,7 @@ switch (yykind)
   }
 
 } // yy
-#line 2508 "parser.hpp"
+#line 2514 "parser.hpp"
 
 
 

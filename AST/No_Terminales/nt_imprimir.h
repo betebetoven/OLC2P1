@@ -2,7 +2,7 @@
 #define NT_IMPRIMIR_H
 
 #include "../abstractexpr.h"
-#include "nt_listaexpr.h"
+
 
 class NT_Imprimir: public AbstractExpr {
    AbstractExpr* lista_expr;

@@ -76,7 +76,7 @@ ID  {LETRAS}({DIGITO}|{LETRAS}|"_")*
 "Int"    return Parser::symbol_type( token::INT, loc);
 "String"   return Parser::symbol_type( token::STR , loc);
 "Float"   return Parser::symbol_type( token::FLO , loc);
-"Boolean" return Parser::symbol_type( token::BOOL , loc);
+"Bool" return Parser::symbol_type( token::BOOL , loc);
 "true" return Parser::symbol_type(token::TRUE, loc);
 "false" return Parser::symbol_type(token::FALSE, loc);
 "and" return Parser::symbol_type(token::AND, loc);

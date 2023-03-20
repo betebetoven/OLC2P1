@@ -1,8 +1,18 @@
 #include "nt_imprimir.h"
+#include <fstream>
 
 Resultado *NT_Imprimir::Interpretar(Environment *ctx) {
     Resultado* r = this->lista_expr->Interpretar(ctx);
-    std::cout<<r->getValor().toString().toStdString()<<std::endl;
+    //std::cout<<r->getValor().toString().toStdString()<<std::endl;
+    std::string output = r->getValor().toString().toStdString() + "\n";
+        std::cout << output;
+        std::ofstream outFile("C:\\Users\\alber\\OneDrive\\Documentos\\untitled\\AST\\No_Terminales\\consola.txt", std::ios_base::app);
+            if (outFile.is_open()) {
+                outFile << output;
+                outFile.close();
+            } else {
+                std::cerr << "Unable to open file 'consola.txt'\n";
+            }
     return r;
 }
 
