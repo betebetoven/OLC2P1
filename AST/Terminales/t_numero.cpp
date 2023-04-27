@@ -2,7 +2,7 @@
 
 
 
-Resultado *T_Numero::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
+Resultado *T_Numero::Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) {
     std::cout << "si llega al Interpretar de num" << std::endl;
     return  new Resultado(this->numero.toInt());
 }

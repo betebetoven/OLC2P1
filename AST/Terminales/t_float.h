@@ -6,7 +6,7 @@
 class T_Float: public AbstractExpr {
 QString val;
 public:
-Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
+Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
 QString Graficar() override;
 
 T_Float(QString val);

@@ -7,7 +7,7 @@
 class T_Boolean : public AbstractExpr {
     QString str;
 public:
-    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
     QString Graficar() override;
     T_Boolean(QString str);
 };

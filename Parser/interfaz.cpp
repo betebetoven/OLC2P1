@@ -15,9 +15,10 @@ std::cout << "Class name of the first element in raiz: "
 
     Environment *env = new Environment(nullptr);
     EnvironmentFunc *env2 = new EnvironmentFunc(nullptr);
+    EnvironmentVect *env3 = new EnvironmentVect(nullptr);
     for (int i = 0; i < this->raiz.size(); i ++){
 
-      Resultado* temp = this->raiz[i]->Interpretar(env, env2);
+      Resultado* temp = this->raiz[i]->Interpretar(env, env2, env3);
         /// es un return? es un break, es un continue, etc....
     }
 

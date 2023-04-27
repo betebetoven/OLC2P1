@@ -7,7 +7,7 @@ class NT_MenorIgual : public AbstractExpr {
     AbstractExpr* Izquierda;
     AbstractExpr* Derecha;
 public:
-    Resultado* Interpretar(Environment* ctx,EnvironmentFunc* ctx2) override;
+    Resultado* Interpretar(Environment* ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
     QString Graficar() override;
 
     NT_MenorIgual(AbstractExpr* izquierda, AbstractExpr* derecha);

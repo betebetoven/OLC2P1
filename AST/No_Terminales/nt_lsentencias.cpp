@@ -6,7 +6,7 @@ NT_LSentencias::NT_LSentencias()
 
 }
 
-Resultado* NT_LSentencias::Interpretar(Environment* ctx,EnvironmentFunc* ctx2) {
+Resultado* NT_LSentencias::Interpretar(Environment* ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) {
    /*Resultado* temp;
     for (int i = 0; i < this->lista_sentencias.size(); i ++){
 

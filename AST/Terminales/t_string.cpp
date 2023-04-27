@@ -1,7 +1,7 @@
 #include "t_string.h"
 
 
-Resultado *T_String::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
+Resultado *T_String::Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) {
 //    auto  StringTipo = ctx->tabla_tipos->getTipo(QString("String"));
      QString trimmedStr = this->str.mid(1, this->str.length() - 2);
      std::cout << "REconocio string: " << trimmedStr.toStdString() << std::endl;

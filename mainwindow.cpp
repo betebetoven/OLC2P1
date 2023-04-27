@@ -4,6 +4,7 @@
 #include "Parser/interfaz.h"
 #include <fstream>
 #include <sstream>
+#include <QVector>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -65,6 +66,9 @@ void MainWindow::on_pushButton_2_clicked()
                                            node[color = \"#EEEEE\"]\n \
                                            node[color = \"#31CEF0\"]\n");
                                    QString dot = interfaz->Ejecutar(ui->textEdit->toPlainText().toStdString());
+
+
+
 
 
 

@@ -3,7 +3,7 @@
 NT_AsigVector::NT_AsigVector(AbstractExpr *id, const QVector<AbstractExpr*>& exprList) : ID(id), ExprList(exprList) {}
 
 // Assign vector variables to memory
-Resultado *NT_AsigVector::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
+Resultado *NT_AsigVector::Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) {
    /* Resultado* idR = this->ID->Interpretar(ctx);
 
     QVector<Resultado*> results;

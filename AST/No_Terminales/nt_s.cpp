@@ -2,7 +2,7 @@
 
 
 
-Resultado *NT_S::Interpretar(Environment* ctx,EnvironmentFunc* ctx2) {
+Resultado *NT_S::Interpretar(Environment* ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) {
     /*this->sentencias->Interpretar(ctx);*/
 
     return nullptr;

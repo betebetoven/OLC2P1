@@ -11,7 +11,7 @@ class NT_AsigVar: public AbstractExpr{
 public:
     NT_AsigVar(AbstractExpr *id, AbstractExpr *expr, bool si);
 
-    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
     QString Graficar() override;
 };
 

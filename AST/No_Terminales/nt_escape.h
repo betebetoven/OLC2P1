@@ -7,7 +7,7 @@ class NT_Escape : public AbstractExpr {
     QString valor;
 
 public:
-    Resultado* Interpretar(Environment* env,EnvironmentFunc* ctx2) override;
+    Resultado* Interpretar(Environment* env,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
     QString Graficar() override;
 
     explicit NT_Escape(const QString& valor);

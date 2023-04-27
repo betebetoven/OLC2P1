@@ -9,7 +9,7 @@ class NT_Tipo: public AbstractExpr {
 public:
     NT_Tipo(QString tipo);
 
-    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
 
     QString Graficar() override;
 

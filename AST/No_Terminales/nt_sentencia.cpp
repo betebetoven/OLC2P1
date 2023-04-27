@@ -1,8 +1,8 @@
 #include "nt_sentencia.h"
 
 
-Resultado *NT_Sentencia::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
-    return  this->hijo->Interpretar(ctx,ctx2);
+Resultado *NT_Sentencia::Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) {
+    return  this->hijo->Interpretar(ctx,ctx2,ctx3);
 //    return nullptr;
 }
 

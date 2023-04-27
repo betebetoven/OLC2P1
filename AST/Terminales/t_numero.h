@@ -8,7 +8,7 @@ class T_Numero: public AbstractExpr{
 QString numero;
 
 public:
-    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
 
     QString Graficar() override;
     explicit T_Numero(QString num);

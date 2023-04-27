@@ -5,11 +5,12 @@
 class NT_DeclVar: public AbstractExpr {
     AbstractExpr* tipo;
     AbstractExpr* ID;
-    AbstractExpr* Expr;
+
 
 
 public:
-    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
+    AbstractExpr* Expr;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
 
     QString Graficar() override;
 

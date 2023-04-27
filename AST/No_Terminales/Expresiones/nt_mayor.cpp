@@ -1,8 +1,8 @@
 #include "NT_Mayor.h"
 
-Resultado *NT_Mayor::Interpretar(Environment *ctx,EnvironmentFunc *ctx2) {
-    Resultado* izqR = this->Izquierda->Interpretar(ctx,ctx2);
-    Resultado* derR = this->Derecha->Interpretar(ctx,ctx2);
+Resultado *NT_Mayor::Interpretar(Environment *ctx,EnvironmentFunc *ctx2, EnvironmentVect* ctx3) {
+    Resultado* izqR = this->Izquierda->Interpretar(ctx,ctx2,ctx3);
+    Resultado* derR = this->Derecha->Interpretar(ctx,ctx2,ctx3);
 
     if (!izqR || !derR) {
         return nullptr; // Return nullptr if either left or right operand is nullptr

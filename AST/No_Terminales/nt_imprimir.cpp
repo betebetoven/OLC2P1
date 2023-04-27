@@ -1,8 +1,8 @@
 #include "nt_imprimir.h"
 #include <fstream>
 
-Resultado *NT_Imprimir::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
-    Resultado* r = this->lista_expr->Interpretar(ctx, ctx2);
+Resultado *NT_Imprimir::Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) {
+    Resultado* r = this->lista_expr->Interpretar(ctx, ctx2,ctx3);
     //std::cout<<r->getValor().toString().toStdString()<<std::endl;
     std::string output = r->getValor().toString().toStdString() + "\n";
         std::cout << output;

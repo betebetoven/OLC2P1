@@ -7,7 +7,7 @@ class NT_Not : public AbstractExpr{
     AbstractExpr* Derecha;
 public:
     NT_Not(AbstractExpr *derecha);
-    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
     QString Graficar() override;
 };
 

@@ -1,8 +1,8 @@
 #include "nt_exponencial.h"
 
-Resultado *NT_Exponencial::Interpretar(Environment *ctx,EnvironmentFunc *ctx2) {
-    Resultado* izqR = this->izquierda->Interpretar(ctx,ctx2);
-    Resultado* derR = this->derecha->Interpretar(ctx,ctx2);
+Resultado *NT_Exponencial::Interpretar(Environment *ctx,EnvironmentFunc *ctx2, EnvironmentVect* ctx3) {
+    Resultado* izqR = this->izquierda->Interpretar(ctx,ctx2,ctx3);
+    Resultado* derR = this->derecha->Interpretar(ctx,ctx2,ctx3);
 
     if (!izqR || !derR) {
         return nullptr; // Return nullptr if either left or right operand is nullptr

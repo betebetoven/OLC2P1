@@ -9,7 +9,7 @@ class NT_Negacion : public AbstractExpr{
     AbstractExpr* Derecha;
 public:
     NT_Negacion(AbstractExpr *derecha);
-    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2) override;
+    Resultado *Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
     QString Graficar() override;
 };
 

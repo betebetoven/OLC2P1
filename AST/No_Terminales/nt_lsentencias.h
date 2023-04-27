@@ -9,7 +9,7 @@ public:
 
     NT_LSentencias();
     QString Graficar() override;
-    Resultado* Interpretar(Environment* ctx,EnvironmentFunc* ctx2) override;
+    Resultado* Interpretar(Environment* ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) override;
     void AddSentencia(AbstractExpr *nodo );
 };
 

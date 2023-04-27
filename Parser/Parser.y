@@ -50,6 +50,7 @@
     #include "../AST/No_Terminales/nt_listaexpr.h"
     #include "../AST/No_Terminales/nt_bloque.h"
     #include "../AST/No_Terminales/nt_declvar.h"
+    #include "../AST/No_Terminales/nt_declvector.h"
     #include "../AST/No_Terminales/nt_asigvar.h"
     #include "../AST/No_Terminales/Expresiones/nt_suma.h"
     #include "../AST/No_Terminales/Expresiones/nt_multiplicacion.h"
@@ -161,8 +162,8 @@ del parser al escaner evitando crear variables globales
 %parse-param {void *scanner} {yy::location& loc} { class Clase3::Interfaz & intr }
 
 
-%type<AbstractExpr*>   declaracion_var escapa lista_Expr declaracion_void llamada;
-%type<QVector<AbstractExpr*>*> s lSentencia;
+%type<AbstractExpr*>   declaracion_var escapa lista_Expr declaracion_void llamada declaracion_vector;
+%type<QVector<AbstractExpr*>*> s lSentencia lasig lparam;
 %type<AbstractExpr*> sentencia asignacion_var aumento decremento;
 %type<AbstractExpr*> expr tipo cond x;
 %type<AbstractExpr*> bloque  ciclo_for ciclo_while ins_if;
@@ -210,6 +211,7 @@ lSentencia: lSentencia sentencia z {
     }
 
     ;
+
     /*sentencias*/
 sentencia: declaracion_var {$$ = $1;}
         | asignacion_var {$$ = $1; }
@@ -223,6 +225,7 @@ sentencia: declaracion_var {$$ = $1;}
     |escapa {$$=$1;}
     |declaracion_void {$$=$1;}
     |llamada {$$=$1;}
+    |declaracion_vector {$$=$1;}
     ;
 
 ciclo_for:FOR '(' declaracion_var z x z aumento ')' '{' lSentencia '}' {$$ = new Bloque(*$10,$3,$5,$7,true,nullptr);}
@@ -245,8 +248,12 @@ escapa: BREAK { $$ = new NT_Escape(QString::fromStdString("break"));}
 
 
  ;
-llamada: /*ID '(' lista_Expr ')' { $$ = new NT_Llamada(QString::fromStdString($1),*$3);}
-    | */ID '(' ')' { NT_ID* id_av = new NT_ID(QString::fromStdString($1));
+llamada: ID '(' lparam ')' { 
+    
+    NT_ID* id_av = new NT_ID(QString::fromStdString($1));
+    $$ = new NT_Llamada(id_av,*$3);}
+    | ID '(' ')' { 
+        NT_ID* id_av = new NT_ID(QString::fromStdString($1));
         $$ = new NT_Llamada(id_av);}
     ;
 
@@ -288,8 +295,34 @@ declaracion_void: tipo ID '('')' bloque {
                                 NT_ID* id = new NT_ID(QString::fromStdString($2));
                                 $$ = new NT_DeclFunc($1, id, $5);
                                 }
+                | tipo ID '(' lasig ')' bloque { 
+                                NT_ID* id = new NT_ID(QString::fromStdString($2));
+                                $$ = new NT_DeclFunc($1, id, $6, *$4);
+                                }
     ;
+lasig: lasig ',' declaracion_var  {
+                           $$ = $1;
+                            $$->append($3);
+                        }   
+    | declaracion_var  {    
+        QVector<AbstractExpr*>* vec = new QVector<AbstractExpr*>();
+        vec->append($1);
+        $$ = vec;
+    }
 
+
+
+;
+lparam: lparam ',' x {
+                           $$ = $1;
+                            $$->append($3);
+                        }   
+    | x  {  
+        QVector<AbstractExpr*>* vec = new QVector<AbstractExpr*>();
+        vec->append($1);
+        $$ = vec;
+    }
+;
 
 
 
@@ -301,10 +334,29 @@ declaracion_var: tipo ID  {   NT_ID* id = new NT_ID(QString::fromStdString($2));
                                 $$ = new NT_DeclVar($1, id,$4 );  }
     ;
 
+declaracion_vector: VECTOR MENOR tipo MAYOR ID  {   NT_ID* id = new NT_ID(QString::fromStdString($5));
+                                    $$ = new NT_DeclVector($3, id); }
+    |  VECTOR MENOR tipo MAYOR ID '=' '[' lparam ']' {    
+                                NT_ID* id = new NT_ID(QString::fromStdString($5));
+                                $$ = new NT_DeclVector($3, id, *$8 );  }
+    ;
+
+
+
+
+;
+
+
+
+
+
 asignacion_var: ID '=' x {   NT_ID* id_avar = new NT_ID(QString::fromStdString($1));
                                 $$ = new NT_AsigVar(id_avar, $3,true);
                                 }
     ;
+
+
+
 
 x: 
      cond{$$ = $1;}

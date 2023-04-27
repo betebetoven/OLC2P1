@@ -2,8 +2,8 @@
 
 NT_Not::NT_Not(AbstractExpr *derecha) : Derecha(derecha) {}
 
-Resultado *NT_Not::Interpretar(Environment *ctx,EnvironmentFunc* ctx2) {
-    Resultado* der = this->Derecha->Interpretar(ctx,ctx2);
+Resultado *NT_Not::Interpretar(Environment *ctx,EnvironmentFunc* ctx2, EnvironmentVect* ctx3) {
+    Resultado* der = this->Derecha->Interpretar(ctx,ctx2,ctx3);
 
     if (!der) {
         return nullptr; // Return nullptr if the operand is nullptr
